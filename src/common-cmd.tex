@@ -1,0 +1,81 @@
+\makeatletter
+% 環境
+\renewcommand{\(}{\hfill$\begin{aligned}[t]}
+\renewcommand{\)}{\end{aligned}$\hfill\null}
+\newenvironment{eqalign}{\[\begin{aligned}}{\end{aligned}\]}
+
+% テキスト書体コマンド
+\newcommand{\gs}{\sffamily}
+\newcommand{\gsb}{\gs\bfseries}
+\newcommand{\xrm}[1]{\textrm{#1}}
+\newcommand{\xit}[1]{\textit{#1}}
+\newcommand{\xsf}[1]{\textsf{#1}}
+\newcommand{\xtt}[1]{\texttt{#1}}
+\newcommand{\xbf}[1]{\textbf{#1}}
+% 数式書体コマンド
+\newcommand{\up}[1]{\symup{#1}} % 1文字セリフ・ローマン体
+\newcommand{\mup}[1]{\mathrm{#1}} % 複数文字セリフ・ローマン体
+\newcommand{\yit}[1]{\symit{#1}} % 1文字セリフ・イタリック体
+% \newcommand{}[1]{\mathit{#1}} % 複数文字セリフ・イタリック体
+\newcommand{\sfu}[1]{\symsfup{#1}} % サンセリフ・ローマン体
+\newcommand{\sfi}[1]{\symsfit{#1}} % サンセリフ・イタリック体
+\newcommand{\frk}[1]{\symfrak{#1}} % フラクトゥール
+\newcommand{\bb}[1]{\symbb{#1}} % 黒板太字
+\newcommand{\bbi}[1]{\symbbit{#1}} % 黒板太字イタリック体
+\newcommand{\ncl}[1]{\symcal{#1}} % 新チャンセリー筆記体
+\newcommand{\scr}[1]{\symscr{#1}} % 新チャンセリー筆記体・小文字，ラウンド筆記体
+% - - - - - - -
+\newcommand{\bup}[1]{\symbfup{#1}} % 太字セリフ・ローマン体
+\newcommand{\bit}[1]{\symbfit{#1}} % 太字セリフ・イタリック体
+\newcommand{\bsu}[1]{\symbfsfup{#1}} % 太字サンセリフ・ローマン体
+\newcommand{\bsi}[1]{\symbfsfit{#1}} % 太字サンセリフ・イタリック体
+\newcommand{\bfr}[1]{\symbffrak{#1}} % 太字フラクトゥール
+% \newcommand{\bcl}[1]{??} % 太字旧チャンセリー筆記体
+\newcommand{\bncl}[1]{\symbfcal{#1}} % 太字新チャンセリー筆記体
+\newcommand{\bsc}[1]{\symbfscr{#1}} % 太字新チャンセリー筆記体・小文字，太字ラウンド筆記体
+% ====== 筆記体メモ ======
+% \cl P : 旧チャンセリー筆記体
+% \ncl P = \symcal P : 新チャンセリー筆記体・大文字
+% \scr p = \symscr p, \ncl p = \symcal p : 新チャンセリー筆記体・小文字
+% \scr P = \symscr P : ラウンド筆記体
+% \bcl P : 太字旧チャンセリー筆記体（未定義）
+% \bncl P = \symbfcal P : 太字新チャンセリー筆記体・大文字
+% \bsc p = \symbfscr p, \bncl p = \symbfcal p : 太字新チャンセリー筆記体・小文字
+% \bsc P = \symbfscr P : 太字ラウンド筆記体
+
+\newcommand{\opr}[1]{\operatorname{#1}}
+\newcommand{\MO}[1]{\mathord{#1}}
+
+% 雑記号
+\newcommand{\para}{\textcolor{mygray}{$\linefeed$}\par}
+\newcommand{\?}{\varstar}
+\newcommand{\AND}{\hspace{.5em} / \hspace{.5em}}
+\newcommand{\：}{\colon}
+\newcommand{\…}{\dots}
+
+
+% 両側デリミタ
+\newcommand{\pr}[1]{\lleft(#1\rright)}
+\newcommand{\cb}[1]{\lleft\{#1\rright\}}
+\newcommand{\ab}[1]{\lleft\langle#1\rright\rangle}
+\newcommand{\⟨}{\lleft\langle}
+\newcommand{\⟩}{\rright\rangle}
+
+
+% 片側デリミタ
+\makeatletter
+\newcommand{\cuc}[1]{\begin{cases}#1\end{cases}} % {
+\newenvironment{sqcases}{\matrix@check\sqcases\env@sqcases}{\endarray\right.}\def\env@sqcases{\let\@ifnextchar\new@ifnextchar\left\lbrack\def\arraystretch{1.2}\array{@{}l@{\quad}l@{}}}
+\newcommand{\sqc}[1]{\begin{sqcases}#1\end{sqcases}} % [
+\makeatother
+
+% 論理記号タイプ
+\newcommand{\ra}{\varrightarrow}
+\newcommand{\lra}{\varleftrightarrow}
+\newcommand{\defn}{\mathrel{:\lra}}
+
+% 
+\newcommand{\cls}[2]{\cb{#1 \mmrel| #2}}
+\newcommand{\dom}[1]{\opr{dom}\pr{#1}}
+
+\makeatother

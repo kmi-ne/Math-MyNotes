@@ -1,0 +1,11 @@
+use Cwd 'getcwd';
+use File::Basename;
+my $path = getcwd;
+$jobname = basename($path);
+$xelatex = 'xelatex %O -halt-on-error -file-line-error %S';
+$lualatex = 'lualatex %O -halt-on-error -file-line-error %S';
+$bibtex = 'upbibtex %O %B';
+$biber = 'biber --bblencoding=utf8 -u -U --output_safechars';
+$makeindex = 'upmendex -s jpbase -l %O -o %D %S';
+$aux_dir = '.';
+$out_dir = '../../pdf';

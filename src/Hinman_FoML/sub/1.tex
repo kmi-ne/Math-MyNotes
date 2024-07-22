@@ -1,0 +1,153 @@
+\chapter{Propositional Logic}
+
+
+connective, sentence symbol, $L$-symbol, $L$-expression:
+\begin{dfn}
+  \footnote{$¬, \MO ∨, \MO ∧, \MO →, \MO ↔, p_n$ may be defined as $0, 1, 2, 3, 4, n + 5$ (resp.).}
+  \footnote{$X ^ {<𝜔} ≔ \cls{ f }{ ∃ {N ∈ 𝜔} \ ( f \： N → X ) }$: the set of all finite sequences on $X$}
+  \begin{thmlist}
+    \item \mylabel{dfn_Connec}[$\Connec$]
+    \(
+      \Connec ≔ \{ ¬, \MO ∨, \MO ∧, \MO →, \MO ↔ \}
+    \)
+    \item \mylabel{dfn_SentSymb}[$\SentSymb$]
+    \(
+      \SentSymb ≔ \cls{ p_n }{ n \in ω }
+    \)
+    \item \mylabel{dfn_Symb}[$\Symb_L$]
+    \(
+      \Symb_L ≔ \Connec ∪ \SentSymb
+    \)
+    \item \mylabel{dfn_Expr}[$\Expr_L$]
+    \(
+      \Expr_L ≔ \Sent_L ^ {<𝜔}
+    \)
+  \end{thmlist}
+\end{dfn}
+
+
+concatenation:
+\begin{dfn}[dfn_conc][$f ⁀ g$]
+  \[
+    f ⁀ g ≔ \cls{ ⟨ n + \dom f , g(n) ⟩ }{ n ∈ \dom g }
+  \]
+\end{dfn}
+
+
+\begin{cnv}
+  $[ s_𝟎 \… s_𝐧 ]$ \AND $s_𝟎 \… s_𝐧$
+    --- Syn. for $\{ ⟨ 0, s_𝟎 ⟩, \… , ⟨ n, s_𝐧 ⟩ \}$
+\end{cnv}
+
+
+$L$-atomic sentence:
+\begin{dfn}[dfn_AtSent][$\AtSent_L$]
+  \footnote{$X ^ n  ≔ \cls{ f }{ f \： n → X }$: the set of all $n$-term sequences on $X$}
+  \[
+    \AtSent_L ≔ \SentSymb ^ 1
+  \]
+  \See{dfn_SentSymb}
+\end{dfn}
+\nb{
+  $\AtSent_L = \cls{ [s] }{ s ∈ \SentSymb }$ \par
+  $\AtSent_L ⊆ \Expr_L$
+}
+
+
+definition by recursion:
+% Unproved
+\begin{thm}[thm_recdfn]
+  \[
+    \cuc{
+      z ∈ Z \\
+      G \： Z × 𝜔 → Z
+    }
+    \ra
+    ∃! {F \： 𝜔 → Z} \ 
+    \cuc{
+      F (0) = z \\
+      ∀ {n ∈ ω} \ F (n^+) = G (F(n), n)
+    }
+  \]
+\end{thm}
+
+
+$(X, A, \cl H)$ is an induction system:
+\begin{dfn}[dfn_Ind][$\Ind{X, A, \cl H}$]
+  \[
+    \Ind{X, A, \cl H}
+    \defn
+    \cuc{
+      A ⊆ X ≠ ∅ \\
+      ∀ {H ∈ \cl H} \ ∃ {n ∈ 𝜔} \ ( H \： X ^ n → X )
+    }
+  \]
+\end{dfn}
+\nb{
+  $! {n ∈ 𝜔} \ ( H \： X ^ n → X )$. Define $k_{H, X}$ as $n$:
+  \[
+    ∃ {n ∈ 𝜔} \ ( H \： X ^ n → X )
+    \ra
+    \cuc{
+      k_{H, X} ∈ 𝜔 \\
+      H \： X ^ {k_{H, X}} → X
+    }
+  \]
+  . Thus
+  \[
+    \Ind{X, A, \cl H}
+    \lra
+    \cuc{
+      A ⊆ X ≠ ∅ \\
+      ∀ {H ∈ \cl H} \ 
+        \cuc{
+          k_{H, X} ∈ 𝜔 \\
+          H \： X ^ {k_{H, X}} → X
+        }
+    }
+  \]
+  . Write meta-$k_{H, X}$ as $𝐤_{H, X}$.
+}
+
+
+\begin{thm}[thm_rec_suc]
+  \[
+    \Ind{X, A, \cl H}
+    \ra
+    ∃! {F \： 𝜔 → ℘(X)} \ 
+    \cuc{
+      F (0) = A \\
+      ∀ {n ∈ ω} \ 
+        F (n^+) = F (n) ∪ \cls{ H (x_𝟏, \… , x_{𝐤_{H, X}}) }
+        {
+          \cuc{
+            H ∈ \cl H \\
+            x_𝟏, \… , x_{𝐤_{H, X}} ∈ F (n)
+          }
+        }
+    }
+  \]
+  \See{dfn_Ind}
+\end{thm}
+
+
+\begin{dfn}[dfn_recmap][$(X, A, \cl H)$]
+  Define: $(X, A, \cl H)$ as $F$ in \cref{thm_rec_suc}:
+  \[
+    \Ind{X, A, \cl H}
+    \ra
+    \cuc{
+      (X, A, \cl H) \： 𝜔 → ℘(X) \\
+      (X, A, \cl H)(0) = A \\
+      ∀ {n ∈ 𝜔} \ 
+        (X, A, \cl H)(n^+) = (X, A, \cl H)(n) ∪ \cls{ H (x_𝟏, \… , x_{𝐤_{H, X}}) }
+        {
+          \cuc{
+            H ∈ \cl H \\
+            x_𝟏, \… , x_{𝐤_{H, X}} ∈ (X, A, \cl H)(n)
+          }
+        }
+    }
+  \]
+  \See{dfn_Ind}
+\end{dfn}
