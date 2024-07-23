@@ -15,6 +15,7 @@
 \setsansfont{nimbussans}
 \usepackage[old]{old-arrows}
 \usepackage{longmath}
+\usepackage{leftidx}
 % \usepackage{fontsize} % <
 % \newlength{\basefontsize} % <
 % \setlength{\basefontsize}{8pt} % <
@@ -119,13 +120,13 @@
 \defitem{axm}{Axiom}{myred}
 \defitem{cnv}{Convention}{mygray}
 
-\newtcolorbox{nbenv}{%
+\newtcolorbox{nb}{%
   enhanced, breakable,
   right*=0pt, top=0pt, bottom=0pt,
   sharp corners, colframe=black,
   leftrule=2pt, rightrule=0pt, toprule=0pt, bottomrule=0pt,
 }
-\newcommand{\nb}[1]{\begin{nbenv}#1\end{nbenv}}
+% \newcommand{\nb}[1]{\begin{nbenv}#1\end{nbenv}}
 
 
 
