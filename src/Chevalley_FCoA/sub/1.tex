@@ -1,0 +1,89 @@
+\chapter{Monoids}
+
+
+% $𝜏$ is a law of composition on $A$
+% \begin{dfn}[$\Comp{𝜏, A}$]
+%   \[
+%     \Comp{𝜏, A}
+%     \defn
+%     𝜏 \： A → A
+%   \]
+% \end{dfn}
+
+
+\begin{cnv}
+  $a \T b$
+    --- Syn. for $𝜏 (a, b)$
+\end{cnv}
+
+
+$𝜏$ is associative:
+\begin{dfn}[dfn_Assoc][$\Assoc{𝜏, A}$]
+  \[
+    \Assoc{𝜏, A}
+    \defn
+    \cuc{
+      𝜏 \： A → A \\
+      ∀ a, b, c ∈ A \ (a \T b) \T c = a \T (b \T c)
+    }
+  \]
+  \tcblower
+  \footnote{$𝜏_𝐟$: the function corresponding to a function symbol $𝐟$}
+  \begin{thmlist}
+    \item 
+    \(
+      \Assoc{𝜏_+, ℤ}
+    \)
+    \item 
+    \(
+      \Assoc{𝜏_·, ℤ}
+    \)
+    \item 
+    \(
+      \Assoc{𝜏_∘, \funcs{S}{S}}
+    \)
+    \item 
+    \(
+      ¬ \Assoc{𝜏_-, ℤ}
+    \)
+  \end{thmlist}
+\end{dfn}
+
+
+neutral element:
+\begin{dfn}[dfn_Neut]
+  \[
+    \Neut{e, 𝜏, A}
+    \defn
+    \cuc{
+      𝜏 \： A → A \\
+      ∀ a ∈ A \ (a \T e = e \T a = a)
+    }
+  \]
+  \tcblower
+  \begin{thmlist}
+    \item 
+    \(
+      \Neut{0, 𝜏_+, ℤ}
+    \)
+    \item 
+    \(
+      \Neut{1, 𝜏_·, ℤ}
+    \)
+    \item 
+    \(
+      \Neut{\id, 𝜏_∘, \funcs{S}{S}}
+    \)
+    \item 
+    \(
+      ∀ x ∈ ℤ \ ¬ \Neut{x, 𝜏_-, ℤ}
+    \)
+  \end{thmlist}
+\end{dfn}
+
+
+\begin{thm}[thm_neut_unq]
+  \[
+    ! e ∈ A \Neut{e, 𝜏, A}
+  \]
+\end{thm}
