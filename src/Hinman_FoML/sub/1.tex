@@ -4,7 +4,7 @@
 connective, sentence symbol, $L$-symbol, $L$-expression:
 \begin{dfn}
   \footnote{$¬, \MO ∨, \MO ∧, \MO →, \MO ↔, p_n$ may be defined as $0, 1, 2, 3, 4, n + 5$ (resp.).}
-  \footnote{$X ^ {<𝜔} ≔ \cls{ f }{ ∃ {N ∈ 𝜔} \ ( f \： N → X ) }$: the set of all finite sequences on $X$}
+  \footnote{$\funcs{<𝜔}{X} ≔ \cls{ f }{ ∃ {N ∈ 𝜔} \ ( f \： N → X ) }$: the set of all finite sequences on $X$}
   \begin{thmlist}
     \item \mylabel{dfn_Connec}[$\Connec$]
     \(
@@ -20,7 +20,7 @@ connective, sentence symbol, $L$-symbol, $L$-expression:
     \)
     \item \mylabel{dfn_Expr}[$\Expr_L$]
     \(
-      \Expr_L ≔ \Sent_L ^ {<𝜔}
+      \Expr_L ≔ \funcs{<𝜔}{\Sent_L}
     \)
   \end{thmlist}
 \end{dfn}
@@ -35,27 +35,28 @@ concatenation:
 
 
 \begin{cnv}
-  $[ s_𝟎 \… s_𝐧 ]$ \AND $s_𝟎 \… s_𝐧$
+  $[ s_𝟎, \… , s_𝐧 ]$\AND $s_𝟎 \… s_𝐧$
     --- Syn. for $\{ ⟨ 0, s_𝟎 ⟩, \… , ⟨ n, s_𝐧 ⟩ \}$
 \end{cnv}
 
 
 $L$-atomic sentence:
 \begin{dfn}[dfn_AtSent][$\AtSent_L$]
-  \footnote{$X ^ n  ≔ \cls{ f }{ f \： n → X }$: the set of all $n$-term sequences on $X$}
+  \footnote{$\funcs{n}{X} ≔ \cls{ f }{ f \： n → X }$: the set of all $n$-term sequences on $X$}
   \[
-    \AtSent_L ≔ \SentSymb ^ 1
+    \AtSent_L ≔ \funcs{1}{\SentSymb}
   \]
   \See{dfn_SentSymb}
 \end{dfn}
-\nb{
-  $\AtSent_L = \cls{ [s] }{ s ∈ \SentSymb }$ \par
-  $\AtSent_L ⊆ \Expr_L$
-}
+\begin{nb}
+  \begin{itemize}
+    \item $\AtSent_L = \cls{ [s] }{ s ∈ \SentSymb }$
+    \item $\AtSent_L ⊆ \Expr_L$
+  \end{itemize}
+\end{nb}
 
 
 definition by recursion:
-% Unproved
 \begin{thm}[thm_recdfn]
   \[
     \cuc{
@@ -74,6 +75,21 @@ definition by recursion:
 
 $(X, A, \cl H)$ is an induction system:
 \begin{dfn}[dfn_Ind][$\Ind{X, A, \cl H}$]
+  \footnote{
+    By \cref{thm_recdfn}, 
+    $
+      ∃! F \： 𝜔 → 𝐔 \ 
+      \cuc{
+        F (0) = 1 \\
+        ∀ n ∈ 𝜔 \ F (n^+) =
+        \cuc{
+          X & \text{if $n = 0$} \\
+          F (n) × X & \text{if $n > 0$}
+        }
+      }
+    $.
+    Write $F (n)$ as $X ^ n$.
+  }
   \[
     \Ind{X, A, \cl H}
     \defn
@@ -83,14 +99,14 @@ $(X, A, \cl H)$ is an induction system:
     }
   \]
 \end{dfn}
-\nb{
-  $! {n ∈ 𝜔} \ ( H \： X ^ n → X )$. Define $k_{H, X}$ as $n$:
+\begin{nb}
+  $! {n ∈ 𝜔} \ ( \dom H = X ^ n )$. Define $k_{H, X}$ as $n$:
   \[
     ∃ {n ∈ 𝜔} \ ( H \： X ^ n → X )
     \ra
     \cuc{
       k_{H, X} ∈ 𝜔 \\
-      H \： X ^ {k_{H, X}} → X
+      \dom H = X ^ {k_{H, X}}
     }
   \]
   . Thus
@@ -107,10 +123,10 @@ $(X, A, \cl H)$ is an induction system:
     }
   \]
   . Write meta-$k_{H, X}$ as $𝐤_{H, X}$.
-}
+\end{nb}
 
 
-\begin{thm}[thm_rec_suc]
+\begin{thm}[thm_recmap]
   \[
     \Ind{X, A, \cl H}
     \ra
@@ -132,7 +148,7 @@ $(X, A, \cl H)$ is an induction system:
 
 
 \begin{dfn}[dfn_recmap][$(X, A, \cl H)$]
-  Define: $(X, A, \cl H)$ as $F$ in \cref{thm_rec_suc}:
+  Define: $(X, A, \cl H)$ as $F$ in \cref{thm_recmap}:
   \[
     \Ind{X, A, \cl H}
     \ra
@@ -151,3 +167,92 @@ $(X, A, \cl H)$ is an induction system:
   \]
   \See{dfn_Ind}
 \end{dfn}
+
+
+\begin{cnv}
+  \begin{thmlist}
+    \item $(X, A, \cl H)_n$\AND $X_n$
+      --- Syn. for $(X, A, \cl H) (n)$
+    \item $\cl X$
+      --- Syn. for $(X, A, \cl H)$
+  \end{thmlist}
+  \See{dfn_Ind, dfn_recmap}
+\end{cnv}
+\begin{nb}
+  $\cl X_n ≡ (X, A, \cl H)_n$
+\end{nb}
+
+
+inductive closure of $A$ under $\cl H$:
+\begin{dfn}[dfn_clos][$\clos{X, A, \cl H}$]
+  \[
+    \clos{X, A, \cl H} ≔ ⋃_{n ∈ ω} (X, A, \cl H)_n
+  \]
+  \See{dfn_recmap}
+\end{dfn}
+\begin{nb}
+  $\clos{X, A, \cl H} = \cls{ x \in X }{ ∃ {n ∈ 𝜔} \ (x ∈ (X, A, \cl H)_n) }$
+\end{nb}
+
+
+\begin{thm}
+  $\Ind{X, A, \cl H} \ra {}$
+  \begin{thmlist}
+    \item \mylabel{thm_recmap_minmax}
+    \(
+      ∀ {n ∈ 𝜔} \ (A ⊆ (X, A, \cl H)_n ⊆ X)
+    \)
+    \item \mylabel{thm_clos_minmax}
+    \(
+      A ⊆ \clos{X, A, \cl H} ⊆ X
+    \)
+  \end{thmlist}
+  \See{dfn_Ind, dfn_recmap, dfn_clos}
+%   \tcblower
+%   \begin{thmlist}
+%     \item (Prove by Induction)
+%       \begin{step}
+%         \item (Prove $A \sbc (X, A, \cl H)_0 \sbc X$) \par
+%         $(X, A, \cl H)_0 = A \sbc X$ (by \cref{dfn_recmap} \AND \cref{dfn_Ind})
+%         \item (Prove $\fal{n \in ω} (A \sbc (X, A, \cl H)_n \sbc X \ra A \sbc (X, A, \cl H)_{n^+} \sbc X)$) \par
+%         Arbitrary: $n \in ω$. Assume: $A \sbc (X, A, \cl H)_n \sbc X$.
+%         \[
+%           \cup \cls{H (x_𝟏, \dots , x_{𝐤_H})}{
+%             \cuc{H \in \cl H \\ x_𝟏, \dots , x_{𝐤_H} \in (X, A, \cl H) (n)}
+%           }
+%           \sbc X
+%         \]
+%       \end{step}
+%     \item \IM{
+%       A & {} = (X, A, \cl H)_0 && \text{(by \cref{dfn_recmap})} \\
+%       & {} \sbc \clos{X, A, \cl H} && \text{(by \cref{dfn_clos})} \\
+%       & {} \sbc X && \text{(by \cref{thm_recmap_minmax})}
+%     }
+%   \end{thmlist}
+\end{thm}
+
+
+\begin{dfn}
+  \begin{thmlist}
+    \item \mylabel{dfn_H_lnot}[$H_¬$]
+    \(
+      H_¬ \： \Expr_L ∋ 𝜙 ↦ [¬] ⁀ 𝜙
+    \)
+    \item \mylabel{dfn_H_connec}[$H_●$]
+    $● ≡ \MO ∨, \MO ∧, \MO →, \MO ↔$
+    \[
+      H_● \： \Expr_L × \Expr_L ∋ ⟨ 𝜙, 𝜓 ⟩ ↦ [●] ⁀ 𝜙 ⁀ 𝜓
+    \]
+    \item \mylabel{dfn_HSent}[$\HSent$]
+    \(
+      \HSent ≔ \{ H_¬, H_∨, H_∧, H_→, H_↔ \}
+    \)
+  \end{thmlist}
+  \See{dfn_Expr, dfn_conc}
+\end{dfn}
+\begin{nb}
+  \begin{itemize}
+    \item $H_¬ (𝜙),\ H_● (𝜙) ∈ \Expr_L$
+    \item $k_{H_¬, \Expr_L} = 1$, $k_{H_●, \Expr_L} = 2$
+  \end{itemize}
+\end{nb}
