@@ -58,11 +58,11 @@ $L$-atomic sentence:
 
 definition by recursion:
 \begin{thm}[thm_recdfn]
+  \Assume{
+    $z ∈ Z$ //
+    $G \： Z × 𝜔 → Z$
+  }
   \[
-    \cuc{
-      z ∈ Z \\
-      G \： Z × 𝜔 → Z
-    }
     \ra
     ∃! {F \： 𝜔 → Z} \ 
     \cuc{
@@ -127,9 +127,9 @@ $(X, A, \cl H)$ is an induction system:
 
 
 \begin{thm}[thm_recmap]
-  \[
+  \begin{multline*}
     \Ind{X, A, \cl H}
-    \ra
+    \ra \\
     ∃! {F \： 𝜔 → ℘(X)} \ 
     \cuc{
       F (0) = A \\
@@ -142,16 +142,16 @@ $(X, A, \cl H)$ is an induction system:
           }
         }
     }
-  \]
+  \end{multline*}
   \See{dfn_Ind}
 \end{thm}
 
 
 \begin{dfn}[dfn_recmap][$(X, A, \cl H)$]
   Define: $(X, A, \cl H)$ as $F$ in \cref{thm_recmap}:
-  \[
+  \begin{multline*}
     \Ind{X, A, \cl H}
-    \ra
+    \ra \\
     \cuc{
       (X, A, \cl H) \： 𝜔 → ℘(X) \\
       (X, A, \cl H)(0) = A \\
@@ -164,7 +164,7 @@ $(X, A, \cl H)$ is an induction system:
           }
         }
     }
-  \]
+  \end{multline*}
   \See{dfn_Ind}
 \end{dfn}
 
