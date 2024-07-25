@@ -2,7 +2,7 @@
 % \usepackage[paper=b5j, headheight=10pt, footskip=0.03367\paperheight, headsep=\footskip-\topskip, includeheadfoot, vmargin=10truemm, hmargin=15truemm, includemp, nomarginpar]{geometry} % <
 % \usepackage{etoolbox, expl3, xparse} % <
 %%%%% ページレイアウト
-\setpagelayout+{vmargin=10truemm, hmargin=15truemm, includemp, nomarginpar} % >
+\setpagelayout+{vmargin=10truemm, hmargin=7truemm, includemp, nomarginpar} % >
 
 
 
@@ -62,7 +62,6 @@
 
 
 %%%%% リスト
-\usepackage{tasks}
 \usepackage[inline]{enumitem}
 % \setlist{topsep=\baselinestretch}
 % - - - - - - - - - -
@@ -113,7 +112,7 @@
     before lower={\ifstrempty{#4}{}{\textbf{#4:}\hspace{1em}}},%
   }%
 }
-\defitem{dfn}{Definition}{myblue}
+\defitem{dfn}{Definition}{myblue}[Example]
 \defitem{lem}{Lemma}{mygreen}[Proof]
 \defitem{prp}{Proposition}{mygreen}[Proof]
 \defitem{thm}{Theorem}{mygreen}[Proof]
