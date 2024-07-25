@@ -3,6 +3,7 @@
 \renewcommand{\(}{\hfill$\begin{aligned}[t]}
 \renewcommand{\)}{\end{aligned}$\hfill\null}
 \newenvironment{eqalign}{\[\begin{aligned}}{\end{aligned}\]}
+\newenvironment{eqgather}{\[\begin{gathered}}{\end{gathered}\]}
 
 % テキスト書体コマンド
 \newcommand{\gs}{\sffamily}
@@ -43,7 +44,7 @@
 % \bsc p = \symbfscr p, \bncl p = \symbfcal p : 太字新チャンセリー筆記体・小文字
 % \bsc P = \symbfscr P : 太字ラウンド筆記体
 
-\newcommand{\opr}[1]{\operatorname{#1}}
+\newcommand{\opr}[1]{\operatorname{\sfu{#1}}}
 \newcommand{\MO}[1]{\mathord{#1}}
 
 % 雑記号
@@ -79,5 +80,6 @@
 \newcommand{\cls}[2]{\cb{#1 \mmrel| #2}}
 \newcommand{\dom}[1]{\opr{dom}\pr{#1}}
 \NewDocumentCommand{\funcs}{mmO{}}{\leftidx{^{#1}}{#2}{#3}}
+\newcommand{\id}{\mup{id}}
 
 \makeatother
