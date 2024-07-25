@@ -1,62 +1,52 @@
 \chapter{Monoids}
 
-
-% $𝜏$ is a law of composition on $A$
-% \begin{dfn}[$\Comp{𝜏, A}$]
-%   \[
-%     \Comp{𝜏, A}
-%     \defn
-%     𝜏 \： A → A
-%   \]
-% \end{dfn}
+\section{Definition of a monoid}
 
 
 \begin{cnv}
-  $a \T b$
-    --- Syn. for $𝜏 (a, b)$
+  Syn.\@ for $⊤ (a, b)$ --- $a \T b$
 \end{cnv}
 
 
-$𝜏$ is associative:
-\begin{dfn}[dfn_Assoc][$\Assoc{𝜏, A}$]
+\begin{dfn}[dfn_Assoc][$\Assoc{⊤; A}$][$⊤$ is associative]
   \[
-    \Assoc{𝜏, A}
+    \Assoc{⊤; A}
     \defn
     \cuc{
-      𝜏 \： A → A \\
-      ∀ a, b, c ∈ A \ (a \T b) \T c = a \T (b \T c)
+      ⊤ \： A × A → A \\
+      ∀ a, b, c ∈ A \ ((a \T b) \T c = a \T (b \T c))
     }
   \]
   \tcblower
-  \footnote{$𝜏_𝐟$: the function corresponding to a function symbol $𝐟$}
+  \footnote{$⊤_𝐟$: the function corresponding to function symbol $𝐟$}
   \begin{thmlist}
     \item 
     \(
-      \Assoc{𝜏_+, ℤ}
+      \Assoc{⊤_+; ℤ}
     \)
     \item 
     \(
-      \Assoc{𝜏_·, ℤ}
+      \Assoc{⊤_·; ℤ}
     \)
     \item 
     \(
-      \Assoc{𝜏_∘, \funcs{S}{S}}
+      \Assoc{⊤_∘; \funcs{S}{S}}
     \)
     \item 
     \(
-      ¬ \Assoc{𝜏_-, ℤ}
+      ¬ \Assoc{⊤_-; ℤ}
     \)
   \end{thmlist}
 \end{dfn}
 
 
-neutral element:
-\begin{dfn}[dfn_Neut]
+\begin{dfn}[dfn_Neut][$\Neut{e; ⊤, A}$][$e$ is a neutral element]
   \[
-    \Neut{e, 𝜏, A}
+    \Neut{e; ⊤, A}
     \defn
     \cuc{
-      𝜏 \： A → A \\
+      ⊤ \： A × A → A \\
+      e ∈ A \\
       ∀ a ∈ A \ (a \T e = e \T a = a)
     }
   \]
@@ -64,26 +54,182 @@ neutral element:
   \begin{thmlist}
     \item 
     \(
-      \Neut{0, 𝜏_+, ℤ}
+      \Neut{0; ⊤_+, ℤ}
     \)
     \item 
     \(
-      \Neut{1, 𝜏_·, ℤ}
+      \Neut{1; ⊤_·, ℤ}
     \)
     \item 
     \(
-      \Neut{\id, 𝜏_∘, \funcs{S}{S}}
+      \Neut{\id_S; ⊤_∘, \funcs{S}{S}}
     \)
     \item 
     \(
-      ∀ x ∈ ℤ \ ¬ \Neut{x, 𝜏_-, ℤ}
+      ∀ x ∈ ℤ \ ¬ \Neut{x; ⊤_-, ℤ}
     \)
   \end{thmlist}
 \end{dfn}
 
 
-\begin{thm}[thm_neut_unq]
+\begin{thm}[thm_neut_unq][][Uniqueness of neutral element]
   \[
-    ! e ∈ A \Neut{e, 𝜏, A}
+    ! e \ \Neut{e; ⊤, A}
   \]
+  \See{dfn_Neut}
+  \tcblower
+  Assume $\Neut{e_𝟏; ⊤, A}$ and $\Neut{e_𝟐; ⊤, A}$. By \cref{dfn_Neut},
+  \begin{gather*}
+    e_𝟏, e_𝟐 ∈ A \\
+    ∀ a ∈ A \ (e_𝟏 \T a = a) \\
+    ∀ a ∈ A \ (a \T e_𝟐 = a)
+  \end{gather*}
+  Thus $e_𝟏 = e_𝟏 \T e_𝟐 = e_𝟐$.
 \end{thm}
+
+
+\begin{dfn}[dfn_neut][$e_{⊤, A}$][neutral element]
+  Define $e_{⊤, A}$ as $e$ in \cref{thm_neut_unq}
+  \[
+    ∃ e \ \Neut{e; ⊤, A} \ra \Neut{e_{⊤, A}; ⊤, A}
+  \]
+  \See{dfn_Neut}
+\end{dfn}
+\begin{nb}
+  \[
+    ∃ e \ \Neut{e; ⊤, A} \lra \Neut{e_{⊤, A}; ⊤, A}
+  \]
+\end{nb}
+
+
+\begin{dfn}[dfn_neut2][$e_⊤$]
+  \[
+    e_⊤ ≔ e_{⊤, \dom{\dom ⊤}}
+  \]
+  \See{dfn_neut}
+\end{dfn}
+\begin{nb}
+  \[
+    ⊤ \： A × A → A \ra e_⊤ = e_{⊤, A}
+  \]
+\end{nb}
+
+
+\begin{dfn}[dfn_Monoid][$\Monoid{A; ⊤}$][$A$ is a monoid]
+  \[
+    \Monoid{A; ⊤}
+    \defn
+    \cuc{
+      \Assoc{⊤; A} \\
+      ∃ e \ \Neut{e; ⊤, A}
+    }
+  \]
+  \See{dfn_Assoc, dfn_Neut}
+\end{dfn}
+\begin{nb}
+  \[
+    \Monoid{A; ⊤}
+    \lra
+    \cuc{
+      ⊤ \： A × A → A \\
+      ∀ a, b, c ∈ A \ ((a \T b) \T c = a \T (b \T c)) \\
+      ∃ e ∈ A \ ∀ a ∈ A \ (a \T e = e \T a = a)
+    }
+  \]
+\end{nb}
+
+
+\begin{dfn}[dfn_compSeq][$⟙_{𝐢 = 𝐦}^{𝐧} 𝜏$][Composite of finite sequences]
+  \[
+    ⟙_{𝐢 = 𝐦}^{𝐧^+} 𝜏
+    :≡
+    \cuc{
+      e_⊤ & \text{if $𝐦 > 𝐧^+$} \\
+      % 𝜏_{𝐢 → 𝐦} & \text{if $𝐦 = 𝐧^+$} \\
+      ⟙_{𝐢 = 𝐦}^{𝐧} 𝜏 \T 𝜏_{𝐢 → 𝐧^+} & \text{if $𝐦 < 𝐧^+$}
+    }
+  \]
+  \See{dfn_neut2}
+\end{dfn}
+
+
+\begin{thm}[thm_GenAssoc][][General associativity theorem]
+  Assume $𝟏 = 𝐤_𝟏 ≤ \… ≤ 𝐤_𝐡 < 𝐤_{𝐡 + 𝟏} = 𝐧 + 𝟏$.
+  \[
+    \cuc{
+      a_𝟏, \… , a_𝐧 ∈ A \\
+      ⊤ \： A × A → A
+    }
+    \ra
+    ⟙_{𝐢 = 𝟏}^{𝐧} a_𝐢 = ⟙_{𝐢 = 𝟏}^{𝐡} ⟙_{𝐣 = 𝐤_𝐢}^{𝐤_{𝐢 + 𝟏} - 𝟏} a_𝐣
+  \]
+  \See{dfn_compSeq}
+  \tcblower
+  (Induction on $n$)
+  \begin{step}
+    \item Assume $𝐧 = 𝟎$. $𝐡 = 𝟎$ by Assump. (continue)
+  \end{step}
+\end{thm}
+
+
+\begin{dfn}[dfn_CommMonoid][$\CommMonoid{A; ⊤}$][$A$ is a [commutative/Abelian] monoid]
+  \[
+    \CommMonoid{A; ⊤}
+    \defn
+    \cuc{
+      \Monoid{A; ⊤} \\
+      ∀ a, b ∈ A \ (a \T b = b \T a)
+    }
+  \]
+  \See{dfn_Monoid}
+\end{dfn}
+\begin{nb}
+  \[
+    \CommMonoid{A; ⊤}
+    \lra
+    \cuc{
+      ⊤ \： A × A → A \\
+      ∀ a, b, c ∈ A \ ((a \T b) \T c = a \T (b \T c)) \\
+      ∃ e ∈ A \ ∀ a ∈ A \ (a \T e = e \T a = a) \\
+      ∀ a, b ∈ A \ (a \T b = b \T a)
+    }
+  \]
+\end{nb}
+
+
+\begin{thm}
+  General commutativity theorem
+\end{thm}
+
+
+\section{Submonoids. Generators}
+
+
+\begin{dfn}[dfn_Stable][$\Stable{B; A}$][$B$ is stable]
+  \[
+    \Stable{B; A}
+    \defn
+    \cuc{
+      B ⊆ A \\
+      ∀ a, b ∈ B \ (a \T b ∈ B)
+    }
+  \]
+\end{dfn}
+
+
+\begin{dfn}[dfn_indComp][$⊤_B$][induced law of composition]
+  \[
+    ⊤_B ≔ ⊤ ↾ (B × B)
+  \]
+\end{dfn}
+
+
+\begin{prp}
+  \begin{thmlist}
+    \item 
+    \(
+      \Assoc{⊤} \ra \Assoc{⊤_B}
+    \)
+    \item 
+  \end{thmlist}
+\end{prp}
