@@ -1,14 +1,72 @@
 \chapter{Monoids}
 
+\begin{description}[style=nextline]
+  \item[1.1 Definition of a monoid] 
+  \hyperref[dfn_Assoc]{結合的}かつ\hyperref[dfn_Neut]{中立元}を持つ→\hyperref[dfn_Monoid]{モノイド}．
+  \hyperref[thm_genAssoc]{一般結合定理}．
+  \hyperref[dfn_CommMonoid]{可換モノイド}と\hyperref[thm_genComm]{一般可換定理}．
+  \item[1.2 Submonoids. Generators] 
+  …
+\end{description}
+
+
 \section{Definition of a monoid}
 
 
 \begin{cnv}
-  Syn.\@ for $⊤ (a, b)$ --- $a \T b$
+  \begin{thmlist}
+    \item \Syn{$⊤$}
+    \[
+      + \AND ·
+    \]
+    \item \Syn{$⊤ (a, b)$}
+    \[
+      a \T b
+    \]
+    \item \Syn{$a · b$}
+    \[
+      ab
+    \]
+  \end{thmlist}
 \end{cnv}
 
 
-\begin{dfn}[dfn_Assoc][$\Assoc{⊤; A}$][$⊤$ is associative]
+\begin{dfn}[dfn_uds][$\uds ⊤$][Underlying set]
+  \[
+    \uds ⊤
+    ≔
+    \img{\dom ⊤}
+  \]
+\end{dfn}
+\begin{nb}
+  \[
+    (⊤ \： A × A → A)
+    \ra
+    \uds ⊤ = A
+  \]
+\end{nb}
+
+
+\begin{dfn}[dfn_LawComp][$\LawComp{⊤}$][$⊤$ is an (internal) law of composition]
+  \[
+    \LawComp{⊤}
+    \defn
+    ∃ A \ (⊤ \： A × A → A)
+  \]
+\end{dfn}
+\begin{nb}
+  \[
+    (⊤ \： A × A → A)
+    \lra
+    \cuc{
+      \LawComp{⊤} \\
+      \uds ⊤ = A
+    }
+  \]
+\end{nb}
+
+
+\begin{dfn}[dfn_Assoc][$\Assoc{⊤; A}$][$⊤$ on $A$ is associative]
   \[
     \Assoc{⊤; A}
     \defn
@@ -17,30 +75,32 @@
       ∀ a, b, c ∈ A \ ((a \T b) \T c = a \T (b \T c))
     }
   \]
+  % \See{dfn_LawComp, dfn_uds}
   \tcblower
-  \footnote{$⊤_𝐟$: the function corresponding to function symbol $𝐟$}
+  \footnote{$⊤_{+_ℤ} ≔ \cls{ ⟨ ⟨ x, y ⟩, x +_ℤ y ⟩ }{ x, y ∈ ℤ }$ etc.}
+  \footnote{$⊤_{∘, S} ≔ \cls{ ⟨ ⟨ f, g ⟩, g ∘ f ⟩ }{ f, g ∈ \funcs{S}{S} }$}
   \begin{thmlist}
     \item 
-    \(
-      \Assoc{⊤_+; ℤ}
-    \)
+    \?
+      \Assoc{⊤_{+_ℤ}; ℤ}
+    \?
     \item 
-    \(
-      \Assoc{⊤_·; ℤ}
-    \)
+    \?
+      \Assoc{⊤_{·_ℤ}; ℤ}
+    \?
     \item 
-    \(
-      \Assoc{⊤_∘; \funcs{S}{S}}
-    \)
+    \?
+      \Assoc{⊤_{∘, S}; \funcs{S}{S}}
+    \?
     \item 
-    \(
-      ¬ \Assoc{⊤_-; ℤ}
-    \)
+    \?
+      ¬ \Assoc{⊤_{-_ℤ}; ℤ}
+    \?
   \end{thmlist}
 \end{dfn}
 
 
-\begin{dfn}[dfn_Neut][$\Neut{e; ⊤, A}$][$e$ is a neutral element]
+\begin{dfn}[dfn_Neut][$\Neut{e; ⊤, A}$][$e$ is a neutral element for $⊤$ in $A$]
   \[
     \Neut{e; ⊤, A}
     \defn
@@ -50,24 +110,25 @@
       ∀ a ∈ A \ (a \T e = e \T a = a)
     }
   \]
+  % \See{dfn_LawComp, dfn_uds}
   \tcblower
   \begin{thmlist}
     \item 
-    \(
-      \Neut{0; ⊤_+, ℤ}
-    \)
+    \?
+      \Neut{0_{ℤ}; ⊤_{+_ℤ}, ℤ}
+    \?
     \item 
-    \(
-      \Neut{1; ⊤_·, ℤ}
-    \)
+    \?
+      \Neut{1_{ℤ}; ⊤_{·_ℤ}, ℤ}
+    \?
     \item 
-    \(
-      \Neut{\id_S; ⊤_∘, \funcs{S}{S}}
-    \)
+    \?
+      \Neut{\id_S; ⊤_{∘, S}}
+    \?
     \item 
-    \(
-      ∀ x ∈ ℤ \ ¬ \Neut{x; ⊤_-, ℤ}
-    \)
+    \?
+      ∀ x ∈ ℤ \ ¬ \Neut{x; ⊤_{-_ℤ}, ℤ}
+    \?
   \end{thmlist}
 \end{dfn}
 
@@ -76,46 +137,43 @@
   \[
     ! e \ \Neut{e; ⊤, A}
   \]
-  \See{dfn_Neut}
+  % \See{dfn_Neut}
   \tcblower
-  Assume $\Neut{e_𝟏; ⊤, A}$ and $\Neut{e_𝟐; ⊤, A}$. By \cref{dfn_Neut},
-  \begin{gather*}
+  Assume $\Neut{e_𝟏; ⊤, A}$ and $\Neut{e_𝟐; ⊤, A}$. Then, by \cref{dfn_Neut},
+  \begin{eqgather}
     e_𝟏, e_𝟐 ∈ A \\
     ∀ a ∈ A \ (e_𝟏 \T a = a) \\
     ∀ a ∈ A \ (a \T e_𝟐 = a)
-  \end{gather*}
-  Thus $e_𝟏 = e_𝟏 \T e_𝟐 = e_𝟐$.
+  \end{eqgather}
+  Thus, $e_𝟏 = e_𝟏 \T e_𝟐 = e_𝟐$.
 \end{thm}
 
 
-\begin{dfn}[dfn_neut][$e_{⊤, A}$][neutral element]
-  Define $e_{⊤, A}$ as $e$ in \cref{thm_neut_unq}
-  \[
-    ∃ e \ \Neut{e; ⊤, A} \ra \Neut{e_{⊤, A}; ⊤, A}
-  \]
-  \See{dfn_Neut}
+\begin{dfn}[dfn_neut][$e_{⊤, A}$][Neutral element for $⊤$ in $A$]
+  Define $e_⊤$ as $e$ in \cref{thm_neut_unq}:
+  \begin{eqalign}
+    ∃ e \ \Neut{e; ⊤, A} &{}\ra \Neut{e_{⊤, A}; ⊤, A} \\
+    \otw &{}\ra e_{⊤, A} = 𝐔
+  \end{eqalign}
+  % \See{dfn_Neut}
 \end{dfn}
-\begin{nb}
-  \[
-    ∃ e \ \Neut{e; ⊤, A} \lra \Neut{e_{⊤, A}; ⊤, A}
-  \]
-\end{nb}
 
 
-\begin{dfn}[dfn_neut2][$e_⊤$]
-  \[
-    e_⊤ ≔ e_{⊤, \dom{\dom ⊤}}
-  \]
-  \See{dfn_neut}
-\end{dfn}
-\begin{nb}
-  \[
-    ⊤ \： A × A → A \ra e_⊤ = e_{⊤, A}
-  \]
-\end{nb}
+\begin{cnv}
+  \begin{thmlist}
+    \item \Syn{$e_{+, \uds +}$}
+    \[
+      𝟶
+    \]
+    \item \Syn{$e_{·, \uds ·}$}
+    \[
+      𝟷
+    \]
+  \end{thmlist}
+\end{cnv}
 
 
-\begin{dfn}[dfn_Monoid][$\Monoid{A; ⊤}$][$A$ is a monoid]
+\begin{dfn}[dfn_Monoid][$\Monoid{A; ⊤}$][$A$ is a monoid for $⊤$]
   \[
     \Monoid{A; ⊤}
     \defn
@@ -124,7 +182,7 @@
       ∃ e \ \Neut{e; ⊤, A}
     }
   \]
-  \See{dfn_Assoc, dfn_Neut}
+  % \See{dfn_Assoc, dfn_uds, dfn_Neut}
 \end{dfn}
 \begin{nb}
   \[
@@ -133,103 +191,338 @@
     \cuc{
       ⊤ \： A × A → A \\
       ∀ a, b, c ∈ A \ ((a \T b) \T c = a \T (b \T c)) \\
-      ∃ e ∈ A \ ∀ a ∈ A \ (a \T e = e \T a = a)
+      e_{⊤, A} ∈ A \\
+      ∀ a ∈ A \ (a \T e_{⊤, A} = e_{⊤, A} \T a = a)
     }
+  \]
+  \[
+    \Monoid{A; ⊤} \ra \Monoid{\uds ⊤; ⊤}
   \]
 \end{nb}
 
 
-\begin{dfn}[dfn_compSeq][$⟙_{𝐢 = 𝐦}^{𝐧} 𝜏$][Composite of finite sequences]
-  \[
-    ⟙_{𝐢 = 𝐦}^{𝐧^+} 𝜏
-    :≡
-    \cuc{
-      e_⊤ & \text{if $𝐦 > 𝐧^+$} \\
-      % 𝜏_{𝐢 → 𝐦} & \text{if $𝐦 = 𝐧^+$} \\
-      ⟙_{𝐢 = 𝐦}^{𝐧} 𝜏 \T 𝜏_{𝐢 → 𝐧^+} & \text{if $𝐦 < 𝐧^+$}
-    }
-  \]
-  \See{dfn_neut2}
-\end{dfn}
-
-
-\begin{thm}[thm_GenAssoc][][General associativity theorem]
-  Assume $𝟏 = 𝐤_𝟏 ≤ \… ≤ 𝐤_𝐡 < 𝐤_{𝐡 + 𝟏} = 𝐧 + 𝟏$.
+\begin{prp}[thm_compSeq]
   \[
     \cuc{
-      a_𝟏, \… , a_𝐧 ∈ A \\
-      ⊤ \： A × A → A
+      \Monoid{\uds ⊤; ⊤} \\
+      n ∈ 𝜔 \\
+      a \： [1, n] → \uds ⊤
     }
     \ra
-    ⟙_{𝐢 = 𝟏}^{𝐧} a_𝐢 = ⟙_{𝐢 = 𝟏}^{𝐡} ⟙_{𝐣 = 𝐤_𝐢}^{𝐤_{𝐢 + 𝟏} - 𝟏} a_𝐣
+    ∃! F \： [0, n] → \uds ⊤ \ 
+    \cuc{
+      F (0) = e_{⊤, \uds ⊤} \\
+      ∀ m ∈ [0, n^-] \ F (m^+) = F (m) \T a_{m^+}
+    }
   \]
-  \See{dfn_compSeq}
+  % \See{dfn_LawComp, dfn_uds, dfn_neut}
   \tcblower
-  (Induction on $n$)
+  (Prove by Induction)
   \begin{step}
-    \item Assume $𝐧 = 𝟎$. $𝐡 = 𝟎$ by Assump. (continue)
+    \item Assume (A1) $\Monoid{\uds ⊤; ⊤}$ and (A2) $a \： [1, 0] → \uds ⊤$.\\
+    By $m ∉ [0, 0^-]$, (P1) $∀ m ∈ [0, 0^-] \ F (m^+) = F (m) \T a_{m^+}$.\\
+    Let us prove
+    \[
+      ∃! F \： [0, n] → \uds ⊤ \ 
+      \cuc{
+        F (0) = e_{⊤, \uds ⊤} \\
+        ∀ m ∈ [0, n^-] \ F (m^+) = F (m) \T a_{m^+}
+      }
+    \]
+    \begin{description}
+      \item[Existence] Let $F = \{⟨ 0, e_{⊤, \uds ⊤} ⟩\}$. Then,
+      \begin{step}
+        \item By (A1), $e_{⊤, \uds ⊤} ∈ \uds ⊤$. Thus, $F \： [0, 0] → \uds ⊤$.
+        \item $F (0) = e_{⊤, \uds ⊤}$.
+      \end{step}
+      Thus, by (P1),
+      \[
+        ∃ F \： [0, 0] → \uds ⊤ \ 
+        \cuc{
+          F (0) = e_{⊤, \uds ⊤} \\
+          ∀ m ∈ [0, 0^-] \ F (m^+) = F (m) \T a_{m^+}
+        }
+      \]
+      \item[Uniqueness] Assume such $F$ exists.\\
+      By $F \： [0, n] → \uds ⊤$, $∃ x \ F = \{⟨ 0, x ⟩\}$. Take such $x$.\\
+      Thus, $x = F (0) = e_{⊤, \uds ⊤}$.\\
+      Thus, $F = \{⟨ 0, e_{⊤, \uds ⊤} ⟩\}$, which is unique.
+    \end{description}
+    \item Assume (A1)
+    \[
+      \cuc{
+        \Monoid{\uds ⊤; ⊤} \\
+        a \： [1, n] → \uds ⊤
+      }
+      \ra
+      ∃! F \： [0, n] → \uds ⊤ \ 
+      \cuc{
+        F (0) = e_{⊤, \uds ⊤} \\
+        ∀ m ∈ [0, n^-] \ F (m^+) = F (m) \T a_{m^+}
+      }
+    \]
+    , (A2) $\Monoid{\uds ⊤; ⊤}$ and (A3) $a \： [1, n^+] → \uds ⊤$.\\
+    Let $b = a ↾_{[1, n]}$. Then, $b \： [1, n] → \uds ⊤$.\\
+    Thus, by (A1, A2),
+    \[
+      ∃! F \： [0, n] → \uds ⊤ \ 
+      \cuc{
+        F (0) = e_{⊤, \uds ⊤} \\
+        ∀ m ∈ [0, n^-] \ F (m^+) = F (m) \T b_{m^+}
+      }
+    \]
+    Take such unique $F$.\\
+    Let $G = F ∪ \{⟨ n^+, F (n) \T a_{n^+} ⟩\}$. Then,
+    \begin{step}
+      \item $G (0) = F (0) = e_{⊤, \uds ⊤}$.
+      \item Assume $m ∈ [0, n]$.\\
+      If $m ∈ [0, n^-]$,
+      \[
+        G (m^+) = F (m^+) = F (m) \T a_{m^+} = G (m) \T a_{m^+}
+      \]
+      If $m = n$,
+      \[
+        G (m^+) = G (n^+) = F (n) \T a_{n^+} = G (n) \T a_{n^+}
+      \]
+    \end{step}
+    Thus,
+    \[
+      \cuc{
+        G \： [0, n^+] → \uds ⊤
+        G (0) = e_{⊤, \uds ⊤} \\
+        ∀ m ∈ [0, n] \ G (m^+) = G (m) \T a_{m^+}
+      }
+    \]
+    Since $F$ is unique, $G$ is unique.\\
+    Thus,
+    \[
+      ∃! F \： [0, n^+] → \uds ⊤ \ 
+      \cuc{
+        F (0) = e_{⊤, \uds ⊤} \\
+        ∀ m ∈ [0, n] \ F (m^+) = F (m) \T a_{m^+}
+      }
+    \]
   \end{step}
-\end{thm}
+\end{prp}
 
 
-\begin{dfn}[dfn_CommMonoid][$\CommMonoid{A; ⊤}$][$A$ is a [commutative/Abelian] monoid]
-  \[
-    \CommMonoid{A; ⊤}
-    \defn
+\begin{dfn}[dfn_compSeq][$⟙^n a$][Composite of a finite sequence]
+  Define $⟙^n a$ as $F (n)$ in \cref{thm_compSeq}:
+  \begin{eqalign}
     \cuc{
-      \Monoid{A; ⊤} \\
-      ∀ a, b ∈ A \ (a \T b = b \T a)
+      \Monoid{\uds ⊤; ⊤} \\
+      n ∈ 𝜔 \\
+      a \： [1, n] → \uds ⊤
     }
-  \]
-  \See{dfn_Monoid}
-\end{dfn}
-\begin{nb}
-  \[
-    \CommMonoid{A; ⊤}
-    \lra
+    &{}\ra
     \cuc{
-      ⊤ \： A × A → A \\
-      ∀ a, b, c ∈ A \ ((a \T b) \T c = a \T (b \T c)) \\
-      ∃ e ∈ A \ ∀ a ∈ A \ (a \T e = e \T a = a) \\
-      ∀ a, b ∈ A \ (a \T b = b \T a)
-    }
-  \]
-\end{nb}
-
-
-\begin{thm}
-  General commutativity theorem
-\end{thm}
-
-
-\section{Submonoids. Generators}
-
-
-\begin{dfn}[dfn_Stable][$\Stable{B; A}$][$B$ is stable]
-  \[
-    \Stable{B; A}
-    \defn
-    \cuc{
-      B ⊆ A \\
-      ∀ a, b ∈ B \ (a \T b ∈ B)
-    }
-  \]
-\end{dfn}
-
-
-\begin{dfn}[dfn_indComp][$⊤_B$][induced law of composition]
-  \[
-    ⊤_B ≔ ⊤ ↾ (B × B)
-  \]
-\end{dfn}
-
-
-\begin{prp}
+      ⟙ a \： [0, n] → \uds ⊤ \\
+      ⟙^0 a = e_{⊤, \uds ⊤} \\
+      ∀ m ∈ [0, n^-] \ ⟙^{m^+} a = \pr{ ⟙^m a } \T a_{m^+}
+    } \\
+    \otw &{}\ra ⟙ a = 𝐔
+  \end{eqalign}
+  % \See{dfn_LawComp, dfn_uds, dfn_neut}
+  \tcblower
+  Assume $s = \{⟨ 1, a ⟩, ⟨ 2, b ⟩, ⟨ 3, c ⟩, ⟨ 4, d ⟩\}$, $a, b, c, d ∈ A$ and $\Monoid{A; ⊤}$. Then, $\Monoid{\uds ⊤; ⊤}$ and $s \： [1, 4] → \uds ⊤$. Thus,
   \begin{thmlist}
     \item 
-    \(
-      \Assoc{⊤} \ra \Assoc{⊤_B}
-    \)
+    \?
+      ⟙^1 s = \pr{⟙^0 s} \T s_1 = e_{⊤, \uds ⊤} \T a = a
+    \?
     \item 
+    \?
+      ⟙^3 s = \pr{⟙^2 s} \T s_3 = \pr{\pr{⟙^1 s} \T s_2} \T s_3 = (a \T b) \T c
+    \?
+    \item 
+    \?
+      ⟙^4 s = \pr{⟙^3 s} \T s_4 = ((a \T b) \T c) \T d
+    \?
   \end{thmlist}
-\end{prp}
+\end{dfn}
+
+
+\begin{cnv}
+  \begin{thmlist}
+    \item \Syn{$⟙^{n} a = ⟙^{n} \cls{ ⟨ i, a_i ⟩ }{ i ∈ 𝜔 }$}
+    \[
+      ⟙_{i = 1}^{n} a_i
+      \AND
+      a_1 \T \dots \T a_n
+    \]
+    \item \Syn{$\bigplus_{i = 1}^{n} a_i$}
+    \[
+      ∑_{i = 1}^{n} a_i
+    \]
+    \item \Syn{$\bigcdot_{i = 1}^{n} a_i$}
+    \[
+      ∏_{i = 1}^{n} a_i
+    \]
+  \end{thmlist}
+\end{cnv}
+
+
+\begin{dfn}
+  \[
+    ⟙_{i = m}^{n} a_i
+    ≔
+    ⟙_{i = 1}^{n - m + 1} \cls{ ⟨ j, a_{j + m - 1} ⟩ }{ j ∈ 𝜔 }_i
+  \]
+\end{dfn}
+
+
+% % 要編集
+% \begin{thm}[thm_genAssoc][][General associativity theorem]
+%   \[
+%     \cuc{
+%       ⊤ \： A × A → A \\
+%       a ∈ \funcs{𝜔}{A} \\
+%       h ∈ 𝜔, \ 
+%       k \： h^{++} ∖ \{0\} → 𝜔 \\
+%       k_1 = 1, \ 
+%       k_{h^+} = n \\
+%       ∀ m ∈ h^+ ∖ \{0\} \ ( k_m ≤ k_{m^+} )
+%     }
+%     \ra
+%     ⟙_{i = 1}^{n} a_i = ⟙_{i = 1}^{h} ⟙_{j = k_i}^{k_{i^+} - 1} a_j
+%   \]
+% \end{thm}
+
+
+% \begin{dfn}
+%   \[
+%     a ^ {n, ⊤} ≔ ⟙_{i = 1}^{n} a_i
+%   \]
+% \end{dfn}
+
+
+
+% \begin{cnv}
+%   \begin{thmlist}
+%     \item \Syn{$a ^ {n, +}$}
+%     \[n a\]
+%     \item \Syn{$a ^ {𝐧, ·}$}
+%     \[a ^ n\]
+%   \end{thmlist}
+% \end{cnv}
+
+
+% \begin{thm}
+%   \?
+%     \cuc{
+%       ⊤ \： A × A → A \\
+%       a ∈ A \\
+%       m, n ∈ 𝜔_+
+%     }
+%     \ra
+%   \?
+%   \begin{thmlist}
+%     \item 
+%     \?
+%       a ^ {0, ⊤} = e_⊤ \\
+%     \?
+%     \item 
+%     \?
+%       a ^ {1, ⊤} = a \\
+%     \?
+%     \item 
+%     \?
+%       a ^ {m +_o n, ⊤} = a ^ {m, ⊤} \T a ^ {n, ⊤}
+%     \?
+%     \item 
+%     \?
+%       a ^ {m ·_o n, ⊤} = (a ^ {m, ⊤}) ^ {n, ⊤}
+%     \?
+%   \end{thmlist}
+% \end{thm}
+% \begin{nb}
+%   \begin{thmlist}
+%     \item 
+%     \?
+%       0 a = 𝟶 \quad
+%       a ^ 0 = 𝟷
+%     \?
+%     \item 
+%     \?
+%       1 a = a \quad
+%       a ^ 1 = a
+%     \?
+%     \item 
+%     \?
+%       (m +_o n) a = m a + n a \quad
+%       a ^ {m +_o n} = a ^ m  a ^ n
+%     \?
+%     \item 
+%     \?
+%       (m ·_o n) a = m (n a) \quad
+%       a ^ {m ·_o n} = (a ^ m) ^ n
+%     \?
+%   \end{thmlist}
+% \end{nb}
+
+% \begin{dfn}[dfn_CommMonoid][$\CommMonoid{A; ⊤}$][$A$ is a [commutative/Abelian] monoid]
+%   \[
+%     \CommMonoid{A; ⊤}
+%     \defn
+%     \cuc{
+%       \Monoid{A; ⊤} \\
+%       ∀ a, b ∈ A \ (a \T b = b \T a)
+%     }
+%   \]
+%   % \See{dfn_Monoid}
+%   \tcblower
+%   \begin{thmlist}
+%     \item \? \CommMonoid{ℤ; ⊤_{+_ℤ}} \?
+%     \item 
+%   \end{thmlist}
+% \end{dfn}
+% \begin{nb}
+%   \[
+%     \CommMonoid{A; ⊤}
+%     \lra
+%     \cuc{
+%       ⊤ \： A × A → A \\
+%       ∀ a, b, c ∈ A \ ((a \T b) \T c = a \T (b \T c)) \\
+%       ∃ e ∈ A \ ∀ a ∈ A \ (a \T e = e \T a = a) \\
+%       ∀ a, b ∈ A \ (a \T b = b \T a)
+%     }
+%   \]
+% \end{nb}
+
+
+% \begin{thm}[thm_genComm]
+%   General commutativity theorem
+% \end{thm}
+
+
+% \section{Submonoids. Generators}
+
+
+% \begin{dfn}[dfn_Stable][$\Stable{B; A}$][$B$ is stable]
+%   \[
+%     \Stable{B; A}
+%     \defn
+%     \cuc{
+%       B ⊆ A \\
+%       ∀ a, b ∈ B \ (a \T b ∈ B)
+%     }
+%   \]
+% \end{dfn}
+
+
+% \begin{dfn}[dfn_indComp][$⊤_B$][Induced law of composition]
+%   \[
+%     ⊤_B ≔ ⊤ ↾_{B × B}
+%   \]
+% \end{dfn}
+
+
+% \begin{prp}
+%   \begin{thmlist}
+%     \item 
+%     \?
+%       \Assoc{⊤} \ra \Assoc{⊤_B}
+%     \?
+%     \item 
+%   \end{thmlist}
+% \end{prp}

@@ -1,10 +1,15 @@
-\newcommand{\Comp}[1]{\opr{Comp}\pr{#1}}
-\newcommand{\Assoc}[1]{\opr{Assoc}\pr{#1}}
+\newcommand{\uds}[1]{\underline{#1}}
+\newcommand{\LawComp}[1]{\Opr{LawComp} \pr{#1}}
+\newcommand{\Comp}[1]{\Opr{Comp} \pr{#1}}
+\newcommand{\Assoc}[1]{\Opr{Assoc} \pr{#1}}
 \newcommand{\T}{\mathbin{⊤}}
-\newcommand{\Neut}[1]{\opr{Neut}\pr{#1}}
-\newcommand{\Monoid}[1]{\opr{Monoid}\pr{#1}}
-\newcommand{\seq}[3]{#1_{#2}, \… , #1_{#3}}
-\newcommand{\seqcmp}[4]{#2_{#3} #1 \… #1 #2_{#4}}
-\newcommand{\CommMonoid}[1]{\opr{CommMonoid}\pr{#1}}
+\newcommand{\Neut}[1]{\Opr{Neut} \pr{#1}}
+\newcommand{\Monoid}[1]{\Opr{Monoid} \pr{#1}}
+\DeclareMathOperator*{\mybigtop}{\scalerel*{⊤}{\sum}}
+\newunicodechar{⟙}{\mybigtop}
+\DeclareMathOperator*{\bigplus}{\scalerel*{+}{\sum}}
+\DeclareMathOperator*{\bigcdot}{\scaleobj{2}{·}}
+\newcommand{\CommMonoid}[1]{\Opr{CommMonoid} \pr{#1}}
 
-\newcommand{\Stable}[1]{\opr{Stable} \pr{#1}}
+\newcommand{\Stable}[1]{\Opr{Stable} \pr{#1}}
+\newunicodechar{↾}{\mathord{\upharpoonright}}
