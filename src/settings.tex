@@ -2,13 +2,15 @@
 % \usepackage[paper=b5j, headheight=10pt, footskip=0.03367\paperheight, headsep=\footskip-\topskip, includeheadfoot, vmargin=10truemm, hmargin=15truemm, includemp, nomarginpar]{geometry} % <
 % \usepackage{etoolbox, expl3, xparse} % <
 %%%%% ページレイアウト
-\setpagelayout+{vmargin=10truemm, hmargin=7truemm, includemp, nomarginpar} % >
+\setpagelayout+{vmargin=10truemm, left=10truemm, right=7truemm, includemp, nomarginpar} % >
 
 
 
-%%%%% フォント
+%%%%% フォント・文字
 \setsansjfont[BoldFont=HaranoAjiGothic-Bold.otf]{HaranoAjiGothic-Medium.otf} % >
 \setmonojfont[BoldFont=HaranoAjiGothic-Bold.otf]{HaranoAjiGothic-Medium.otf} % >
+% \usepackage{mathtools}
+% \PassOptionsToPackage{warnings-off={mathtools-colon,mathtools-overbracket}}{unicode-math}
 \usepackage[olddefault, newcmbb, varnothing]{fontsetup}
 \setmathfont[range={scr, bfscr}, StylisticSet=1]{NewCMMath-Regular.otf}
 \DeclareMathAlphabet{\cl}{OMS}{cmsy}{m}{n} % 旧チャンセリー筆記体
@@ -29,6 +31,7 @@
   \immediate\write\@auxout{\catcode`_=12 }
 }
 \makeatother
+\usepackage{newunicodechar}
 
 
 
@@ -39,25 +42,14 @@
 
 %%%%% 色
 \usepackage{xcolor}
-\definecolor{mygreen}{HTML}{70b548}
-\definecolor{myblue}{HTML}{6e9ec2}
-\definecolor{myred}{HTML}{c26e7c}
-\definecolor{myyellow}{HTML}{b8ba05}
-\definecolor{mygray}{HTML}{878787}
+\definecolor{mygreen}{HTML}{3a990f}
+\definecolor{myblue}{HTML}{0f5599}
+\definecolor{myred}{HTML}{990f1e}
+% \definecolor{myyellow}{HTML}{b8ba05}
+\definecolor{mygray}{HTML}{606060}
 \definecolor{myurlcolor}{HTML}{ad0d00}
 \definecolor{mylinkcolor}{HTML}{2a4f99}
 \definecolor{mycitecolor}{HTML}{2a4f99}
-
-
-
-%%%%% ハイパーリンク
-\usepackage{hyperref}
-\hypersetup{setpagesize=false, bookmarksnumbered, colorlinks=true, linkcolor=mylinkcolor, citecolor=mycitecolor, urlcolor=myurlcolor, pdfauthor={鴎海}}
-
-
-
-%%%%% cref
-\usepackage[nameinlink]{cleveref}
 
 
 
@@ -81,51 +73,10 @@
 \makeatother
 % - - - - - - - - - -
 \newlist{step}{enumerate}{4}
-\setlist[step, 1]{label=(\arabic{stepi}), ref=(\arabic{stepi}), noitemsep}
-\setlist[step, 2]{label=(\arabic{stepi}.\arabic{stepii}), ref=(\arabic{stepi}.\arabic{stepii}), noitemsep}
-\setlist[step, 3]{label=(\arabic{stepi}.\arabic{stepii}.\arabic{stepiii}), ref=(\arabic{stepi}.\arabic{stepii}.\arabic{stepiii}), noitemsep}
-\setlist[step, 4]{label=(\arabic{stepi}.\arabic{stepii}.\arabic{stepiii}.\arabic{stepiv}), ref=(\arabic{stepi}.\arabic{stepii}.\arabic{stepiii}.\arabic{stepiv}), noitemsep}
-
-
-
-%%%%% tcolorbox
-\usepackage{tcolorbox}
-\tcbuselibrary{skins, breakable}
-\NewTColorBox[auto counter, number within=chapter]{none}{}{}
-\NewDocumentCommand{\defitem}{mmmO{}}{%
-  \crefname{thmlist#1}{#2}{#2}
-  % 1: label. 2: nameref. 3: subtitle.
-  \NewTColorBox[use counter from=none, crefname={#2}{#2s}]{#1}{O{}O{}O{}}{%
-    enhanced, breakable,
-    detach title,
-    coltitle=black, colbacklower=white, skin=bicolor,
-    fonttitle=\bfseries,
-    % left*=0pt, right*=0pt, top=0pt, bottom=0pt,
-    % enlarge top initially by=\baselineskip, enlarge bottom finally by=\baselineskip,
-    sharp corners, boxrule=1pt, colframe=#3,
-    colback=#3!20!white,
-    title={#2~\thetcbcounter\ifstrempty{##3}{}{\ (##3)}},
-    label={\ifstrempty{##1}{item_\thetcbcounter}{##1}},
-    nameref={\ifstrempty{##2}{##3}{##2}},
-    before upper={\crefalias{thmlisti}{thmlist#1}\tcbtitle\hspace{1em}},
-    after upper={\footnotesize\labellist{##1}},
-    before lower={\ifstrempty{#4}{}{\textbf{#4:}\hspace{1em}}},%
-  }%
-}
-\defitem{dfn}{Definition}{myblue}[Example]
-\defitem{lem}{Lemma}{mygreen}[Proof]
-\defitem{prp}{Proposition}{mygreen}[Proof]
-\defitem{thm}{Theorem}{mygreen}[Proof]
-\defitem{axm}{Axiom}{myred}
-\defitem{cnv}{Convention}{mygray}
-
-\newtcolorbox{nb}{%
-  enhanced, breakable,
-  right*=0pt, top=0pt, bottom=0pt,
-  sharp corners, colframe=black,
-  leftrule=2pt, rightrule=0pt, toprule=0pt, bottomrule=0pt,
-}
-% \newcommand{\nb}[1]{\begin{nbenv}#1\end{nbenv}}
+\setlist[step, 1]{label=(\arabic{stepi}), ref=(\arabic{stepi}), noitemsep, leftmargin=*}
+\setlist[step, 2]{label=(\arabic{stepi}.\arabic{stepii}), ref=(\arabic{stepi}.\arabic{stepii}), noitemsep, leftmargin=*}
+\setlist[step, 3]{label=(\arabic{stepi}.\arabic{stepii}.\arabic{stepiii}), ref=(\arabic{stepi}.\arabic{stepii}.\arabic{stepiii}), noitemsep, leftmargin=*}
+\setlist[step, 4]{label=(\arabic{stepi}.\arabic{stepii}.\arabic{stepiii}.\arabic{stepiv}), ref=(\arabic{stepi}.\arabic{stepii}.\arabic{stepiii}.\arabic{stepiv}), noitemsep, leftmargin=*}
 
 
 
@@ -167,8 +118,67 @@
 }
 \ExplSyntaxOff
 
+\newcommand{\Syn}[1]{Syn.\@ for #1 ---}
+
+% \renewcommand{\See}[1]{}
+% \renewcommand{\labellist}[1]{}
+
 
 
 %%%%% 数式
 \everymath{\displaystyle} % <
 % \everymath=\expandafter{\the\everymath \narrowbaselines\displaystyle} % >
+\usepackage{scalerel}
+
+
+
+%%%%% ハイパーリンク
+\usepackage{hyperref}
+\hypersetup{setpagesize=false, bookmarksnumbered, colorlinks=true, linkcolor=mylinkcolor, citecolor=mycitecolor, urlcolor=myurlcolor, pdfauthor={鴎海}}
+
+
+
+%%%%% cref
+\usepackage[nameinlink]{cleveref}
+
+
+
+%%%%% tcolorbox
+\usepackage{tcolorbox}
+\tcbuselibrary{skins, breakable}
+\NewTColorBox[auto counter, number within=chapter]{none}{}{}
+\NewDocumentCommand{\defitem}{mmmO{}}{%
+  \crefname{thmlist#1}{#2}{#2}
+  % 1: label. 2: nameref. 3: subtitle.
+  \NewTColorBox[use counter from=none, crefname={#2}{#2s}]{#1}{O{}O{}O{}}{%
+    enhanced, breakable,
+    boxrule=0pt, frame hidden,
+    sharp corners=west,
+    top=1pt, middle=1pt, bottom=1pt,
+    colback=#3!10!white, skin=bicolor, colbacklower=white,
+    coltitle=#3, fonttitle=\bfseries,
+    borderline west={2pt}{0pt}{#3},
+    attach boxed title to top left={xshift=-12pt},
+    boxed title style={tile, size=minimal, colback=white, bottom=2pt, borderline south={.5pt}{0pt}{#3}},
+    title={#2~\thetcbcounter\ifstrempty{##3}{}{\ ---\ ##3}},
+    label={\ifstrempty{##1}{item_\thetcbcounter}{##1}},
+    nameref={\ifstrempty{##2}{##3}{##2}},
+    before upper={\crefalias{thmlisti}{thmlist#1}},
+    after upper={\footnotesize\labellist{##1}},
+    before lower={\ifstrempty{#4}{}{\textbf{#4:}\hspace{1em}}},%
+  }%
+}
+\defitem{dfn}{Definition}{myblue}[Example]
+\defitem{lem}{Lemma}{mygreen}[Proof]
+\defitem{prp}{Proposition}{mygreen}[Proof]
+\defitem{thm}{Theorem}{mygreen}[Proof]
+\defitem{axm}{Axiom}{myred}
+\defitem{cnv}{Convention}{mygray}
+
+\newtcolorbox{nb}{%
+  enhanced, breakable,
+  right*=0pt, top=0pt, bottom=0pt,
+  tile,
+  sharp corners=west,
+  borderline west={2pt}{0pt}{dashed},
+}
