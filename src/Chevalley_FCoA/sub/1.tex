@@ -47,23 +47,23 @@
 \end{nb}
 
 
-\begin{dfn}[dfn_LawComp][$\LawComp{⊤}$][$⊤$ is an (internal) law of composition]
-  \[
-    \LawComp{⊤}
-    \defn
-    ∃ A \ (⊤ \： A × A → A)
-  \]
-\end{dfn}
-\begin{nb}
-  \[
-    (⊤ \： A × A → A)
-    \lra
-    \cuc{
-      \LawComp{⊤} \\
-      \uds ⊤ = A
-    }
-  \]
-\end{nb}
+% \begin{dfn}[dfn_LawComp][$\LawComp{⊤}$][$⊤$ is an (internal) law of composition]
+%   \[
+%     \LawComp{⊤}
+%     \defn
+%     ∃ A \ (⊤ \： A × A → A)
+%   \]
+% \end{dfn}
+% \begin{nb}
+%   \[
+%     (⊤ \： A × A → A)
+%     \lra
+%     \cuc{
+%       \LawComp{⊤} \\
+%       \uds ⊤ = A
+%     }
+%   \]
+% \end{nb}
 
 
 \begin{dfn}[dfn_Assoc][$\Assoc{⊤; A}$][$⊤$ on $A$ is associative]
@@ -185,19 +185,21 @@
   % \See{dfn_Assoc, dfn_uds, dfn_Neut}
 \end{dfn}
 \begin{nb}
-  \[
+  \begin{eqalign}
     \Monoid{A; ⊤}
-    \lra
+    &{}\lra
     \cuc{
       ⊤ \： A × A → A \\
       ∀ a, b, c ∈ A \ ((a \T b) \T c = a \T (b \T c)) \\
       e_{⊤, A} ∈ A \\
       ∀ a ∈ A \ (a \T e_{⊤, A} = e_{⊤, A} \T a = a)
+    } \\
+    &{}\lra
+    \cuc{
+      \Monoid{\uds ⊤; ⊤} \\
+      A = \uds ⊤
     }
-  \]
-  \[
-    \Monoid{A; ⊤} \ra \Monoid{\uds ⊤; ⊤}
-  \]
+  \end{eqalign}
 \end{nb}
 
 
@@ -324,7 +326,7 @@
   \end{eqalign}
   % \See{dfn_LawComp, dfn_uds, dfn_neut}
   \tcblower
-  Assume $s = \{⟨ 1, a ⟩, ⟨ 2, b ⟩, ⟨ 3, c ⟩, ⟨ 4, d ⟩\}$, $a, b, c, d ∈ A$ and $\Monoid{A; ⊤}$. Then, $\Monoid{\uds ⊤; ⊤}$ and $s \： [1, 4] → \uds ⊤$. Thus,
+  Let $s = \{⟨ 1, a ⟩, ⟨ 2, b ⟩, ⟨ 3, c ⟩, ⟨ 4, d ⟩\}$. Assume $a, b, c, d ∈ A$ and $\Monoid{A; ⊤}$. Then, $\Monoid{\uds ⊤; ⊤}$ and $s \： [1, 4] → \uds ⊤$. Thus,
   \begin{thmlist}
     \item 
     \?
@@ -342,157 +344,195 @@
 \end{dfn}
 
 
+\begin{dfn}[dfn_CompSeqMN][$⟙_{i = m}^n 𝜏$]
+  \[
+    ⟙_{i = m}^{n} 𝜏
+    ≔
+    ⟙^{n - m + 1} \cls{ ⟨ i, 𝜏 [i + m - 1 / i] ⟩ }{ i ∈ [1, n - m + 1] }
+  \]
+\end{dfn}
+\begin{nb}
+  \[
+    \cuc{
+      \Monoid{A; ⊤} \\
+      n ∈ 𝜔 \ 
+      a \： [1, n] → A
+    }
+    \ra
+    ⟙_{i = 1}^n a_i = ⟙^n a
+  \]
+\end{nb}
+
+
 \begin{cnv}
   \begin{thmlist}
-    \item \Syn{$⟙^{n} a = ⟙^{n} \cls{ ⟨ i, a_i ⟩ }{ i ∈ 𝜔 }$}
+    \item \Syn{$\bigplus_{i = m}^n a_i$}
     \[
-      ⟙_{i = 1}^{n} a_i
-      \AND
-      a_1 \T \dots \T a_n
+      ∑_{i = m}^n a_i
     \]
-    \item \Syn{$\bigplus_{i = 1}^{n} a_i$}
+    \item \Syn{$\bigcdot_{i = m}^n a_i$}
     \[
-      ∑_{i = 1}^{n} a_i
-    \]
-    \item \Syn{$\bigcdot_{i = 1}^{n} a_i$}
-    \[
-      ∏_{i = 1}^{n} a_i
+      ∏_{i = m}^n a_i
     \]
   \end{thmlist}
 \end{cnv}
 
 
-\begin{dfn}
+\begin{thm}[thm_genAssoc][][General associativity theorem]
   \[
-    ⟙_{i = m}^{n} a_i
+    \cuc{
+      \Monoid{A; ⊤} \\
+      n ∈ 𝜔, \ 
+      a \： [1, n] → A \\
+      h ∈ 𝜔, \ 
+      k \： [1, h^+] → 𝜔 \\
+      k_1 = 1, \ 
+      k_{h^+} = n^+ \\
+      ∀ m ∈ [1, h] \ ( k_m ≤ k_{m^+} )
+    }
+    \ra
+    ⟙_{i = 1}^n a_i = ⟙_{i = 1}^h ⟙_{j = k_i}^{k_{i^+} - 1} a_j
+  \]
+  \tcblower
+\end{thm}
+
+
+\begin{dfn}[dfn_pow][$a^{n, ⊤}$]
+  \[
+    a^{n, ⊤}
     ≔
-    ⟙_{i = 1}^{n - m + 1} \cls{ ⟨ j, a_{j + m - 1} ⟩ }{ j ∈ 𝜔 }_i
+    ⟙_{i = 1}^n a
   \]
 \end{dfn}
 
 
-% % 要編集
-% \begin{thm}[thm_genAssoc][][General associativity theorem]
-%   \[
-%     \cuc{
-%       ⊤ \： A × A → A \\
-%       a ∈ \funcs{𝜔}{A} \\
-%       h ∈ 𝜔, \ 
-%       k \： h^{++} ∖ \{0\} → 𝜔 \\
-%       k_1 = 1, \ 
-%       k_{h^+} = n \\
-%       ∀ m ∈ h^+ ∖ \{0\} \ ( k_m ≤ k_{m^+} )
-%     }
-%     \ra
-%     ⟙_{i = 1}^{n} a_i = ⟙_{i = 1}^{h} ⟙_{j = k_i}^{k_{i^+} - 1} a_j
-%   \]
-% \end{thm}
+\begin{cnv}
+  \begin{thmlist}
+    \item \Syn{$a^{n, +}$}
+    \[
+      n a
+    \]
+    \item \Syn{$a^{n, ·}$}
+    \[
+      a^n
+    \]
+  \end{thmlist}
+\end{cnv}
 
 
-% \begin{dfn}
-%   \[
-%     a ^ {n, ⊤} ≔ ⟙_{i = 1}^{n} a_i
-%   \]
-% \end{dfn}
+\begin{thm}
+  \?
+    \cuc{
+      \Monoid{A; ⊤} \\
+      a ∈ A \\
+      0 ≠ m, n ∈ 𝜔
+    }
+    \ra
+  \?
+  \begin{thmlist}
+    \item 
+    \?
+      a^{0, ⊤} = e_{⊤, A}
+    \?
+    \item 
+    \?
+      a^{1, ⊤} = a
+    \?
+    \item 
+    \?
+      a^{m + n, ⊤} = a^{m, ⊤} \T a^{n, ⊤}
+    \?
+    \item 
+    \?
+      a^{m · n, ⊤} = (a^{m, ⊤})^{n, ⊤}
+    \?
+  \end{thmlist}
+  \tcblower
+  % \begin{thmlist}
+  %   \item By \cref{dfn_pow}
+  %   % \[
+  %   %   a^{0, ⊤} = ⟙_{i = 1}^0 a_i = ⟙^0 a_i = 
+  %   % \]
+  % \end{thmlist}
+\end{thm}
+\begin{nb}
+  \begin{thmlist}
+    \item 
+    \?
+      0 a = 𝟶, \quad
+      a^0 = 𝟷
+    \?
+    \item 
+    \?
+      1 a = a, \quad
+      a^1 = a
+    \?
+    \item 
+    \?
+      (m + n) a = m a + n a, \quad
+      a^{m + n} = a^m  a^n
+    \?
+    \item 
+    \?
+      (m · n) a = m (n a), \quad
+      a^{m · n} = (a^m)^n
+    \?
+  \end{thmlist}
+\end{nb}
+
+\begin{dfn}[dfn_CommMonoid][$\CommMonoid{A; ⊤}$][$A$ is a [commutative/Abelian] monoid]
+  \[
+    \CommMonoid{A; ⊤}
+    \defn
+    \cuc{
+      \Monoid{A; ⊤} \\
+      ∀ a, b ∈ A \ (a \T b = b \T a)
+    }
+  \]
+  % \See{dfn_Monoid}
+  \tcblower
+  \begin{thmlist}
+    \item 
+    \?
+      \CommMonoid{ℤ; ⊤_{+_ℤ}}
+    \?
+    \item 
+    \?
+      \CommMonoid{ℤ; ⊤_{·_ℤ}}
+    \?
+    \item 
+    \?
+      ¬ \CommMonoid{\funcs{ℝ}{ℝ}; ⊤_{∘, ℝ}}
+    \?
+  \end{thmlist}
+\end{dfn}
+\begin{nb}
+  \[
+    \CommMonoid{A; ⊤}
+    \lra
+    \cuc{
+      ⊤ \： A × A → A \\
+      ∀ a, b, c ∈ A \ ((a \T b) \T c = a \T (b \T c)) \\
+      e_{⊤, A} ∈ A \\
+      ∀ a ∈ A \ (a \T e_{⊤, A} = e_{⊤, A} \T a = a) \\
+      ∀ a, b ∈ A \ (a \T b = b \T a)
+    }
+  \]
+\end{nb}
 
 
-
-% \begin{cnv}
-%   \begin{thmlist}
-%     \item \Syn{$a ^ {n, +}$}
-%     \[n a\]
-%     \item \Syn{$a ^ {𝐧, ·}$}
-%     \[a ^ n\]
-%   \end{thmlist}
-% \end{cnv}
-
-
-% \begin{thm}
-%   \?
-%     \cuc{
-%       ⊤ \： A × A → A \\
-%       a ∈ A \\
-%       m, n ∈ 𝜔_+
-%     }
-%     \ra
-%   \?
-%   \begin{thmlist}
-%     \item 
-%     \?
-%       a ^ {0, ⊤} = e_⊤ \\
-%     \?
-%     \item 
-%     \?
-%       a ^ {1, ⊤} = a \\
-%     \?
-%     \item 
-%     \?
-%       a ^ {m +_o n, ⊤} = a ^ {m, ⊤} \T a ^ {n, ⊤}
-%     \?
-%     \item 
-%     \?
-%       a ^ {m ·_o n, ⊤} = (a ^ {m, ⊤}) ^ {n, ⊤}
-%     \?
-%   \end{thmlist}
-% \end{thm}
-% \begin{nb}
-%   \begin{thmlist}
-%     \item 
-%     \?
-%       0 a = 𝟶 \quad
-%       a ^ 0 = 𝟷
-%     \?
-%     \item 
-%     \?
-%       1 a = a \quad
-%       a ^ 1 = a
-%     \?
-%     \item 
-%     \?
-%       (m +_o n) a = m a + n a \quad
-%       a ^ {m +_o n} = a ^ m  a ^ n
-%     \?
-%     \item 
-%     \?
-%       (m ·_o n) a = m (n a) \quad
-%       a ^ {m ·_o n} = (a ^ m) ^ n
-%     \?
-%   \end{thmlist}
-% \end{nb}
-
-% \begin{dfn}[dfn_CommMonoid][$\CommMonoid{A; ⊤}$][$A$ is a [commutative/Abelian] monoid]
-%   \[
-%     \CommMonoid{A; ⊤}
-%     \defn
-%     \cuc{
-%       \Monoid{A; ⊤} \\
-%       ∀ a, b ∈ A \ (a \T b = b \T a)
-%     }
-%   \]
-%   % \See{dfn_Monoid}
-%   \tcblower
-%   \begin{thmlist}
-%     \item \? \CommMonoid{ℤ; ⊤_{+_ℤ}} \?
-%     \item 
-%   \end{thmlist}
-% \end{dfn}
-% \begin{nb}
-%   \[
-%     \CommMonoid{A; ⊤}
-%     \lra
-%     \cuc{
-%       ⊤ \： A × A → A \\
-%       ∀ a, b, c ∈ A \ ((a \T b) \T c = a \T (b \T c)) \\
-%       ∃ e ∈ A \ ∀ a ∈ A \ (a \T e = e \T a = a) \\
-%       ∀ a, b ∈ A \ (a \T b = b \T a)
-%     }
-%   \]
-% \end{nb}
-
-
-% \begin{thm}[thm_genComm]
-%   General commutativity theorem
-% \end{thm}
+\begin{thm}[thm_genComm][][General commutativity theorem]
+  \[
+    \cuc{
+      \CommMonoid{A; ⊤} \\
+      n ∈ 𝜔, \ 
+      a \： [1, n] → A \\
+      𝜛 \： [1, n] ⇄ [1, n]
+    }
+    \ra
+    ⟙_{i = 1}^n a_i = ⟙_{i = 1}^n a_{𝜛 (i)}
+  \]
+\end{thm}
 
 
 % \section{Submonoids. Generators}
