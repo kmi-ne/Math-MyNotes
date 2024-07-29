@@ -1,0 +1,251 @@
+\chapter{Class algebra}
+
+\section{Class}
+
+
+\begin{dfn}[][][$x$ is a set/proper class]
+  \begin{thmlist}
+    \item \mylabel{dfn_M}
+    \?
+      \M{x}
+      \defn
+      ∃ u \ (x ∈ u)
+    \?
+    \item \mylabel{dfn_Pr}
+    \?
+      \Pr{x}
+      \defn
+      ¬ \M{x}
+    \?
+  \end{thmlist}
+\end{dfn}
+
+
+% \begin{prp}
+%   \[
+%     x ∈ y \ra \M{x}
+%   \]
+%   \tcblower
+%   By $x ∈ y \ra ∃ u \ (x ∈ u)$ and \cref{dfn_M}.
+% \end{prp}
+
+
+\begin{axm}[axm_ext][][Axiom of Extensionality]
+  \[
+    ∀ u \ (u ∈ x \lra u ∈ y) \ra x = y
+  \]
+\end{axm}
+
+
+% \begin{prp}
+%   \[
+%     ∀ u \ (u ∈ x \lra u ∈ y) \lra x = y
+%   \]
+%   \tcblower
+%   \begin{description}
+%     \item[($\la$)] Obvious.
+%     \item[($\ra$)] By \nameref{axm_ext}.
+%   \end{description}
+% \end{prp}
+
+
+\begin{dfn}[][][$x$ is a subclass/proper subclass of $y$]
+  \begin{thmlist}
+    \item \mylabel{dfn_sbc}
+    \?
+      x ⊆ y
+      \defn
+      ∀ u \ (u ∈ x \ra u ∈ y)
+    \?
+    \item 
+    \?
+      x ⊂ y \mylabel{dfn_psbc}
+      \defn
+      x ⊆ y ≠ x
+    \?
+  \end{thmlist}
+\end{dfn}
+
+
+\begin{prp}
+  \begin{thmlist}
+    \item 
+    \?
+      x ⊆ x
+    \?
+    \item \mylabel{thm_sbc_tr}
+    \?
+      x ⊆ y ⊆ z \ra x ⊆ z
+    \?
+    \item 
+    \?
+      x ⊆ y ⊆ x \ra x = y
+    \?
+  \end{thmlist}
+  \tcblower
+  \begin{thmlist}
+    \item By $∀ u \ (u ∈ x \ra u ∈ x)$ and \cref{dfn_sbc}.
+    \item Assume \rx{(A1) $x ⊆ y ⊆ z$}.\\
+    By \cref{dfn_sbc} and (A1), $∀ u \ (u ∈ x \ra u ∈ y)$ and $∀ u \ (u ∈ y \ra u ∈ z)$. Thus, $∀ u \ (u ∈ x \ra u ∈ z)$.\\
+    Thus, by \cref{dfn_sbc}, $x ⊆ z$.
+    \Release{A1}
+    \item Assume \rx{(A1) $x ⊆ y ⊆ x$}.\\
+    By \cref{dfn_sbc} and (A1), $∀ u \ (u ∈ x \ra u ∈ y)$ and $∀ u \ (u ∈ y \ra u ∈ x)$. Thus, $∀ u \ (u ∈ x \lra u ∈ y)$.\\
+    Thus, by \nameref{axm_ext}, $x = y$.
+    \Release{A1}
+  \end{thmlist}
+\end{prp}
+
+
+\begin{prp}
+  \begin{thmlist}
+    \item 
+    \?
+      ¬ (x ⊂ x)
+    \?
+    \item \mylabel{thm_psbc_nin}
+    \?
+      x ⊂ y \lra
+      \cuc{
+        x ⊆ y \\
+        ∃ u \ (u ∈ y ∧ u ∉ x)
+      }
+    \?
+    \item \mylabel{thm_psbcsbc_tr}
+    \?
+      x ⊂ y ⊆ z \ra x ⊂ z
+    \?
+    \item 
+    \?
+      x ⊂ y ⊂ z \ra x ⊂ z
+    \?
+    \item 
+    \?
+      x ⊂ y ⊂ z \ra x ⊂ z
+    \?
+    \item 
+    \?
+      x ⊆ y \lra (x ⊂ y ∨ x = y)
+    \?
+  \end{thmlist}
+  \tcblower
+  \begin{thmlist}
+    \item By $x = x$ and \cref{dfn_psbc}.
+    \item 
+    \begin{description}
+      \item[($\la$)] Assume \rx{(A1) $x ⊆ y$} and \rx{(A2) $∃ u \ (u ∈ y ∧ u ∉ x)$}.\\
+      By (A2), $x ≠ y$. Thus, by (A1) and \cref{dfn_psbc}, $x ⊂ y$.
+      \Release{A1, A2}
+      \item[($\ra$)] Assume \rx{(A1) $x ⊂ y$}.\\
+      By (A1) and \cref{dfn_psbc}, $x ⊆ y$ and $x ≠ y$.\\
+      Thus, by \cref{thm_sbc_tr}, $¬ (y ⊆ x)$. Thus, by \cref{dfn_sbc}, $∃ u \ (u ∈ y ∧ u ∉ x)$.
+      \Release{A1}
+    \end{description}
+    \item Assume \rx{(A1) $x ⊂ y ⊆ z$}.
+    \begin{step}
+      \item By (A1) and \cref{dfn_psbc}, $x ⊆ y ⊆ z$. Thus, by \cref{thm_sbc_tr}, $x ⊆ z$.
+      \item By (A1) and \cref{thm_psbc_nin}, $∃ u \ (u ∈ y ∧ u ∉ x)$. Take such $u$.\\
+      By (A1) and \cref{dfn_sbc}, $u ∈ y \ra u ∈ z$. Thus, $u ∈ z ∧ u ∉ x$. Thus, $∃ u \ (u ∈ z ∧ u ∉ x)$.
+    \end{step}
+    Thus, by \cref{thm_psbc_nin}, $x ⊂ z$.
+    \Release{A1}
+    \item Assume \rx{(A1) $x ⊆ y ⊂ z$}.
+    \begin{step}
+      \item By (A1) and \cref{dfn_psbc}, $x ⊆ y ⊆ z$. Thus, by \cref{thm_sbc_tr}, $x ⊆ z$.
+      \item By (A1) and \cref{thm_psbc_nin}, $∃ u \ (u ∈ z ∧ u ∉ y)$. Take such $u$.\\
+      By (A1) and \cref{dfn_sbc}, $u ∈ x \ra u ∈ y$. Thus, $u ∈ z ∧ u ∉ x$. Thus, $∃ u \ (u ∈ z ∧ u ∉ x)$.
+    \end{step}
+    Thus, by \cref{thm_psbc_nin}, $x ⊂ z$.
+    \Release{A1}
+    \item By \cref{dfn_psbc}, $x ⊂ y ⊂ z \ra x ⊆ y ⊂ z$. Thus, by \cref{thm_psbcsbc_tr}, $x ⊂ z$.
+  \end{thmlist}
+\end{prp}
+
+
+\begin{axm}[axm_comp][][Axiom of Comprehension]
+  ($x$ is not free in NBG-formula $𝜙$)
+  \[
+    ∃ x \ ∀ u \ (u ∈ x \lra 𝜙 ∧ \M{u})
+  \]
+\end{axm}
+
+
+\begin{thm}
+  ($x$ is not free in NBG-formula $𝜙$)
+  \[
+    ∃! x \ ∀ u \ (u ∈ x \lra 𝜙 ∧ \M{u})
+  \]
+  \tcblower
+  \begin{description}
+    \item[Existence] By \nameref{axm_comp}.
+    \item[Uniqueness] Assume \rx{(A1) $∀ u \ (u ∈ x_𝟏 \lra 𝜙 ∧ \M{u})$ and $∀ u \ (u ∈ x_𝟐 \lra 𝜙 ∧ \M{u})$}.\\
+    By (A1), $∀ u \ (u ∈ x_𝟏 \lra u ∈ x_𝟐)$. Thus, by \nameref{axm_ext}, $x_𝟏 = x_𝟐$.
+    \Release{A1}
+  \end{description}
+\end{thm}
+
+
+\begin{nb}
+  本来はここに$\cls{u}{𝜙}$の定義と定理が入るが省略．
+\end{nb}
+
+
+\begin{dfn}
+  \begin{thmlist}
+    \item \mylabel{dfn_emp}
+    \?
+      ∅ ≔ \cls{u}{u ≠ u}
+    \?
+    \item \mylabel{dfn_univ}
+    \?
+      𝐔 ≔ \cls{u}{u = u}
+    \?
+    \item \mylabel{dfn_russ}
+    \?
+      𝐑𝐮 ≔ \cls{u}{u ∉ u}
+    \?
+  \end{thmlist}
+\end{dfn}
+
+
+\begin{nb}
+  \begin{eqgather}
+    u ∈ ∅ \lra u ≠ u ∧ \M{u} \\
+    u ∈ 𝐔 \lra u = u ∧ \M{u} \\
+    u ∈ 𝐑𝐮 \lra u ∉ u ∧ \M{u}
+  \end{eqgather}
+\end{nb}
+
+
+\begin{prp}
+  \begin{thmlist}
+    \item \mylabel{thm_emp_nin}
+    \?
+      u ∉ ∅
+    \?
+    \item \mylabel{thm_M_in_univ}
+    \?
+      \M{u} \ra u ∈ 𝐔
+    \?
+    \item 
+    \?
+      ∅ ⊆ x
+    \?
+    \item 
+    \?
+      x ⊆ 𝐔
+    \?
+    \item 
+    \?
+      \Pr{𝐑𝐮}
+    \?
+  \end{thmlist}
+  \tcblower
+  \begin{thmlist}
+    \item By $u ∈ ∅ \lra u ≠ u ∧ \M{u}$.
+    \item By $u ∈ 𝐔 \lra u = u ∧ \M{u}$.
+    \item By \cref{thm_emp_nin}, $∀ u \ (u ∈ ∅ \ra u ∈ x)$. Thus, by \cref{dfn_sbc}, $∅ ⊆ x$.
+    \item By \cref{dfn_M}, $u ∈ x \ra \M{u}$. Thus, by \cref{thm_M_in_univ}, $u ∈ x \ra u ∈ 𝐔$. Thus, $∀ u \ (u ∈ x \ra u ∈ 𝐔)$. Thus, by \cref{dfn_sbc}, $x ⊆ 𝐔$.
+    \item By $𝐑𝐮 ∈ 𝐑𝐮 \lra 𝐑𝐮 ∉ 𝐑𝐮 ∧ \M{𝐑𝐮}$, $𝐑𝐮 ∉ 𝐑𝐮 \lra ¬ (𝐑𝐮 ∉ 𝐑𝐮 ∧ \M{𝐑𝐮})$. Thus, $¬ \M{𝐑𝐮}$. Thus, by \cref{dfn_Pr}, $\Pr{𝐑𝐮}$.
+  \end{thmlist}
+\end{prp}
