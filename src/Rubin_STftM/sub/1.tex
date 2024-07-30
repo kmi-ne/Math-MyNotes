@@ -21,32 +21,11 @@
 \end{dfn}
 
 
-% \begin{prp}
-%   \[
-%     x ∈ y \ra \M{x}
-%   \]
-%   \tcblower
-%   By $x ∈ y \ra ∃ u \ (x ∈ u)$ and \cref{dfn_M}.
-% \end{prp}
-
-
 \begin{axm}[axm_ext][][Axiom of Extensionality]
   \[
     ∀ u \ (u ∈ x \lra u ∈ y) \ra x = y
   \]
 \end{axm}
-
-
-% \begin{prp}
-%   \[
-%     ∀ u \ (u ∈ x \lra u ∈ y) \lra x = y
-%   \]
-%   \tcblower
-%   \begin{description}
-%     \item[($\la$)] Obvious.
-%     \item[($\ra$)] By \nameref{axm_ext}.
-%   \end{description}
-% \end{prp}
 
 
 \begin{dfn}[][][$x$ is a subclass/proper subclass of $y$]
@@ -57,7 +36,7 @@
       \defn
       ∀ u \ (u ∈ x \ra u ∈ y)
     \?
-    \item 
+    \item
     \?
       x ⊂ y \mylabel{dfn_psbc}
       \defn
@@ -69,7 +48,7 @@
 
 \begin{prp}
   \begin{thmlist}
-    \item 
+    \item
     \?
       x ⊆ x
     \?
@@ -77,7 +56,7 @@
     \?
       x ⊆ y ⊆ z \ra x ⊆ z
     \?
-    \item 
+    \item \mylabel{thm_sbc_atsy}
     \?
       x ⊆ y ⊆ x \ra x = y
     \?
@@ -99,7 +78,7 @@
 
 \begin{prp}
   \begin{thmlist}
-    \item 
+    \item
     \?
       ¬ (x ⊂ x)
     \?
@@ -115,15 +94,15 @@
     \?
       x ⊂ y ⊆ z \ra x ⊂ z
     \?
-    \item 
+    \item
     \?
       x ⊂ y ⊂ z \ra x ⊂ z
     \?
-    \item 
+    \item
     \?
       x ⊂ y ⊂ z \ra x ⊂ z
     \?
-    \item 
+    \item
     \?
       x ⊆ y \lra (x ⊂ y ∨ x = y)
     \?
@@ -131,7 +110,7 @@
   \tcblower
   \begin{thmlist}
     \item By $x = x$ and \cref{dfn_psbc}.
-    \item 
+    \item
     \begin{description}
       \item[($\la$)] Assume \rx{(A1) $x ⊆ y$} and \rx{(A2) $∃ u \ (u ∈ y ∧ u ∉ x)$}.\\
       By (A2), $x ≠ y$. Thus, by (A1) and \cref{dfn_psbc}, $x ⊂ y$.
@@ -186,7 +165,27 @@
 
 
 \begin{nb}
-  本来はここに$\cls{u}{𝜙}$の定義と定理が入るが省略．
+  本来はここに$\cls{u}{𝜙}$の定義などが入るが省略．
+  \[
+    v ∈ \cls{u}{𝜙} \lra 𝜙 [v/u] ∧ \M{v}
+  \]
+  \[
+    (𝜙 \ra 𝜓) \ra \cls{u}{𝜙} ⊆ \cls{u}{𝜓}
+  \]
+  \[
+    (𝜙 \lra 𝜓) \ra \cls{u}{𝜙} = \cls{u}{𝜓}
+  \]
+  \begin{eqalign}
+    \cls{u}{u ∈ \cls{v}{𝜙}}
+    &{}= \cls{u}{𝜙 [u/v]}
+  \end{eqalign}
+  \begin{eqalign}
+    \cls{u}{u ∉ \cls{v}{𝜙}}
+    &{}= \cls{u}{¬ 𝜙 [u/v]}
+  \end{eqalign}
+  \[
+    x = \cls{u}{u ∈ x}
+  \]
 \end{nb}
 
 
@@ -194,15 +193,21 @@
   \begin{thmlist}
     \item \mylabel{dfn_emp}
     \?
-      ∅ ≔ \cls{u}{u ≠ u}
+      ∅
+      ≔
+      \cls{u}{u ≠ u}
     \?
     \item \mylabel{dfn_univ}
     \?
-      𝐔 ≔ \cls{u}{u = u}
+      𝐔
+      ≔
+      \cls{u}{u = u}
     \?
     \item \mylabel{dfn_russ}
     \?
-      𝐑𝐮 ≔ \cls{u}{u ∉ u}
+      𝐑𝐮
+      ≔
+      \cls{u}{u ∉ u}
     \?
   \end{thmlist}
 \end{dfn}
@@ -227,15 +232,15 @@
     \?
       \M{u} \ra u ∈ 𝐔
     \?
-    \item 
+    \item
     \?
       ∅ ⊆ x
     \?
-    \item 
+    \item
     \?
       x ⊆ 𝐔
     \?
-    \item 
+    \item
     \?
       \Pr{𝐑𝐮}
     \?
@@ -247,5 +252,369 @@
     \item By \cref{thm_emp_nin}, $∀ u \ (u ∈ ∅ \ra u ∈ x)$. Thus, by \cref{dfn_sbc}, $∅ ⊆ x$.
     \item By \cref{dfn_M}, $u ∈ x \ra \M{u}$. Thus, by \cref{thm_M_in_univ}, $u ∈ x \ra u ∈ 𝐔$. Thus, $∀ u \ (u ∈ x \ra u ∈ 𝐔)$. Thus, by \cref{dfn_sbc}, $x ⊆ 𝐔$.
     \item By $𝐑𝐮 ∈ 𝐑𝐮 \lra 𝐑𝐮 ∉ 𝐑𝐮 ∧ \M{𝐑𝐮}$, $𝐑𝐮 ∉ 𝐑𝐮 \lra ¬ (𝐑𝐮 ∉ 𝐑𝐮 ∧ \M{𝐑𝐮})$. Thus, $¬ \M{𝐑𝐮}$. Thus, by \cref{dfn_Pr}, $\Pr{𝐑𝐮}$.
+  \end{thmlist}
+\end{prp}
+
+
+\section{Class algebra}
+
+
+\begin{dfn}
+  \begin{thmlist}
+    \item \mylabel{dfn_cup}
+    \?
+      x ∪ y
+      ≔
+      \cls{u}{u ∈ x ∨ u ∈ y}
+    \?
+    \item \mylabel{dfn_cap}
+    \?
+      x ∩ y
+      ≔
+      \cls{u}{u ∈ x ∧ u ∈ y}
+    \?
+    \item \mylabel{dfn_cdif}
+    \?
+      x ∖ y
+      ≔
+      \cls{u}{u ∈ x ∧ u ∉ y}
+    \?
+    \item \mylabel{dfn_cmpl}
+    \?
+      x^∁
+      ≔
+      \cls{u}{u ∉ x}
+    \?
+  \end{thmlist}
+\end{dfn}
+
+
+\begin{prp}
+  \begin{thmlist}
+    \item
+    \?
+      x ∪ y = y ∪ x
+    \?
+    \item
+    \?
+      x ∩ y = y ∩ x
+    \?
+    \item
+    \?
+      (x ∪ y) ∪ z = x ∪ (y ∪ z)
+    \?
+    \item
+    \?
+      (x ∩ y) ∩ z = x ∩ (y ∩ z)
+    \?
+    \item
+    \?
+      x ∩ (y ∪ z) = (x ∩ y) ∪ (x ∩ z)
+    \?
+    \item
+    \?
+      x ∪ (y ∩ z) = (x ∪ y) ∩ (x ∪ z)
+    \?
+    \item
+    \?
+      x ∪ x = x
+    \?
+    \item
+    \?
+      x ∩ x = x
+    \?
+    \item \mylabel{thm_cup_sbc}
+    \?
+      x ⊆ x ∪ y
+    \?
+    \item \mylabel{thm_cap_sbc}
+    \?
+      x ∩ y ⊆ x
+    \?
+    \item
+    \?
+      x ⊆ y \lra x ∪ y = y
+    \?
+    \item
+    \?
+      x ⊆ y \lra x ∩ y = x
+    \?
+  \end{thmlist}
+  \tcblower
+  \begin{thmlist}
+    \item
+    \?
+      x ∪ y
+      &{}= \cls{u}{u ∈ x ∨ u ∈ y} \\
+      &{}= \cls{u}{u ∈ y ∨ u ∈ x}\\
+      &{}= y ∪ x
+    \?
+    \item
+    \?
+      x ∩ y
+      &{}= \cls{u}{u ∈ x ∧ u ∈ y} \\
+      &{}= \cls{u}{u ∈ y ∧ u ∈ x}\\
+      &{}= y ∩ x
+    \?
+    \item
+    \?
+      (x ∪ y) ∪ z
+      &{}= \cls{u}{u ∈ x ∪ y ∨ u ∈ z} \\
+      &{}= \cls{u}{u ∈ x ∨ u ∈ y ∨ u ∈ z} \\
+      &{}= \cls{u}{u ∈ x ∨ u ∈ y ∪ z}
+    \?
+    \item
+    \?
+      (x ∩ y) ∩ z
+      &{}= \cls{u}{u ∈ x ∩ y ∧ u ∈ z} \\
+      &{}= \cls{u}{u ∈ x ∧ u ∈ y ∧ u ∈ z} \\
+      &{}= \cls{u}{u ∈ x ∧ u ∈ y ∩ z}
+    \?
+    \item
+    \?
+      x ∩ (y ∪ z)
+      &{}= \cls{u}{u ∈ x ∧ u ∈ y ∪ z} \\
+      &{}= \cls{u}{u ∈ x ∧ (u ∈ y ∨ u ∈ z)} \\
+      &{}= \cls{u}{(u ∈ x ∧ u ∈ y) ∨ (u ∈ x ∧ u ∈ z) } \\
+      &{}= \cls{u}{u ∈ x ∩ y ∨ u ∈ x ∩ z} \\
+      &{}= (x ∩ y) ∪ (x ∩ z)
+    \?
+    \item
+    \?
+      x ∪ (y ∩ z)
+      &{}= \cls{u}{u ∈ x ∨ u ∈ y ∩ z} \\
+      &{}= \cls{u}{u ∈ x ∨ (u ∈ y ∧ u ∈ z)} \\
+      &{}= \cls{u}{(u ∈ x ∨ u ∈ y) ∧ (u ∈ x ∨ u ∈ z) } \\
+      &{}= \cls{u}{u ∈ x ∪ y ∧ u ∈ x ∪ z} \\
+      &{}= (x ∪ y) ∩ (x ∪ z)
+    \?
+    \item
+    \?
+      x ∪ x
+      &{}= \cls{u}{u ∈ x ∨ u ∈ x} \\
+      &{}= \cls{u}{u ∈ x} \\
+      &{}= x
+    \?
+    \item
+    \?
+      x ∩ x
+      &{}= \cls{u}{u ∈ x ∧ u ∈ x} \\
+      &{}= \cls{u}{u ∈ x} \\
+      &{}= x
+    \?
+    \item
+    \?
+      x
+      &{}= \cls{u}{u ∈ x} \\
+      &{}⊆ \cls{u}{u ∈ x ∨ u ∈ y} \\
+      &{}= x ∪ y
+    \?
+    \item
+    \?
+      x ∩ y
+      &{}= \cls{u}{u ∈ x ∧ u ∈ y} \\
+      &{}⊆ \cls{u}{u ∈ x} \\
+      &{}= x
+    \?
+    \item
+    \begin{description}
+      \item[($\la$)] Assume \rx{(A1) $x ∪ y = y$}.
+      \begin{eqalign}
+        x
+        &{}⊆ x ∪ y \quad \text{by \cref{thm_cup_sbc}} \\
+        &{}= y \quad \text{by (A1)}
+      \end{eqalign}
+      \Release{A1}
+      \item[($\ra$)] Assume \rx{(A1) $x ⊆ y$}.\\
+      By (A1), $u ∈ x \ra u ∈ y$. Thus,
+      \begin{eqalign}
+        x ∪ y
+        &{}= \cls{u}{u ∈ x ∨ u ∈ y} \\
+        &{}= \cls{u}{u ∈ y} \\
+        &{}= y
+      \end{eqalign}
+      \Release{(A1)}
+    \end{description}
+    \item
+    \begin{description}
+      \item[($\la$)] Assume \rx{(A1) $x ∩ y = x$}.
+      \begin{eqalign}
+        x
+        &{}= x ∩ y \quad \text{by (A1)} \\
+        &{}⊆ y \quad \text{by \cref{thm_cap_sbc}}
+      \end{eqalign}
+      \Release{A1}
+      \item[($\ra$)] Assume \rx{(A1) $x ⊆ y$}.\\
+      By (A1), $u ∈ x \ra u ∈ y$. Thus,
+      \begin{eqalign}
+        x ∩ y
+        &{}= \cls{u}{u ∈ x ∧ u ∈ y} \\
+        &{}= \cls{u}{u ∈ x} \\
+        &{}= x
+      \end{eqalign}
+      \Release{A1}
+    \end{description}
+  \end{thmlist}
+\end{prp}
+
+
+\begin{prp}
+  \begin{thmlist}
+    \item
+    \?
+      x ∪ ∅ = x
+    \?
+    \item
+    \?
+      x ∩ ∅ = ∅
+    \?
+    \item
+    \?
+      x ∪ 𝐔 = 𝐔
+    \?
+    \item
+    \?
+      x ∩ 𝐔 = x
+    \?
+  \end{thmlist}
+  \tcblower
+  \begin{thmlist}
+    \item
+    \?
+      x ∪ ∅
+      &{}= \cls{u}{u ∈ x ∨ u ∈ ∅} \\
+      &{}= \cls{u}{u ∈ x ∨ u ≠ u} \\
+      &{}= \cls{u}{u ∈ x} \\
+      &{}= x
+    \?
+    \item
+    \?
+      x ∩ ∅
+      &{}= \cls{u}{u ∈ x ∧ u ∈ ∅} \\
+      &{}= \cls{u}{u ∈ x ∧ u ≠ u} \\
+      &{}= \cls{u}{u ≠ u} \\
+      &{}= ∅
+    \?
+    \item
+    \?
+      x ∪ 𝐔
+      &{}= \cls{u}{u ∈ x ∨ u ∈ 𝐔} \\
+      &{}= \cls{u}{u ∈ x ∨ u = u} \\
+      &{}= \cls{u}{u = u} \\
+      &{}= 𝐔
+    \?
+    \item
+    \?
+      x ∩ 𝐔
+      &{}= \cls{u}{u ∈ x ∧ u ∈ 𝐔} \\
+      &{}= \cls{u}{u ∈ x ∧ u = u} \\
+      &{}= \cls{u}{u ∈ x} \\
+      &{}= x
+    \?
+  \end{thmlist}
+\end{prp}
+
+
+\begin{prp}
+  \begin{thmlist}
+    \item
+    \?
+      (x^∁)^∁ = x
+    \?
+    \item
+    \?
+      x ∪ x^∁ = 𝐔
+    \?
+    \item
+    \?
+      x ∩ x^∁ = ∅
+    \?
+    \item
+    \?
+      𝐔 ∖ x = x^∁
+    \?
+    \item
+    \?
+      x ∖ y = x ∩ y^∁
+    \?
+    \item
+    \?
+      x ⊆ y \lra y^∁ ⊆ x^∁
+    \?
+    \item
+    \?
+      x ⊂ y \lra y^∁ ⊂ x^∁
+    \?
+  \end{thmlist}
+  \tcblower
+  \begin{thmlist}
+    \item
+    \?
+      (x^∁)^∁
+      &{}= \cls{u}{u ∉ x^∁} \\
+      &{}= \cls{u}{¬ (u ∉ x)} \\
+      &{}= \cls{u}{u ∈ x} \\
+      &{}= x
+    \?
+    \item
+    \?
+      x ∪ x^∁
+      &{}= \cls{u}{u ∈ x ∨ u ∈ x^∁} \\
+      &{}= \cls{u}{u ∈ x ∨ u ∉ x} \\
+      &{}= \cls{u}{u = u} \\
+      &{}= 𝐔
+    \?
+    \item
+    \?
+      x ∩ x^∁
+      &{}= \cls{u}{u ∈ x ∧ u ∈ x^∁} \\
+      &{}= \cls{u}{u ∈ x ∧ u ∉ x} \\
+      &{}= \cls{u}{u ≠ u} \\
+      &{}= ∅
+    \?
+    \item
+    \?
+      𝐔 ∖ x
+      &{}= \cls{u}{u ∈ 𝐔 ∧ u ∉ x} \\
+      &{}= \cls{u}{x = x ∧ u ∉ x} \\
+      &{}= \cls{u}{u ∉ x} \\
+      &{}= x^∁
+    \?
+    \item
+    \?
+      x ∖ y
+      &{}= \cls{u}{u ∈ x ∧ u ∉ y} \\
+      &{}= \cls{u}{u ∈ x ∧ u ∈ y^∁} \\
+      &{}= x ∩ y^∁
+    \?
+    % \item Assume \rx{(A1) $x ⊆ y$}.\\
+    % By (A1), $u ∈ x \ra u ∈ y$. Thus,
+    % \begin{eqalign}
+    %   u ∈ y^∁
+    %   &{}\ra u ∉ y ∧ \M{u} \\
+    %   &{}\ra u ∉ x ∧ \M{u} \\
+    %   &{}\ra u ∈ x^∁
+    % \end{eqalign}
+    % \Release{A1}
+    % \item Assume \rx{(A1) $x ⊂ y$}.\\
+    % By (A1), (P1) $u ∈ x \ra u ∈ y$ and $x ≠ y$. Thus,
+    % \begin{eqalign}
+    %   u ∈ x
+    %   &{}\ra u ∉
+    % \end{eqalign}
+  \end{thmlist}
+\end{prp}
+
+
+\begin{prp}
+  \begin{thmlist}
+    \item
+    \?
+      (x ∪ y)^∁ = x^∁ ∩ y^∁
+    \?
+    \item
+    \?
+      (x ∩ y)^∁ = x^∁ ∪ y^∁
+    \?
   \end{thmlist}
 \end{prp}
