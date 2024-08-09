@@ -47,6 +47,7 @@
 \definecolor{myred}{HTML}{990f1e}
 % \definecolor{myyellow}{HTML}{b8ba05}
 \definecolor{mygray}{HTML}{606060}
+\definecolor{mywhitegray}{HTML}{cccccc}
 \definecolor{myurlcolor}{HTML}{ad0d00}
 \definecolor{mylinkcolor}{HTML}{2a4f99}
 \definecolor{mycitecolor}{HTML}{2a4f99}
@@ -55,15 +56,20 @@
 
 %%%%% リスト
 \usepackage[inline]{enumitem}
-% \setlist{topsep=\baselinestretch}
+\setlist{align=left, leftmargin=*}
 % - - - - - - - - - -
-\newlist{myenum}{enumerate}{1}
-\setlist[myenum]{label=(\roman*), ref=(\roman*)}
+\newlist{myenum}{enumerate}{3}
+\setlist[myenum, 1]{label=(\roman{myenumi}), ref=(\roman{myenumi})}
+\setlist[myenum, 2]{label=(\roman{myenumi}.\roman{myenumii}), ref=(\roman{myenumi}.\roman{myenumii})}
+\setlist[myenum, 3]{label=(\roman{myenumi}.\roman{myenumii}.\roman{myenumiii}), ref=(\roman{myenumi}.\roman{myenumii}.\roman{myenumiii})}
 \newlist{myenum*}{enumerate*}{1}
 \setlist[myenum*]{label=(\roman*), ref=(\roman*)}
 % - - - - - - - - - -
+\newlist{prf}{enumerate}{1}
+\setlist[prf]{label=\texttt{\arabic*.}, ref=\texttt{\arabic*}, align=right}
+% - - - - - - - - - -
 \newlist{thmlist}{enumerate}{3}
-\setlist[thmlist, 1]{label=\arabic{thmlisti}., ref=\arabic{thmlisti}, leftmargin=*}
+\setlist[thmlist, 1]{label=\arabic{thmlisti}., ref=\arabic{thmlisti}, itemsep=1ex}
 \setlist[thmlist, 2]{label=\arabic{thmlisti}.\arabic{thmlistii}., ref=\arabic{thmlisti}.\arabic{thmlistii}.}
 \setlist[thmlist, 3]{label=\arabic{thmlisti}.\arabic{thmlistii}.\arabic{thmlistiii}., ref=\arabic{thmlisti}.\arabic{thmlistii}.\arabic{thmlistiii}.}
 \makeatletter
@@ -72,25 +78,19 @@
 \newcommand{\itemref}[1]{\begingroup\let\perh@ps\@gobble\ref{#1}\endgroup}
 \makeatother
 % - - - - - - - - - -
-\newlist{step}{enumerate}{4}
-\setlist[step, 1]{label=(\arabic{stepi}), ref=(\arabic{stepi}), noitemsep, leftmargin=*}
-\setlist[step, 2]{label=(\arabic{stepi}.\arabic{stepii}), ref=(\arabic{stepi}.\arabic{stepii}), noitemsep, leftmargin=*}
-\setlist[step, 3]{label=(\arabic{stepi}.\arabic{stepii}.\arabic{stepiii}), ref=(\arabic{stepi}.\arabic{stepii}.\arabic{stepiii}), noitemsep, leftmargin=*}
-\setlist[step, 4]{label=(\arabic{stepi}.\arabic{stepii}.\arabic{stepiii}.\arabic{stepiv}), ref=(\arabic{stepi}.\arabic{stepii}.\arabic{stepiii}.\arabic{stepiv}), noitemsep, leftmargin=*}
+\newlist{step}{enumerate}{3}
+\setlist[step, 1]{label=(\arabic{stepi}), ref=(\arabic{stepi})}
+\setlist[step, 2]{label=(\arabic{stepi}.\arabic{stepii}), ref=(\arabic{stepi}.\arabic{stepii})}
+\setlist[step, 3]{label=(\arabic{stepi}.\arabic{stepii}.\arabic{stepiii}), ref=(\arabic{stepi}.\arabic{stepii}.\arabic{stepiii})}
 
 
 
 %%%%% 定理環境その他
+\newcommand{\AND}{\hspace{.5em} / \hspace{.5em}}
 \makeatletter
 \newcommand{\setlabelname}[1]{\protected@edef\@currentlabelname{#1}}
 \makeatother
 \ExplSyntaxOn
-\NewDocumentCommand{ \Assume }{ m }{
-  Assume:\ 
-  \seq_set_split:Nnn \l_tmpa_seq { & } { #1 }
-  \seq_use:Nn \l_tmpa_seq { \AND }
-  \par
-}
 \NewDocumentCommand{ \See }{ m }{
   \par See:\ 
   \seq_set_split:Nnn \l_tmpa_seq { , } { #1 }
@@ -152,33 +152,33 @@
 \usepackage{tcolorbox}
 \tcbuselibrary{skins, breakable}
 \NewTColorBox[auto counter, number within=chapter]{none}{}{}
-\NewDocumentCommand{\defitem}{mmmO{}}{%
-  \crefname{thmlist#1}{#2}{#2}
+\NewDocumentCommand{\defitem}{mmmmO{}}{%
+  \crefname{thmlist#1}{#3.}{#3s.}
   % 1: label. 2: nameref. 3: subtitle.
-  \NewTColorBox[use counter from=none, crefname={#2}{#2s}]{#1}{O{}O{}O{}}{%
+  \NewTColorBox[use counter from=none, crefname={#3.}{#3s.}]{#1}{O{}O{}O{}}{%
     enhanced, breakable,
     boxrule=0pt, frame hidden,
     sharp corners=west,
     top=1pt, middle=1pt, bottom=1pt,
-    colback=#3!10!white, skin=bicolor, colbacklower=white,
-    coltitle=#3, fonttitle=\bfseries,
-    borderline west={2pt}{0pt}{#3},
+    colback=#4!10!white, skin=bicolor, colbacklower=white,
+    coltitle=#4, fonttitle=\bfseries,
+    borderline west={2pt}{0pt}{#4},
     attach boxed title to top left={xshift=-12pt},
-    boxed title style={tile, size=minimal, colback=white, bottom=2pt, borderline south={.5pt}{0pt}{#3}},
+    boxed title style={tile, size=minimal, colback=white, bottom=2pt, borderline south={.5pt}{0pt}{#4}},
     title={#2~\thetcbcounter\ifstrempty{##3}{}{\ ---\ ##3}},
     label={\ifstrempty{##1}{item_\thetcbcounter}{##1}},
     nameref={\ifstrempty{##2}{##3}{##2}},
     before upper={\crefalias{thmlisti}{thmlist#1}},
     after upper={\footnotesize\labellist{##1}},
-    before lower={\ifstrempty{#4}{}{\textbf{#4:}\hspace{1em}}},%
+    before lower={\ifstrempty{#5}{}{\textbf{#5:}\hspace{1em}}},%
   }%
 }
-\defitem{dfn}{Definition}{myblue}[Example]
-\defitem{lem}{Lemma}{mygreen}[Proof]
-\defitem{prp}{Proposition}{mygreen}[Proof]
-\defitem{thm}{Theorem}{mygreen}[Proof]
-\defitem{axm}{Axiom}{myred}
-\defitem{cnv}{Convention}{mygray}
+\defitem{dfn}{Definition}{Def}{myblue}[Example]
+\defitem{lem}{Lemma}{Lem}{mygreen}[Proof]
+\defitem{prp}{Proposition}{Prop}{mygreen}[Proof]
+\defitem{thm}{Theorem}{Thm}{mygreen}[Proof]
+\defitem{axm}{Axiom}{Axiom}{myred}
+\defitem{cnv}{Convention}{Conv}{mygray}
 
 \newtcolorbox{nb}{%
   enhanced, breakable,
