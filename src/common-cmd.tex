@@ -1,17 +1,54 @@
 \makeatletter
+
+\def\mydoller{$}\def\mydoller{$}
 % 環境
-\newbool{MyBoolOutsideEq}\booltrue{MyBoolOutsideEq}
-\newcommand{\?}{
-  \ifbool{MyBoolOutsideEq}{
-    \setbool{MyBoolOutsideEq}{false}
-    \hfill$\begin{aligned}[t]
-  }{
-    \end{aligned}$\hfill\null
-    \setbool{MyBoolOutsideEq}{true}
+\ExplSyntaxOn
+\bool_set_true:N \g_my_OutsideEq_bool
+\tl_new:N \g_my_EqType_tl
+\NewDocumentCommand { \? } { O{} } {
+  \bool_if:NTF \g_my_OutsideEq_bool {
+    \tl_if_empty:nTF { #1 } {
+      \csname [\endcsname
+      \tl_gset:Nn \g_my_EqType_tl { e }
+    } {
+      \tl_if_eq:nnTF { #1 } { t } {
+        \hfill\mydoller
+        \begin {aligned}[t]
+        \tl_gset:Nn \g_my_EqType_tl { t }
+      }
+      \tl_if_eq:nnTF { #1 } { a } {
+        \csname [\endcsname
+        \begin {aligned}
+        \tl_gset:Nn \g_my_EqType_tl { a }
+      } {}
+      \tl_if_eq:nnTF { #1 } { g } {
+        \csname [\endcsname
+        \begin {gathered}
+        \tl_gset:Nn \g_my_EqType_tl { g }
+      } {}
+    }
+    \bool_set_false:N \g_my_OutsideEq_bool
+  } {
+    \tl_if_eq:NnTF \g_my_EqType_tl { e } {
+      \csname ]\endcsname
+    } {}
+    \tl_if_eq:NnTF \g_my_EqType_tl { t } {
+      \end {aligned}
+      \mydoller\hfill\null
+    } {}
+    \tl_if_eq:NnTF \g_my_EqType_tl { a } {
+      \end {aligned}
+      \csname ]\endcsname
+    } {}
+    \tl_if_eq:NnTF \g_my_EqType_tl { g } {
+      \end {gathered}
+      \csname ]\endcsname
+    } {}
+    \bool_set_true:N \g_my_OutsideEq_bool
   }
 }
-\newenvironment{eqalign}{\[\begin{aligned}}{\end{aligned}\]}
-\newenvironment{eqgather}{\[\begin{gathered}}{\end{gathered}\]}
+\ExplSyntaxOff
+
 
 % テキスト書体コマンド
 \newcommand{\gs}{\sffamily}
@@ -55,6 +92,33 @@
 % 非記号系コマンド
 \newcommand{\rx}[1]{{\color{myred}#1}}
 \newcommand{\Release}[1]{\rx{Release (#1)}}
+\newcommand{\T}{\makebox[2em][l]{\scriptsize \color{mywhitegray}$⇥$}}
+\newcommand{\Show}{\textbf{Show: }}
+\newcommand{\Assume}[1]{\textbf{Assume: }{\color{myred}#1}}
+\ExplSyntaxOn
+\NewDocumentCommand { \By } { m } {
+  \seq_set_split:Nnn \l_tmpa_seq { , } { #1 }
+  \seq_set_map:NNn \l_tmpa_seq \l_tmpa_seq {
+    \tl_set:Nn \l_tmpa_tl { ##1 }
+    \tl_if_in:NnTF \l_tmpa_tl { Axm } {
+      \nameref{\l_tmpa_tl}
+    }{
+      \tl_if_in:NnTF \l_tmpa_tl { Dfn } {
+        \cref{\l_tmpa_tl}
+      }{
+        \tl_if_in:NnTF \l_tmpa_tl { Thm } {
+          \cref{\l_tmpa_tl}
+        }{
+          \ref{\l_tmpa_tl}
+        }
+      }
+    }
+  }
+  \hspace{.5em} \hrulefill \hspace{.5em} (
+    \seq_use:Nn \l_tmpa_seq { ,\ }
+  )
+}
+\ExplSyntaxOff
 
 
 % 記号タイプ
@@ -66,7 +130,6 @@
 
 % 雑記号
 \newcommand{\para}{\textcolor{mygray}{$\linefeed$}\par}
-\newcommand{\AND}{\hspace{.5em} / \hspace{.5em}}
 \newcommand{\：}{\colon}
 \newcommand{\…}{\dots}
 \newcommand{\otw}{\text{Otherwise}}
