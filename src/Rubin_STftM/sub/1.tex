@@ -5,43 +5,59 @@
 
 \begin{dfn}[][][$x$ is a set/proper class]
   \begin{thmlist}
-    \item \mylabel{dfn_M}
-    \?
-      \M{x}
-      \defn
-      ∃ u \ (x ∈ u)
-    \?
-    \item \mylabel{dfn_Pr}
-    \?
-      \Pr{x}
-      \defn
-      ¬ \M{x}
-    \?
+    \item
+    \mylabel{Dfn_M}
+    $
+      \M{x} \defn ∃ y \ (x ∈ y)
+    $
+    \item
+    \mylabel{Dfn_Pr}
+    $
+      \Pr{x} \defn ¬ \M{x}
+    $
   \end{thmlist}
 \end{dfn}
 
 
-\begin{axm}[axm_ext][][Axiom of Extensionality]
-  \[
+\begin{prp}[Thm_elem_is_set]
+  $
+    x ∈ y \ra \M{x}
+  $
+  \tcblower
+  \begin{prf}
+    \item
+    \Show $\M{x}$
+    \By{rcmrq, Dfn_M}
+      \item
+      \label{rcmrq}
+      \T $∃ y \ (x ∈ y)$
+      \By{2qwn5}
+    \item
+    \label{2qwn5}
+    \Assume{$x ∈ y$}
+  \end{prf}
+\end{prp}
+
+
+\begin{axm}[Axm_ext][][Axiom of Extensionality]
+  $
     ∀ u \ (u ∈ x \lra u ∈ y) \ra x = y
-  \]
+  $
 \end{axm}
 
 
 \begin{dfn}[][][$x$ is a subclass/proper subclass of $y$]
   \begin{thmlist}
-    \item \mylabel{dfn_sbc}
-    \?
-      x ⊆ y
-      \defn
-      ∀ u \ (u ∈ x \ra u ∈ y)
-    \?
     \item
-    \?
-      x ⊂ y \mylabel{dfn_psbc}
-      \defn
-      x ⊆ y ≠ x
-    \?
+    \mylabel{Dfn_Sbc}
+    $
+      x ⊆ y \defn ∀ u \ (u ∈ x \ra u ∈ y)
+    $
+    \item
+    \mylabel{Dfn_Psbc}
+    $
+      x ⊂ y \defn x ⊆ y ∧ x ≠ y
+    $
   \end{thmlist}
 \end{dfn}
 
@@ -49,572 +65,277 @@
 \begin{prp}
   \begin{thmlist}
     \item
-    \?
+    \mylabel{Thm_Sbc_is_reflRel}
+    $
       x ⊆ x
-    \?
-    \item \mylabel{thm_sbc_tr}
-    \?
+    $
+    \item
+    \mylabel{Thm_Sbc_is_transRel}
+    $
       x ⊆ y ⊆ z \ra x ⊆ z
-    \?
-    \item \mylabel{thm_sbc_atsy}
-    \?
+    $
+    \item
+    \mylabel{Thm_Sbc_is_antisymRel}
+    $
       x ⊆ y ⊆ x \ra x = y
-    \?
+    $
   \end{thmlist}
   \tcblower
   \begin{thmlist}
-    \item By $∀ u \ (u ∈ x \ra u ∈ x)$ and \cref{dfn_sbc}.
-    \item Assume \rx{(A1) $x ⊆ y ⊆ z$}.\\
-    By \cref{dfn_sbc} and (A1), $∀ u \ (u ∈ x \ra u ∈ y)$ and $∀ u \ (u ∈ y \ra u ∈ z)$. Thus, $∀ u \ (u ∈ x \ra u ∈ z)$.\\
-    Thus, by \cref{dfn_sbc}, $x ⊆ z$.
-    \Release{A1}
-    \item Assume \rx{(A1) $x ⊆ y ⊆ x$}.\\
-    By \cref{dfn_sbc} and (A1), $∀ u \ (u ∈ x \ra u ∈ y)$ and $∀ u \ (u ∈ y \ra u ∈ x)$. Thus, $∀ u \ (u ∈ x \lra u ∈ y)$.\\
-    Thus, by \nameref{axm_ext}, $x = y$.
-    \Release{A1}
+    \item
+    \begin{prf}
+      \item
+      $x ⊆ x$
+      \By{a3b3n, Dfn_M}
+      \item
+      $∀ u \ (u ∈ x \ra u ∈ x)$
+      \label{a3b3n}
+    \end{prf}
+    \item
+    \begin{prf}
+      \item
+      \Show $x ⊆ z$
+      \By{q8oe8}
+        \item
+        \label{q8oe8}
+        \T $∀ u \ (u ∈ x \ra u ∈ z)$
+        \By{04lc9}
+        \item
+        \label{04lc9}
+        \T $
+          \cuc{
+            ∀ u \ (u ∈ x \ra u ∈ y) \\
+            ∀ u \ (u ∈ y \ra u ∈ z)
+          }
+        $
+        \By{8hjjr}
+      \item
+      \label{8hjjr}
+      \Assume{$x ⊆ y ⊆ z$}
+    \end{prf}
+    \item
+    \begin{prf}
+      \item
+      \Show $x = y$
+      \By{7lu34, Axm_ext}
+        \item
+        \label{7lu34}
+        \T $∀ u \ (u ∈ x \lra u ∈ y)$
+        \By{0fh49}
+        \item
+        \label{0fh49}
+        \T $
+          \cuc{
+            ∀ u \ (u ∈ x \ra u ∈ y) \\
+            ∀ u \ (u ∈ y \ra u ∈ x)
+          }
+        $
+        \By{d0fkc, Dfn_Sbc}
+      \item
+      \label{d0fkc}
+      \Assume{$x ⊆ y ⊆ x$}
+    \end{prf}
   \end{thmlist}
 \end{prp}
 
 
 \begin{prp}
   \begin{thmlist}
-    \item
-    \?
+    \item \mylabel{Thm_Psbc_irreflRel}
+    $
       ¬ (x ⊂ x)
-    \?
-    \item \mylabel{thm_psbc_nin}
-    \?
+    $
+    \item \mylabel{Thm_psbc_has_less_elem}
+    $
       x ⊂ y \lra
       \cuc{
         x ⊆ y \\
         ∃ u \ (u ∈ y ∧ u ∉ x)
       }
-    \?
-    \item \mylabel{thm_psbcsbc_tr}
-    \?
+    $
+    \item \mylabel{Thm_psbc_of_sbc_is_psbc}
+    $
       x ⊂ y ⊆ z \ra x ⊂ z
-    \?
-    \item
-    \?
+    $
+    \item \mylabel{Thm_sbc_of_psbc_is_psbc}
+    $
+      x ⊆ y ⊂ z \ra x ⊂ z
+    $
+    \item \mylabel{Thm_psbc_of_psbc_is_psbc}
+    $
       x ⊂ y ⊂ z \ra x ⊂ z
-    \?
-    \item
-    \?
-      x ⊂ y ⊂ z \ra x ⊂ z
-    \?
-    \item
-    \?
-      x ⊆ y \lra (x ⊂ y ∨ x = y)
-    \?
-  \end{thmlist}
-  \tcblower
-  \begin{thmlist}
-    \item By $x = x$ and \cref{dfn_psbc}.
-    \item
-    \begin{description}
-      \item[($\la$)] Assume \rx{(A1) $x ⊆ y$} and \rx{(A2) $∃ u \ (u ∈ y ∧ u ∉ x)$}.\\
-      By (A2), $x ≠ y$. Thus, by (A1) and \cref{dfn_psbc}, $x ⊂ y$.
-      \Release{A1, A2}
-      \item[($\ra$)] Assume \rx{(A1) $x ⊂ y$}.\\
-      By (A1) and \cref{dfn_psbc}, $x ⊆ y$ and $x ≠ y$.\\
-      Thus, by \cref{thm_sbc_tr}, $¬ (y ⊆ x)$. Thus, by \cref{dfn_sbc}, $∃ u \ (u ∈ y ∧ u ∉ x)$.
-      \Release{A1}
-    \end{description}
-    \item Assume \rx{(A1) $x ⊂ y ⊆ z$}.
-    \begin{step}
-      \item By (A1) and \cref{dfn_psbc}, $x ⊆ y ⊆ z$. Thus, by \cref{thm_sbc_tr}, $x ⊆ z$.
-      \item By (A1) and \cref{thm_psbc_nin}, $∃ u \ (u ∈ y ∧ u ∉ x)$. Take such $u$.\\
-      By (A1) and \cref{dfn_sbc}, $u ∈ y \ra u ∈ z$. Thus, $u ∈ z ∧ u ∉ x$. Thus, $∃ u \ (u ∈ z ∧ u ∉ x)$.
-    \end{step}
-    Thus, by \cref{thm_psbc_nin}, $x ⊂ z$.
-    \Release{A1}
-    \item Assume \rx{(A1) $x ⊆ y ⊂ z$}.
-    \begin{step}
-      \item By (A1) and \cref{dfn_psbc}, $x ⊆ y ⊆ z$. Thus, by \cref{thm_sbc_tr}, $x ⊆ z$.
-      \item By (A1) and \cref{thm_psbc_nin}, $∃ u \ (u ∈ z ∧ u ∉ y)$. Take such $u$.\\
-      By (A1) and \cref{dfn_sbc}, $u ∈ x \ra u ∈ y$. Thus, $u ∈ z ∧ u ∉ x$. Thus, $∃ u \ (u ∈ z ∧ u ∉ x)$.
-    \end{step}
-    Thus, by \cref{thm_psbc_nin}, $x ⊂ z$.
-    \Release{A1}
-    \item By \cref{dfn_psbc}, $x ⊂ y ⊂ z \ra x ⊆ y ⊂ z$. Thus, by \cref{thm_psbcsbc_tr}, $x ⊂ z$.
-  \end{thmlist}
-\end{prp}
-
-
-\begin{axm}[axm_comp][][Axiom of Comprehension]
-  ($x$ is not free in NBG-formula $𝜙$)
-  \[
-    ∃ x \ ∀ u \ (u ∈ x \lra 𝜙 ∧ \M{u})
-  \]
-\end{axm}
-
-
-\begin{thm}
-  ($x$ is not free in NBG-formula $𝜙$)
-  \[
-    ∃! x \ ∀ u \ (u ∈ x \lra 𝜙 ∧ \M{u})
-  \]
-  \tcblower
-  \begin{description}
-    \item[Existence] By \nameref{axm_comp}.
-    \item[Uniqueness] Assume \rx{(A1) $∀ u \ (u ∈ x_𝟏 \lra 𝜙 ∧ \M{u})$ and $∀ u \ (u ∈ x_𝟐 \lra 𝜙 ∧ \M{u})$}.\\
-    By (A1), $∀ u \ (u ∈ x_𝟏 \lra u ∈ x_𝟐)$. Thus, by \nameref{axm_ext}, $x_𝟏 = x_𝟐$.
-    \Release{A1}
-  \end{description}
-\end{thm}
-
-
-\begin{nb}
-  本来はここに$\cls{u}{𝜙}$の定義などが入るが省略．
-  \[
-    v ∈ \cls{u}{𝜙} \lra 𝜙 [v/u] ∧ \M{v}
-  \]
-  \[
-    (𝜙 \ra 𝜓) \ra \cls{u}{𝜙} ⊆ \cls{u}{𝜓}
-  \]
-  \[
-    (𝜙 \lra 𝜓) \ra \cls{u}{𝜙} = \cls{u}{𝜓}
-  \]
-  \begin{eqalign}
-    \cls{u}{u ∈ \cls{v}{𝜙}}
-    &{}= \cls{u}{𝜙 [u/v]}
-  \end{eqalign}
-  \begin{eqalign}
-    \cls{u}{u ∉ \cls{v}{𝜙}}
-    &{}= \cls{u}{¬ 𝜙 [u/v]}
-  \end{eqalign}
-  \[
-    x = \cls{u}{u ∈ x}
-  \]
-\end{nb}
-
-
-\begin{dfn}
-  \begin{thmlist}
-    \item \mylabel{dfn_emp}
-    \?
-      ∅
-      ≔
-      \cls{u}{u ≠ u}
-    \?
-    \item \mylabel{dfn_univ}
-    \?
-      𝐔
-      ≔
-      \cls{u}{u = u}
-    \?
-    \item \mylabel{dfn_russ}
-    \?
-      𝐑𝐮
-      ≔
-      \cls{u}{u ∉ u}
-    \?
-  \end{thmlist}
-\end{dfn}
-
-
-\begin{nb}
-  \begin{eqgather}
-    u ∈ ∅ \lra u ≠ u ∧ \M{u} \\
-    u ∈ 𝐔 \lra u = u ∧ \M{u} \\
-    u ∈ 𝐑𝐮 \lra u ∉ u ∧ \M{u}
-  \end{eqgather}
-\end{nb}
-
-
-\begin{prp}
-  \begin{thmlist}
-    \item \mylabel{thm_emp_nin}
-    \?
-      u ∉ ∅
-    \?
-    \item \mylabel{thm_M_in_univ}
-    \?
-      \M{u} \ra u ∈ 𝐔
-    \?
-    \item
-    \?
-      ∅ ⊆ x
-    \?
-    \item
-    \?
-      x ⊆ 𝐔
-    \?
-    \item
-    \?
-      \Pr{𝐑𝐮}
-    \?
-  \end{thmlist}
-  \tcblower
-  \begin{thmlist}
-    \item By $u ∈ ∅ \lra u ≠ u ∧ \M{u}$.
-    \item By $u ∈ 𝐔 \lra u = u ∧ \M{u}$.
-    \item By \cref{thm_emp_nin}, $∀ u \ (u ∈ ∅ \ra u ∈ x)$. Thus, by \cref{dfn_sbc}, $∅ ⊆ x$.
-    \item By \cref{dfn_M}, $u ∈ x \ra \M{u}$. Thus, by \cref{thm_M_in_univ}, $u ∈ x \ra u ∈ 𝐔$. Thus, $∀ u \ (u ∈ x \ra u ∈ 𝐔)$. Thus, by \cref{dfn_sbc}, $x ⊆ 𝐔$.
-    \item By $𝐑𝐮 ∈ 𝐑𝐮 \lra 𝐑𝐮 ∉ 𝐑𝐮 ∧ \M{𝐑𝐮}$, $𝐑𝐮 ∉ 𝐑𝐮 \lra ¬ (𝐑𝐮 ∉ 𝐑𝐮 ∧ \M{𝐑𝐮})$. Thus, $¬ \M{𝐑𝐮}$. Thus, by \cref{dfn_Pr}, $\Pr{𝐑𝐮}$.
-  \end{thmlist}
-\end{prp}
-
-
-\section{Class algebra}
-
-
-\begin{dfn}
-  \begin{thmlist}
-    \item \mylabel{dfn_cup}
-    \?
-      x ∪ y
-      ≔
-      \cls{u}{u ∈ x ∨ u ∈ y}
-    \?
-    \item \mylabel{dfn_cap}
-    \?
-      x ∩ y
-      ≔
-      \cls{u}{u ∈ x ∧ u ∈ y}
-    \?
-    \item \mylabel{dfn_cdif}
-    \?
-      x ∖ y
-      ≔
-      \cls{u}{u ∈ x ∧ u ∉ y}
-    \?
-    \item \mylabel{dfn_cmpl}
-    \?
-      x^∁
-      ≔
-      \cls{u}{u ∉ x}
-    \?
-  \end{thmlist}
-\end{dfn}
-
-
-\begin{prp}
-  \begin{thmlist}
-    \item
-    \?
-      x ∪ y = y ∪ x
-    \?
-    \item
-    \?
-      x ∩ y = y ∩ x
-    \?
-    \item
-    \?
-      (x ∪ y) ∪ z = x ∪ (y ∪ z)
-    \?
-    \item
-    \?
-      (x ∩ y) ∩ z = x ∩ (y ∩ z)
-    \?
-    \item
-    \?
-      x ∩ (y ∪ z) = (x ∩ y) ∪ (x ∩ z)
-    \?
-    \item
-    \?
-      x ∪ (y ∩ z) = (x ∪ y) ∩ (x ∪ z)
-    \?
-    \item
-    \?
-      x ∪ x = x
-    \?
-    \item
-    \?
-      x ∩ x = x
-    \?
-    \item \mylabel{thm_cup_sbc}
-    \?
-      x ⊆ x ∪ y
-    \?
-    \item \mylabel{thm_cap_sbc}
-    \?
-      x ∩ y ⊆ x
-    \?
-    \item
-    \?
-      x ⊆ y \lra x ∪ y = y
-    \?
-    \item
-    \?
-      x ⊆ y \lra x ∩ y = x
-    \?
+    $
+    \item \mylabel{Thm_sbc_eqv_psbc_or_Eq}
+    $
+      x ⊆ y \lra x ⊂ y ∨ x = y
+    $
   \end{thmlist}
   \tcblower
   \begin{thmlist}
     \item
-    \?
-      x ∪ y
-      &{}= \cls{u}{u ∈ x ∨ u ∈ y} \\
-      &{}= \cls{u}{u ∈ y ∨ u ∈ x}\\
-      &{}= y ∪ x
-    \?
+    \begin{prf}
+      \item
+      $¬ (x ⊂ x)$
+      \By{5cn7h, Dfn_Psbc}
+      \item
+      \label{5cn7h}
+      $¬ (x ⊆ x ∧ x ≠ x)$
+      \By{i1ilq}
+      \item
+      \label{i1ilq}
+      $x = x$
+    \end{prf}
     \item
-    \?
-      x ∩ y
-      &{}= \cls{u}{u ∈ x ∧ u ∈ y} \\
-      &{}= \cls{u}{u ∈ y ∧ u ∈ x}\\
-      &{}= y ∩ x
-    \?
+    \begin{prf}
+      \item
+      \Show $
+        \rx{\cuc{
+          x ⊆ y \\
+          ∃ u \ (u ∈ y ∧ u ∉ x)
+        }}
+        \ra x ⊂ y
+      $
+        \item
+        \T \Show $x ⊂ y$
+        \By{mo0ms, m75gb}
+          \item
+          \label{m75gb}
+          \T\T \Show $x ≠ y$
+          \By{xrjl8, bvdxl}
+            \item
+            \label{xrjl8}
+            \T\T\T $x = y \ra ¬ ∃ u \ (u ∈ y ∧ u ∉ x)$
+        \item
+        \label{mo0ms}
+        \T \Assume{$x ⊆ y$}
+        \item
+        \label{bvdxl}
+        \T \Assume{$∃ u \ (u ∈ y ∧ u ∉ x)$}
+      \item
+      \Show $
+        \rx{x ⊂ y} \ra
+        \cuc{
+          x ⊆ y \\
+          ∃ u \ (u ∈ y ∧ u ∉ x)
+        }
+      $
+        \item
+        \T \Show $∃ u \ (u ∈ y ∧ u ∉ x)$
+        \By{lie67, Dfn_Sbc}
+          \item
+          \label{lie67}
+          \T\T $¬ (y ⊆ x)$
+          \By{i0gyn, gf8fg, Thm_Sbc_is_antisymRel}
+          \item
+          \label{gf8fg}
+          \T\T $x ≠ y$
+          \By{w810y, Dfn_Psbc}
+        \item
+        \label{i0gyn}
+        \T \Show $x ⊆ y$
+        \By{w810y, Dfn_Psbc}
+        \item
+        \label{w810y}
+        \T \Assume{$x ⊂ y$}
+    \end{prf}
     \item
-    \?
-      (x ∪ y) ∪ z
-      &{}= \cls{u}{u ∈ x ∪ y ∨ u ∈ z} \\
-      &{}= \cls{u}{u ∈ x ∨ u ∈ y ∨ u ∈ z} \\
-      &{}= \cls{u}{u ∈ x ∨ u ∈ y ∪ z}
-    \?
+    \begin{prf}
+      \item
+      \Show $x ⊂ z$
+      \By{bjai4, xmb4n, Thm_psbc_has_less_elem}
+        \item
+        \label{bjai4}
+        \T \Show $x ⊆ z$
+        \By{o2zw9, Thm_Sbc_is_transRel}
+          \item
+          \label{o2zw9}
+          \T\T $x ⊆ y ⊆ z$
+          \By{zko72, Dfn_Psbc}
+        \item
+        \label{xmb4n}
+        \T \Show $∃ u \ (u ∈ z ∧ u ∉ x)$
+        \By{slopv, nor9n}
+          \item
+          \label{nor9n}
+          \T\T $u ∈ y \ra u ∈ z$
+          \By{zko72, Dfn_Sbc}
+          \item
+          \label{slopv}
+          \T\T $∃ u \ (u ∈ y ∧ u ∉ x)$
+          \By{zko72, Thm_psbc_has_less_elem}
+      \item
+      \label{zko72}
+      \Assume{$x ⊂ y ⊆ z$}
+    \end{prf}
     \item
-    \?
-      (x ∩ y) ∩ z
-      &{}= \cls{u}{u ∈ x ∩ y ∧ u ∈ z} \\
-      &{}= \cls{u}{u ∈ x ∧ u ∈ y ∧ u ∈ z} \\
-      &{}= \cls{u}{u ∈ x ∧ u ∈ y ∩ z}
-    \?
+    \begin{prf}
+      \item
+      \Show $x ⊂ z$
+      \By{94hb6, novoe, Thm_psbc_has_less_elem}
+        \item
+        \label{94hb6}
+        \T \Show $x ⊆ z$
+        \By{5jt5y, Thm_Sbc_is_transRel}
+          \item
+          \label{5jt5y}
+          \T\T $x ⊆ y ⊆ z$
+          \By{naqn1, Dfn_Psbc}
+        \item
+        \label{novoe}
+        \T \Show $∃ u \ (u ∈ z ∧ u ∉ x)$
+        \By{9emdq, 4im8d}
+          \item
+          \label{4im8d}
+          \T\T $u ∈ x \ra u ∈ y$
+          \By{naqn1, Dfn_Sbc}
+          \item
+          \label{9emdq}
+          \T\T $∃ u \ (u ∈ z ∧ u ∉ y)$
+          \By{naqn1, Thm_psbc_has_less_elem}
+      \item
+      \label{naqn1}
+      \Assume{$x ⊆ y ⊂ z$}
+    \end{prf}
     \item
-    \?
-      x ∩ (y ∪ z)
-      &{}= \cls{u}{u ∈ x ∧ u ∈ y ∪ z} \\
-      &{}= \cls{u}{u ∈ x ∧ (u ∈ y ∨ u ∈ z)} \\
-      &{}= \cls{u}{(u ∈ x ∧ u ∈ y) ∨ (u ∈ x ∧ u ∈ z) } \\
-      &{}= \cls{u}{u ∈ x ∩ y ∨ u ∈ x ∩ z} \\
-      &{}= (x ∩ y) ∪ (x ∩ z)
-    \?
+    \begin{prf}
+      \item
+      \Show $x ⊂ z$
+      \By{ifxfr, Thm_psbc_of_sbc_is_psbc}
+        \item
+        \label{ifxfr}
+        \T $x ⊂ y ⊆ z$
+        \By{1vtkz, Dfn_Psbc}
+      \item
+      \label{1vtkz}
+      \Assume{$x ⊂ y ⊂ z$}
+    \end{prf}
     \item
-    \?
-      x ∪ (y ∩ z)
-      &{}= \cls{u}{u ∈ x ∨ u ∈ y ∩ z} \\
-      &{}= \cls{u}{u ∈ x ∨ (u ∈ y ∧ u ∈ z)} \\
-      &{}= \cls{u}{(u ∈ x ∨ u ∈ y) ∧ (u ∈ x ∨ u ∈ z) } \\
-      &{}= \cls{u}{u ∈ x ∪ y ∧ u ∈ x ∪ z} \\
-      &{}= (x ∪ y) ∩ (x ∪ z)
-    \?
-    \item
-    \?
-      x ∪ x
-      &{}= \cls{u}{u ∈ x ∨ u ∈ x} \\
-      &{}= \cls{u}{u ∈ x} \\
-      &{}= x
-    \?
-    \item
-    \?
-      x ∩ x
-      &{}= \cls{u}{u ∈ x ∧ u ∈ x} \\
-      &{}= \cls{u}{u ∈ x} \\
-      &{}= x
-    \?
-    \item
-    \?
-      x
-      &{}= \cls{u}{u ∈ x} \\
-      &{}⊆ \cls{u}{u ∈ x ∨ u ∈ y} \\
-      &{}= x ∪ y
-    \?
-    \item
-    \?
-      x ∩ y
-      &{}= \cls{u}{u ∈ x ∧ u ∈ y} \\
-      &{}⊆ \cls{u}{u ∈ x} \\
-      &{}= x
-    \?
-    \item
-    \begin{description}
-      \item[($\la$)] Assume \rx{(A1) $x ∪ y = y$}.
-      \begin{eqalign}
-        x
-        &{}⊆ x ∪ y \quad \text{by \cref{thm_cup_sbc}} \\
-        &{}= y \quad \text{by (A1)}
-      \end{eqalign}
-      \Release{A1}
-      \item[($\ra$)] Assume \rx{(A1) $x ⊆ y$}.\\
-      By (A1), $u ∈ x \ra u ∈ y$. Thus,
-      \begin{eqalign}
-        x ∪ y
-        &{}= \cls{u}{u ∈ x ∨ u ∈ y} \\
-        &{}= \cls{u}{u ∈ y} \\
-        &{}= y
-      \end{eqalign}
-      \Release{(A1)}
-    \end{description}
-    \item
-    \begin{description}
-      \item[($\la$)] Assume \rx{(A1) $x ∩ y = x$}.
-      \begin{eqalign}
-        x
-        &{}= x ∩ y \quad \text{by (A1)} \\
-        &{}⊆ y \quad \text{by \cref{thm_cap_sbc}}
-      \end{eqalign}
-      \Release{A1}
-      \item[($\ra$)] Assume \rx{(A1) $x ⊆ y$}.\\
-      By (A1), $u ∈ x \ra u ∈ y$. Thus,
-      \begin{eqalign}
-        x ∩ y
-        &{}= \cls{u}{u ∈ x ∧ u ∈ y} \\
-        &{}= \cls{u}{u ∈ x} \\
-        &{}= x
-      \end{eqalign}
-      \Release{A1}
-    \end{description}
-  \end{thmlist}
-\end{prp}
-
-
-\begin{prp}
-  \begin{thmlist}
-    \item
-    \?
-      x ∪ ∅ = x
-    \?
-    \item
-    \?
-      x ∩ ∅ = ∅
-    \?
-    \item
-    \?
-      x ∪ 𝐔 = 𝐔
-    \?
-    \item
-    \?
-      x ∩ 𝐔 = x
-    \?
-  \end{thmlist}
-  \tcblower
-  \begin{thmlist}
-    \item
-    \?
-      x ∪ ∅
-      &{}= \cls{u}{u ∈ x ∨ u ∈ ∅} \\
-      &{}= \cls{u}{u ∈ x ∨ u ≠ u} \\
-      &{}= \cls{u}{u ∈ x} \\
-      &{}= x
-    \?
-    \item
-    \?
-      x ∩ ∅
-      &{}= \cls{u}{u ∈ x ∧ u ∈ ∅} \\
-      &{}= \cls{u}{u ∈ x ∧ u ≠ u} \\
-      &{}= \cls{u}{u ≠ u} \\
-      &{}= ∅
-    \?
-    \item
-    \?
-      x ∪ 𝐔
-      &{}= \cls{u}{u ∈ x ∨ u ∈ 𝐔} \\
-      &{}= \cls{u}{u ∈ x ∨ u = u} \\
-      &{}= \cls{u}{u = u} \\
-      &{}= 𝐔
-    \?
-    \item
-    \?
-      x ∩ 𝐔
-      &{}= \cls{u}{u ∈ x ∧ u ∈ 𝐔} \\
-      &{}= \cls{u}{u ∈ x ∧ u = u} \\
-      &{}= \cls{u}{u ∈ x} \\
-      &{}= x
-    \?
-  \end{thmlist}
-\end{prp}
-
-
-\begin{prp}
-  \begin{thmlist}
-    \item
-    \?
-      (x^∁)^∁ = x
-    \?
-    \item
-    \?
-      x ∪ x^∁ = 𝐔
-    \?
-    \item
-    \?
-      x ∩ x^∁ = ∅
-    \?
-    \item
-    \?
-      𝐔 ∖ x = x^∁
-    \?
-    \item
-    \?
-      x ∖ y = x ∩ y^∁
-    \?
-    \item
-    \?
-      x ⊆ y \lra y^∁ ⊆ x^∁
-    \?
-    \item
-    \?
-      x ⊂ y \lra y^∁ ⊂ x^∁
-    \?
-  \end{thmlist}
-  \tcblower
-  \begin{thmlist}
-    \item
-    \?
-      (x^∁)^∁
-      &{}= \cls{u}{u ∉ x^∁} \\
-      &{}= \cls{u}{¬ (u ∉ x)} \\
-      &{}= \cls{u}{u ∈ x} \\
-      &{}= x
-    \?
-    \item
-    \?
-      x ∪ x^∁
-      &{}= \cls{u}{u ∈ x ∨ u ∈ x^∁} \\
-      &{}= \cls{u}{u ∈ x ∨ u ∉ x} \\
-      &{}= \cls{u}{u = u} \\
-      &{}= 𝐔
-    \?
-    \item
-    \?
-      x ∩ x^∁
-      &{}= \cls{u}{u ∈ x ∧ u ∈ x^∁} \\
-      &{}= \cls{u}{u ∈ x ∧ u ∉ x} \\
-      &{}= \cls{u}{u ≠ u} \\
-      &{}= ∅
-    \?
-    \item
-    \?
-      𝐔 ∖ x
-      &{}= \cls{u}{u ∈ 𝐔 ∧ u ∉ x} \\
-      &{}= \cls{u}{x = x ∧ u ∉ x} \\
-      &{}= \cls{u}{u ∉ x} \\
-      &{}= x^∁
-    \?
-    \item
-    \?
-      x ∖ y
-      &{}= \cls{u}{u ∈ x ∧ u ∉ y} \\
-      &{}= \cls{u}{u ∈ x ∧ u ∈ y^∁} \\
-      &{}= x ∩ y^∁
-    \?
-    % \item Assume \rx{(A1) $x ⊆ y$}.\\
-    % By (A1), $u ∈ x \ra u ∈ y$. Thus,
-    % \begin{eqalign}
-    %   u ∈ y^∁
-    %   &{}\ra u ∉ y ∧ \M{u} \\
-    %   &{}\ra u ∉ x ∧ \M{u} \\
-    %   &{}\ra u ∈ x^∁
-    % \end{eqalign}
-    % \Release{A1}
-    % \item Assume \rx{(A1) $x ⊂ y$}.\\
-    % By (A1), (P1) $u ∈ x \ra u ∈ y$ and $x ≠ y$. Thus,
-    % \begin{eqalign}
-    %   u ∈ x
-    %   &{}\ra u ∉
-    % \end{eqalign}
-  \end{thmlist}
-\end{prp}
-
-
-\begin{prp}
-  \begin{thmlist}
-    \item
-    \?
-      (x ∪ y)^∁ = x^∁ ∩ y^∁
-    \?
-    \item
-    \?
-      (x ∩ y)^∁ = x^∁ ∪ y^∁
-    \?
+    \begin{prf}
+      \item
+      $x ⊆ y \lra x ⊂ y ∨ x = y$
+      \By{f117i, 60v5g}
+        \item
+        \label{60v5g}
+        \T \Show $\sqc{x ⊆ y ∧ x ≠ y \\ x ⊆ y ∧ x = y} \lra x ⊂ y ∨ x = y$
+        \By{z3e3y, qc1h8}
+          \item
+          \label{z3e3y}
+          \T\T \Show $x ⊆ y ∧ x ≠ y \lra x ⊂ y$
+          \By{Dfn_Psbc}
+          \item
+          \label{qc1h8}
+          \T\T \Show $x ⊆ y ∧ x = y \lra x = y$
+          \By{mu0eu, zimip}
+            \item
+            \label{zimip}
+            \T\T\T \Show $x ⊆ y ∧ x = y \ra x = y$
+            \item
+            \label{mu0eu}
+            \T\T\T \Show $x = y \ra x ⊆ y ∧ x = y$
+            \By{Thm_Sbc_is_reflRel}
+        \item
+        \label{f117i}
+        \T\Show $x ⊆ y \lra \sqc{x ⊆ y ∧ x ≠ y \\ x ⊆ y ∧ x = y}$
+    \end{prf}
   \end{thmlist}
 \end{prp}
