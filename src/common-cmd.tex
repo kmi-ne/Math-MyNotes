@@ -92,31 +92,58 @@
 % 非記号系コマンド
 \newcommand{\rx}[1]{{\color{myred}#1}}
 \newcommand{\Release}[1]{\rx{Release (#1)}}
-\newcommand{\T}{\makebox[2em][l]{\scriptsize \color{mywhitegray}$⇥$}}
+\newcommand{\myTab}{\makebox[2em][l]{\scriptsize \color{mywhitegray}$⇥$}}
+% \ExplSyntaxOn
+% \int_step_inline:nnn { 2 } { 10 } {
+%   \expandafter \newcommand
+%   \csname \prg_replicate:nn { #1 } { T } \endcsname
+%   {\prg_replicate:nn { #1 } { \T }}
+% }
+% \ExplSyntaxOff
 \newcommand{\Show}{\textbf{Show: }}
 \newcommand{\Assume}[1]{\textbf{Assume: }{\color{myred}#1}}
 \ExplSyntaxOn
-\NewDocumentCommand { \By } { m } {
-  \seq_set_split:Nnn \l_tmpa_seq { , } { #1 }
-  \seq_set_map:NNn \l_tmpa_seq \l_tmpa_seq {
-    \tl_set:Nn \l_tmpa_tl { ##1 }
-    \tl_if_in:NnTF \l_tmpa_tl { Axm } {
-      \nameref{\l_tmpa_tl}
-    }{
-      \tl_if_in:NnTF \l_tmpa_tl { Dfn } {
-        \cref{\l_tmpa_tl}
-      }{
-        \tl_if_in:NnTF \l_tmpa_tl { Thm } {
-          \cref{\l_tmpa_tl}
+\keys_define:nn { step } {
+  label .tl_set:N = \l_step_label_tl,
+  tab .int_set:N = \l_step_tab_int,
+  show .bool_set:N = \l_step_show_bool,
+  show .default:n = true,
+  assume .bool_set:N = \l_step_assume_bool,
+  assume .default:n = true,
+  fml .tl_set:N = \l_step_fml_tl,
+  by .clist_set:N = \l_step_by_clist,
+}
+\NewDocumentCommand { \step } { m } {
+  \item
+  \group_begin:
+    \keys_set:nn { step } { #1 }
+    \tl_if_empty:NTF \l_step_label_tl {} { \label{\l_step_label_tl} }
+    \prg_replicate:nn { \l_step_tab_int } { \myTab }
+    \bool_if:NTF \l_step_show_bool { \Show } {}
+    \bool_if:NTF \l_step_assume_bool { \Assume{\l_step_fml_tl} } { \l_step_fml_tl }
+    \clist_if_empty:NTF \l_step_by_clist {} {
+      \seq_set_from_clist:NN \l_tmpa_seq \l_step_by_clist
+      \seq_set_map:NNn \l_tmpa_seq \l_tmpa_seq {
+        \tl_set:Nn \l_tmpa_tl { ##1 }
+        \tl_if_in:NnTF \l_tmpa_tl { Axm } {
+          \nameref{\l_tmpa_tl}
         }{
-          \ref{\l_tmpa_tl}
+          \tl_if_in:NnTF \l_tmpa_tl { Dfn } {
+            \cref{\l_tmpa_tl}
+          }{
+            \tl_if_in:NnTF \l_tmpa_tl { Thm } {
+              \cref{\l_tmpa_tl}
+            }{
+              \ref{\l_tmpa_tl}
+            }
+          }
         }
       }
+      \hspace{.5em} \hrulefill \hspace{.5em} (
+        \seq_use:Nn \l_tmpa_seq { ,\ }
+      )    
     }
-  }
-  \hspace{.5em} \hrulefill \hspace{.5em} (
-    \seq_use:Nn \l_tmpa_seq { ,\ }
-  )
+  \group_end:
 }
 \ExplSyntaxOff
 
