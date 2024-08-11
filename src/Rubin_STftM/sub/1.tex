@@ -25,16 +25,22 @@
   $
   \tcblower
   \begin{prf}
-    \item
-    \Show $\M{x}$
-    \By{rcmrq, Dfn_M}
-      \item
-      \label{rcmrq}
-      \T $∃ y \ (x ∈ y)$
-      \By{2qwn5}
-    \item
-    \label{2qwn5}
-    \Assume{$x ∈ y$}
+    \step{
+      show,
+      by = {rcmrq, Dfn_M},
+      fml = {$\M{x}$},
+    }
+      \step{
+        by = {2qwn5},
+        fml = {$∃ y \ (x ∈ y)$},
+        label = {rcmrq},
+        tab = 1,
+      }
+    \step{
+      assume,
+      fml = {$x ∈ y$},
+      label = {2qwn5},
+    }
   \end{prf}
 \end{prp}
 
@@ -84,56 +90,80 @@
   \begin{thmlist}
     \item
     \begin{prf}
-      \item
-      $x ⊆ x$
-      \By{a3b3n, Dfn_M}
-      \item
-      $∀ u \ (u ∈ x \ra u ∈ x)$
-      \label{a3b3n}
+      \step{
+        show,
+        by = {a3b3n, Dfn_M},
+        fml = {$x ⊆ x$},
+      }
+        \step{
+          fml = {$∀ u \ (u ∈ x \ra u ∈ x)$},
+          label = {a3b3n},
+          tab = 1,
+        }
     \end{prf}
     \item
     \begin{prf}
-      \item
-      \Show $x ⊆ z$
-      \By{q8oe8}
-        \item
-        \label{q8oe8}
-        \T $∀ u \ (u ∈ x \ra u ∈ z)$
-        \By{04lc9}
-        \item
-        \label{04lc9}
-        \T $
-          \cuc{
-            ∀ u \ (u ∈ x \ra u ∈ y) \\
-            ∀ u \ (u ∈ y \ra u ∈ z)
-          }
-        $
-        \By{8hjjr}
-      \item
-      \label{8hjjr}
-      \Assume{$x ⊆ y ⊆ z$}
+      \step{
+        show,
+        fml = {$x ⊆ z$},
+        by = {q8oe8},
+      }
+        \step{
+          by = {04lc9},
+          fml = {$∀ u \ (u ∈ x \ra u ∈ z)$},
+          label = {q8oe8},
+          tab = 1,
+        }
+        \step{
+          by = {8hjjr},
+          fml = {
+            $
+              \cuc{
+                ∀ u \ (u ∈ x \ra u ∈ y) \\
+                ∀ u \ (u ∈ y \ra u ∈ z)
+              }
+            $
+          },
+          label = {04lc9},
+          tab = 1,
+        }
+      \step{
+        assume,
+        fml = {$x ⊆ y ⊆ z$},
+        label = {8hjjr},
+      }
     \end{prf}
     \item
     \begin{prf}
-      \item
-      \Show $x = y$
-      \By{7lu34, Axm_ext}
-        \item
-        \label{7lu34}
-        \T $∀ u \ (u ∈ x \lra u ∈ y)$
-        \By{0fh49}
-        \item
-        \label{0fh49}
-        \T $
-          \cuc{
-            ∀ u \ (u ∈ x \ra u ∈ y) \\
-            ∀ u \ (u ∈ y \ra u ∈ x)
-          }
-        $
-        \By{d0fkc, Dfn_Sbc}
-      \item
-      \label{d0fkc}
-      \Assume{$x ⊆ y ⊆ x$}
+      \step{
+        show,
+        by = {7lu34, Axm_ext},
+        fml = {$x = y$},
+      }
+        \step{
+          by = {0fh49},
+          fml = {$∀ u \ (u ∈ x \lra u ∈ y)$},
+          label = {7lu34},
+          tab = 1,
+        }
+        \step{
+          by = {d0fkc, Dfn_Sbc},
+          fml = {
+            $
+              \cuc{
+                ∀ u \ (u ∈ x \ra u ∈ y) \\
+                ∀ u \ (u ∈ y \ra u ∈ x)
+              }
+            $
+          },
+          label = {0fh49},
+          tab = 1,
+        }
+      \step{
+        assume,
+        fml = {$x ⊆ y ⊆ x$},
+        label = {d0fkc},
+      }
     \end{prf}
   \end{thmlist}
 \end{prp}
@@ -141,7 +171,7 @@
 
 \begin{prp}
   \begin{thmlist}
-    \item \mylabel{Thm_Psbc_irreflRel}
+    \item \mylabel{Thm_Psbc_is_irreflRel}
     $
       ¬ (x ⊂ x)
     $
@@ -174,168 +204,452 @@
   \begin{thmlist}
     \item
     \begin{prf}
-      \item
-      $¬ (x ⊂ x)$
-      \By{5cn7h, Dfn_Psbc}
-      \item
-      \label{5cn7h}
-      $¬ (x ⊆ x ∧ x ≠ x)$
-      \By{i1ilq}
-      \item
-      \label{i1ilq}
-      $x = x$
-    \end{prf}
-    \item
-    \begin{prf}
-      \item
-      \Show $
-        \rx{\cuc{
-          x ⊆ y \\
-          ∃ u \ (u ∈ y ∧ u ∉ x)
-        }}
-        \ra x ⊂ y
-      $
-        \item
-        \T \Show $x ⊂ y$
-        \By{mo0ms, m75gb}
-          \item
-          \label{m75gb}
-          \T\T \Show $x ≠ y$
-          \By{xrjl8, bvdxl}
-            \item
-            \label{xrjl8}
-            \T\T\T $x = y \ra ¬ ∃ u \ (u ∈ y ∧ u ∉ x)$
-        \item
-        \label{mo0ms}
-        \T \Assume{$x ⊆ y$}
-        \item
-        \label{bvdxl}
-        \T \Assume{$∃ u \ (u ∈ y ∧ u ∉ x)$}
-      \item
-      \Show $
-        \rx{x ⊂ y} \ra
-        \cuc{
-          x ⊆ y \\
-          ∃ u \ (u ∈ y ∧ u ∉ x)
+      \step{
+        show,
+        by = {5cn7h, Dfn_Psbc},
+        fml = {$¬ (x ⊂ x)$},
+      }
+        \step{
+          by = {i1ilq},
+          fml = $¬ (x ⊆ x ∧ x ≠ x)$,
+          label = {5cn7h},
+          tab = 1,
         }
-      $
-        \item
-        \T \Show $∃ u \ (u ∈ y ∧ u ∉ x)$
-        \By{lie67, Dfn_Sbc}
-          \item
-          \label{lie67}
-          \T\T $¬ (y ⊆ x)$
-          \By{i0gyn, gf8fg, Thm_Sbc_is_antisymRel}
-          \item
-          \label{gf8fg}
-          \T\T $x ≠ y$
-          \By{w810y, Dfn_Psbc}
-        \item
-        \label{i0gyn}
-        \T \Show $x ⊆ y$
-        \By{w810y, Dfn_Psbc}
-        \item
-        \label{w810y}
-        \T \Assume{$x ⊂ y$}
+        \step{
+          fml = {$x = x$},
+          label = {i1ilq},
+          tab = 1,
+        }
     \end{prf}
     \item
     \begin{prf}
-      \item
-      \Show $x ⊂ z$
-      \By{bjai4, xmb4n, Thm_psbc_has_less_elem}
-        \item
-        \label{bjai4}
-        \T \Show $x ⊆ z$
-        \By{o2zw9, Thm_Sbc_is_transRel}
-          \item
-          \label{o2zw9}
-          \T\T $x ⊆ y ⊆ z$
-          \By{zko72, Dfn_Psbc}
-        \item
-        \label{xmb4n}
-        \T \Show $∃ u \ (u ∈ z ∧ u ∉ x)$
-        \By{slopv, nor9n}
-          \item
-          \label{nor9n}
-          \T\T $u ∈ y \ra u ∈ z$
-          \By{zko72, Dfn_Sbc}
-          \item
-          \label{slopv}
-          \T\T $∃ u \ (u ∈ y ∧ u ∉ x)$
-          \By{zko72, Thm_psbc_has_less_elem}
-      \item
-      \label{zko72}
-      \Assume{$x ⊂ y ⊆ z$}
+      \step{
+        show,
+        fml = {
+          $
+            \rx{\cuc{
+              x ⊆ y \\
+              ∃ u \ (u ∈ y ∧ u ∉ x)
+            }}
+            \ra x ⊂ y
+          $
+        },
+      }
+        \step{
+          show,
+          by = {mo0ms, m75gb},
+          fml = {$x ⊂ y$},
+          tab = 1.
+        }
+          \step{
+            by = {bvdxl, xrjl8},
+            fml = {$x ≠ y$},
+            label = {m75gb},
+            tab = 2,
+          }
+          \step{
+            fml = {$x = y \ra ¬ ∃ u \ (u ∈ y ∧ u ∉ x)$},
+            label = {xrjl8},
+            tab = 2,
+          }
+        \step{
+          assume,
+          fml = {$x ⊆ y$},
+          label = {mo0ms},
+          tab = 1,
+        }
+        \step{
+          assume,
+          fml = {$∃ u \ (u ∈ y ∧ u ∉ x)$},
+          label = {bvdxl},
+          tab = 1,
+        }
+      \step{
+        show,
+        fml = {
+          $
+            \rx{x ⊂ y} \ra
+            \cuc{
+              x ⊆ y \\
+              ∃ u \ (u ∈ y ∧ u ∉ x)
+            }
+          $
+        },
+      }
+        \step{
+          show,
+          by = {lie67, Dfn_Sbc},
+          fml = {$∃ u \ (u ∈ y ∧ u ∉ x)$},
+          tab = 1,
+        }
+          \step{
+            by = {i0gyn, gf8fg, Thm_Sbc_is_antisymRel},
+            fml = {$¬ (y ⊆ x)$},
+            label = {lie67},
+            tab = 2,
+          }
+          \step{
+            by = {w810y, Dfn_Psbc},
+            fml = {$x ≠ y$},
+            label = {gf8fg},
+            tab = 2,
+          }
+        \step{
+          by = {w810y, Dfn_Psbc},
+          fml = {$x ⊆ y$},
+          label = {i0gyn},
+          tab = 1,
+        }
+        \step{
+          assume,
+          fml = {$x ⊂ y$},
+          label = {w810y},
+          tab = 1,
+        }
     \end{prf}
     \item
     \begin{prf}
-      \item
-      \Show $x ⊂ z$
-      \By{94hb6, novoe, Thm_psbc_has_less_elem}
-        \item
-        \label{94hb6}
-        \T \Show $x ⊆ z$
-        \By{5jt5y, Thm_Sbc_is_transRel}
-          \item
-          \label{5jt5y}
-          \T\T $x ⊆ y ⊆ z$
-          \By{naqn1, Dfn_Psbc}
-        \item
-        \label{novoe}
-        \T \Show $∃ u \ (u ∈ z ∧ u ∉ x)$
-        \By{9emdq, 4im8d}
-          \item
-          \label{4im8d}
-          \T\T $u ∈ x \ra u ∈ y$
-          \By{naqn1, Dfn_Sbc}
-          \item
-          \label{9emdq}
-          \T\T $∃ u \ (u ∈ z ∧ u ∉ y)$
-          \By{naqn1, Thm_psbc_has_less_elem}
-      \item
-      \label{naqn1}
-      \Assume{$x ⊆ y ⊂ z$}
+      \step{
+        show,
+        by = {bjai4, xmb4n, Thm_psbc_has_less_elem},
+        fml = {$x ⊂ z$},
+      }
+        \step{
+          show,
+          by = {slopv, nor9n},
+          fml = {$∃ u \ (u ∈ z ∧ u ∉ x)$},
+          label = {xmb4n},
+          tab = 1,
+        }
+          \step{
+            by = {zko72, Dfn_Sbc},
+            fml = {$u ∈ y \ra u ∈ z$},
+            label = {nor9n},
+            tab = 2,
+          }
+          \step{
+            by = {zko72, Thm_psbc_has_less_elem},
+            fml = {$∃ u \ (u ∈ y ∧ u ∉ x)$},
+            label = {slopv},
+            tab = 2,
+          }
+        \step{
+          show,
+          by = {o2zw9, Thm_Sbc_is_transRel},
+          fml = {$x ⊆ z$},
+          label = {bjai4},
+          tab = 1,
+        }
+          \step{
+            by = {zko72, Dfn_Psbc},
+            fml = {$x ⊆ y ⊆ z$},
+            label = {o2zw9},
+            tab = 2,
+          }
+      \step{
+        assume,
+        fml = {$x ⊂ y ⊆ z$},
+        label = {zko72},
+      }
     \end{prf}
     \item
     \begin{prf}
-      \item
-      \Show $x ⊂ z$
-      \By{ifxfr, Thm_psbc_of_sbc_is_psbc}
-        \item
-        \label{ifxfr}
-        \T $x ⊂ y ⊆ z$
-        \By{1vtkz, Dfn_Psbc}
-      \item
-      \label{1vtkz}
-      \Assume{$x ⊂ y ⊂ z$}
+      \step{
+        show,
+        by = {94hb6, novoe, Thm_psbc_has_less_elem},
+        fml = {$x ⊂ z$},
+      }
+        \step{
+          show,
+          by = {9emdq, 4im8d},
+          fml = {$∃ u \ (u ∈ z ∧ u ∉ x)$},
+          label = {novoe},
+          tab = 1,
+        }
+          \step{
+            by = {naqn1, Dfn_Sbc},
+            fml = {$u ∈ x \ra u ∈ y$},
+            label = {4im8d},
+            tab = 2,
+          }
+          \step{
+            by = {naqn1, Thm_psbc_has_less_elem},
+            fml = {$∃ u \ (u ∈ z ∧ u ∉ y)$},
+            label = {9emdq},
+            tab = 2,
+          }
+        \step{
+          show,
+          by = {5jt5y, Thm_Sbc_is_transRel},
+          fml = {$x ⊆ z$},
+          label = {94hb6},
+          tab = 1,
+        }
+          \step{
+            by = {naqn1, Dfn_Psbc},
+            fml = {$x ⊆ y ⊆ z$},
+            label = {5jt5y},
+            tab = 2,
+          }
+      \step{
+        assume,
+        fml = {$x ⊆ y ⊂ z$},
+        label = {naqn1},
+      }
     \end{prf}
     \item
     \begin{prf}
-      \item
-      $x ⊆ y \lra x ⊂ y ∨ x = y$
-      \By{f117i, 60v5g}
-        \item
-        \label{60v5g}
-        \T \Show $\sqc{x ⊆ y ∧ x ≠ y \\ x ⊆ y ∧ x = y} \lra x ⊂ y ∨ x = y$
-        \By{z3e3y, qc1h8}
-          \item
-          \label{z3e3y}
-          \T\T \Show $x ⊆ y ∧ x ≠ y \lra x ⊂ y$
-          \By{Dfn_Psbc}
-          \item
-          \label{qc1h8}
-          \T\T \Show $x ⊆ y ∧ x = y \lra x = y$
-          \By{mu0eu, zimip}
-            \item
-            \label{zimip}
-            \T\T\T \Show $x ⊆ y ∧ x = y \ra x = y$
-            \item
-            \label{mu0eu}
-            \T\T\T \Show $x = y \ra x ⊆ y ∧ x = y$
-            \By{Thm_Sbc_is_reflRel}
-        \item
-        \label{f117i}
-        \T\Show $x ⊆ y \lra \sqc{x ⊆ y ∧ x ≠ y \\ x ⊆ y ∧ x = y}$
+      \step{
+        show,
+        by = {ifxfr, Thm_psbc_of_sbc_is_psbc},
+        fml = {$x ⊂ z$},
+      }
+        \step{
+          by = {1vtkz, Dfn_Psbc},
+          fml = {$x ⊂ y ⊆ z$},
+          label = {ifxfr},
+          tab = 1,
+        }
+      \step{
+        assume,
+        fml = {$x ⊂ y ⊂ z$},
+        label = {1vtkz},
+      }
+    \end{prf}
+    \item
+    \begin{prf}
+      \step{
+        show,
+        by = {f117i, 60v5g},
+        fml = {$x ⊆ y \lra x ⊂ y ∨ x = y$},
+      }
+        \step{
+          show,
+          by = {qc1h8, z3e3y},
+          fml = {$\sqc{x ⊆ y ∧ x ≠ y \\ x ⊆ y ∧ x = y} \lra x ⊂ y ∨ x = y$},
+          label = {60v5g},
+          tab = 1,
+        }
+          \step{
+            by = {Dfn_Psbc},
+            fml = {$x ⊆ y ∧ x ≠ y \lra x ⊂ y$},
+            label = {z3e3y},
+            tab = 2,
+          }
+          \step{
+            show,
+            by = {mu0eu, zimip},
+            fml = {$x ⊆ y ∧ x = y \lra x = y$},
+            label = {qc1h8},
+            tab = 2,
+          }
+            \step{
+              fml = {$x ⊆ y ∧ x = y \ra x = y$},
+              label = {zimip},
+              tab = 3,
+            }
+            \step{
+              by = {Thm_Sbc_is_reflRel},
+              fml = {$x = y \ra x ⊆ y ∧ x = y$},
+              label = {mu0eu},
+              tab = 3,
+            }
+        \step{
+          fml = {$x ⊆ y \lra \sqc{x ⊆ y ∧ x ≠ y \\ x ⊆ y ∧ x = y}$},
+          label = {f117i},
+          tab = 1,
+        }
     \end{prf}
   \end{thmlist}
 \end{prp}
+
+
+\begin{dfn}[Dfn_cls]
+  $u ∈ \cls{v}{𝜙} \lra 𝜙 [u / v] ∧ \M{u}$
+\end{dfn}
+
+
+\begin{prp}
+  \begin{thmlist}
+    \item 
+  \end{thmlist}
+\end{prp}
+
+
+\begin{dfn}
+  \begin{thmlist}
+    \item 
+    \mylabel{Dfn_emp}
+    $∅ ≔ \cls{u}{u ≠ u}$
+    \item 
+    \mylabel{Dfn_univ}
+    $𝐔 ≔ \cls{u}{u = u}$
+    \item 
+    \mylabel{Dfn_russ}
+    $𝐑𝐮 ≔ \cls{u}{u ∉ u}$
+  \end{thmlist}
+\end{dfn}
+
+
+\begin{prp}
+  \begin{thmlist}
+    \item 
+    \mylabel{Thm_nothing_is_elem_of_emp}
+    $u ∉ ∅$
+    \item 
+    \mylabel{Thm_set_is_elem_of_univ}
+    $\M{u} \ra u ∈ 𝐔$
+    \item 
+    \mylabel{Thm_emp_is_sbc_of_everything}
+    $∅ ⊆ x$
+    \item 
+    \mylabel{Thm_everything_is_sbc_of_univ}
+    $x ⊆ 𝐔$
+  \end{thmlist}
+  \tcblower
+  \begin{thmlist}
+    \item 
+    \begin{prf}
+      \step{
+        show,
+        by = {nfxts, 58ln4},
+        fml = {$u ∉ ∅$},
+      }
+        \step{
+          by = {Dfn_emp, Dfn_cls},
+          fml = {$u ∈ ∅ \ra u ≠ u$},
+          label = {58ln4},
+          tab = 1,
+        }
+        \step{
+          fml = {$u = u$},
+          label = {nfxts},
+          tab = 1,
+        }
+    \end{prf}
+    \item 
+    \begin{prf}
+      \step{
+        show,
+        by = {70eif, 9bmg1},
+        fml = {$\M{u} \ra u ∈ 𝐔$},
+      }
+        \step{
+          by = {Dfn_univ, Dfn_cls},
+          fml = {$u = u ∧ \M{u} \ra u ∈ 𝐔$},
+          label = {9bmg1},
+          tab = 1,
+        }
+        \step{
+          fml = {$\M{u} \ra u = u ∧ \M{u}$},
+          label = {70eif},
+          tab = 1,
+        }
+    \end{prf}
+    \item 
+    \begin{prf}
+      \step{
+        show,
+        by = {ysc2o, Dfn_Sbc},
+        fml = {$∅ ⊆ x$},
+      }
+        \step{
+          by = {Thm_nothing_is_elem_of_emp},
+          fml = {$u ∈ ∅ \ra u ∈ x$},
+          label = {ysc2o},
+          tab = 1,
+        }
+    \end{prf}
+    \item 
+    \begin{prf}
+      \step{
+        show,
+        by = {xnknt, idu1u, Dfn_Sbc},
+        fml = {$x ⊆ 𝐔$},
+      }
+        \step{
+          by = {Thm_set_is_elem_of_univ},
+          fml = {$\M{x} \ra x ∈ 𝐔$},
+          label = {idu1u},
+          tab = 1,
+        }
+        \step{
+          by = {Thm_elem_is_set},
+          fml = {$u ∈ x \ra \M{x}$},
+          label = {xnknt},
+          tab = 1,
+        }
+    \end{prf}
+  \end{thmlist}
+\end{prp}
+
+
+\begin{thm}
+  $\Pr{𝐑𝐮}$
+  \tcblower
+  \begin{prf}
+    \step{
+      show,
+      by = {4qtca, Dfn_Pr},
+      fml = {$\Pr{𝐑𝐮}$},
+    }
+      \step{
+        show,
+        by = {2uwvk, f86im},
+        fml = {$¬ \M{𝐑𝐮}$},
+        label = {4qtca},
+        tab = 1,
+      }
+        \step{
+          by = {Dfn_russ, Dfn_cls},
+          fml = {$𝐑𝐮 ∉ 𝐑𝐮 ∧ \M{𝐑𝐮} \ra 𝐑𝐮 ∈ 𝐑𝐮$},
+          label = {f86im},
+          tab = 2,
+        }
+        \step{
+          show,
+          by = {rw1xn},
+          fml = {$𝐑𝐮 ∉ 𝐑𝐮$},
+          label = {2uwvk},
+          tab = 2,
+        }
+          \step{
+            by = {7au8f},
+            fml = {$𝐑𝐮 ∈ 𝐑𝐮 \ra 𝐑𝐮 ∉ 𝐑𝐮$},
+            label = {rw1xn},
+            tab = 3,
+          }
+          \step{
+            by = {Dfn_russ, Dfn_cls},
+            fml = {$u ∈ 𝐑𝐮 \ra u ∉ u$},
+            label = {7au8f},
+            tab = 3,
+          }
+  \end{prf}
+\end{thm}
+
+
+\begin{dfn}
+  \begin{thmlist}
+    \item
+    \mylabel{Dfn_cup}
+    $
+      x ∪ y ≔ \cls{u}{u ∈ x ∨ u ∈ y}
+    $
+    \item
+    \mylabel{Dfn_cap}
+    $
+      x ∩ y ≔ \cls{u}{u ∈ x ∧ u ∈ y}
+    $
+    \item
+    \mylabel{Dfn_cdif}
+    $
+      x ∖ y ≔ \cls{u}{u ∈ x ∧ u ∉ y}
+    $
+    \item
+    \mylabel{Dfn_cmpl}
+    $
+      x^∁ = \cls{u}{u ∉ x}
+    $
+  \end{thmlist}
+\end{dfn}
