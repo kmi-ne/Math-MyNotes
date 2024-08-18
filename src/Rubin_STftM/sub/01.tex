@@ -1,0 +1,313 @@
+\chapter{クラス代数}
+
+\section{クラス}
+
+\begin{dfn}
+  \begin{thmlist}
+    \item \mylabel{dfn_M}
+    $\M{x} \defn ∃ y \ (x ∈ y)$
+    % 
+    \item \mylabel{dfn_Pr}
+    $\Pr{x} \defn ¬ \M{x}$
+  \end{thmlist}
+\end{dfn}
+
+
+\begin{thm}[thm_elem_is_set]
+  $x ∈ y \ra \M{x}$
+  % 
+  \tcblower
+  \begin{prf}
+    \Show {$\M{x}$} (xy3t7, dfn_M) {
+      \step {$∃ y \ (x ∈ y)$} [xy3t7] (8afen)
+    }
+    \Assume {$x ∈ y$} [8afen]
+  \end{prf}
+\end{thm}
+
+
+\begin{axm}[axm_ext][外延性公理]"外延性公理"
+  $∀ u \ (u ∈ x \ra u ∈ y) \ra x = y$
+\end{axm}
+
+
+\begin{dfn}
+  \begin{thmlist}
+    \item \mylabel{dfn_Sbc}
+    $x ⊆ y \defn ∀ u \ (u ∈ x \ra u ∈ y)$
+    % 
+    \item \mylabel{dfn_Psbc}
+    $x ⊂ y \defn x ⊆ y ∧ x ≠ y$
+  \end{thmlist}
+\end{dfn}
+
+
+\begin{thm}
+  \begin{thmlist}
+    \item \mylabel{thm_Sbc_is_reflRel}
+    $x ⊆ x$
+    % 
+    \item \mylabel{thm_Sbc_is_transRel}
+    $x ⊆ y ⊆ z \ra x ⊆ z$
+    % 
+    \item \mylabel{thm_Sbc_is_antisymRel}
+    $x ⊆ y ⊆ x \ra x = y$
+  \end{thmlist}
+  % 
+  \tcblower
+  \begin{thmlist}
+    \item 
+    \begin{prf}
+      \Show {$x ⊆ x$} (rlo90, dfn_Sbc) {
+        \step {$∀ u \ (u ∈ x \ra u ∈ x)$} [rlo90]
+      }
+    \end{prf}
+    % 
+    \item 
+    \begin{prf}
+      \Show {$x ⊆ z$} (fioly, dfn_Sbc) {
+        \step {$∀ u \ (u ∈ x \ra u ∈ z)$} [fioly] (yyrfy)
+        \step {$\cuc{∀ u \ (u ∈ x \ra u ∈ y) \\ ∀ u \ (u ∈ y \ra u ∈ z)}$} [yyrfy] (ara7r)
+      }
+      \Assume {$x ⊆ y ⊆ z$} [ara7r]
+    \end{prf}
+    % 
+    \item 
+    \begin{prf}
+      \Show {$x = y$} (31xs0, axm_ext) {
+        \step {$∀ u \ (u ∈ x \lra u ∈ y)$} [31xs0] (cc53c)
+        \step {$\cuc{∀ u \ (u ∈ y \ra u ∈ x) \\ ∀ u \ (u ∈ x \ra u ∈ y)}$} [cc53c] (d1nw6, dfn_Sbc)
+      }
+      \Assume {$x ⊆ y ⊆ x$} [d1nw6]
+    \end{prf}
+  \end{thmlist}
+\end{thm}
+
+
+\begin{thm}
+  \begin{thmlist}
+    \item \mylabel{thm_Psbc_is_irreflRel}
+    $¬ (x ⊂ x)$
+    % 
+    \item \mylabel{thm_psbc_has_less_elem}
+    $x ⊂ y \lra \cuc{x ⊆ y \\ ∃ u \ (u ∈ y ∧ u ∉ x)}$
+    % 
+    \item \mylabel{thm_psbc_of_sbc_is_psbc}
+    $x ⊂ y ⊆ z \ra x ⊂ z$
+    % 
+    \item \mylabel{thm_sbc_of_psbc_is_psbc}
+    $x ⊆ y ⊂ z \ra x ⊂ z$
+    % 
+    \item \mylabel{thm_psbc_of_psbc_is_psbc}
+    $x ⊂ y ⊂ z \ra x ⊂ z$
+    % 
+    \item \mylabel{thm_sbc_eqv_psbc_or_Eq}
+    $x ⊆ y \lra x ⊂ y ∨ x = y$
+  \end{thmlist}
+  % 
+  \tcblower
+  \begin{thmlist}
+    \item 
+    \begin{prf}
+      \Show {$¬ (x ⊂ x)$} (uiiks, dfn_Psbc) {
+        \step {$¬ (x ⊆ x ∧ x ≠ x)$} [uiiks] (swxyr)
+        \step {$x = x$} [swxyr]
+      }
+    \end{prf}
+    % 
+    \item 
+    \begin{prf}
+      \Show {$x ⊂ y$} (3z6k9, t3lj4, dfn_Psbc) {
+        \step {$x ≠ y$} [k9059] (s4dtt, t3lj4)
+        \step {$x = y \ra ¬ ∃ u \ (u ∈ y ∧ u ∉ x)$} [t3lj4]
+      }
+      \Assume {$∃ u \ (u ∈ y ∧ u ∉ x)$} [s4dtt]
+      \Assume {$x ⊆ y$} [3z6k9]
+      % 
+      \Show {$∃ u \ (u ∈ y ∧ u ∉ x)$} (xibkc, dfn_Sbc) {
+        \step {$¬ (y ⊆ x)$} [xibkc] (i0br2, 1t6a4, thm_Sbc_is_antisymRel)
+        \step {$x ≠ y$} [1t6a4] (wzl3r, dfn_Psbc)
+      }
+      \AndShow {$x ⊆ y$} [i0br2] (wzl3r, dfn_Psbc) {}
+      \Assume {$x ⊂ y$} [wzl3r]
+    \end{prf}
+    % 
+    \item 
+    \begin{prf}
+      \Show {$x ⊂ z$} (4vc6p, 879lf, thm_psbc_has_less_elem) {
+        \Show {$∃ u \ (u ∈ z ∧ u ∉ x)$} [879lf] (z3cnf, yed92) {
+          \step {$u ∈ y \ra u ∈ z$} [yed92] (lwwv5, dfn_Sbc)
+          \step {$∃ u \ (u ∈ y ∧ u ∉ x)$} [z3cnf] (lwwv5, thm_psbc_has_less_elem)
+        }
+        \Show {$x ⊆ z$} [4vc6p] (vgmmi, thm_Sbc_is_transRel) {
+          \step {$x ⊆ y ⊆ z$} [vgmmi] (lwwv5, dfn_Psbc)
+        }
+      }
+      \Assume {$x ⊂ y ⊆ z$} [lwwv5]
+    \end{prf}
+    % 
+    \item 
+    \begin{prf}
+      \Show {$x ⊂ z$} (mabal, dzgv3, thm_psbc_has_less_elem) {
+        \Show {$∃ u \ (u ∈ z ∧ u ∉ x)$} [dzgv3] (pfimo, f5h3u) {
+          \step {$u ∈ x \ra u ∈ y$} [f5h3u] (3e2fz, dfn_Sbc)
+          \step {$∃ u \ (u ∈ z ∧ u ∉ y)$} [pfimo] (3e2fz, thm_psbc_has_less_elem)
+        }
+        \Show {$x ⊆ z$} [mabal] (q2l6c, thm_Sbc_is_transRel) {
+          \step {$x ⊆ y ⊆ z$} [q2l6c] (3e2fz, dfn_Psbc)
+        }
+      }
+      \Assume {$x ⊆ y ⊂ z$} [3e2fz]
+    \end{prf}
+    % 
+    \item 
+    \begin{prf}
+      \Show {$x ⊂ z$} (vuc8r, thm_psbc_of_sbc_is_psbc) {
+        \step {$x ⊂ y ⊆ z$} [vuc8r] (vig6r, dfn_Psbc)
+      }
+      \Assume {$x ⊂ y ⊂ z$} [vig6r]
+    \end{prf}
+    % 
+    \item 
+    \begin{prf}
+      \Show {$x ⊆ y \lra x ⊂ y ∨ x = y$} (ktr2d, or0bx) {
+        \Show {$\sqc{x ⊆ y ∧ x ≠ y \\ x ⊆ y ∧ x = y} \lra x = y$} [or0bx] (le22s, s4mfd) {
+          \Show {$x ⊆ y ∧ x = y \lra x = y$} [s4mfd] (7grw5, bj1u4) {
+            \step {$x ⊆ y ∧ x = y \ra x = y$} [bj1u4]
+            \step {$x = y \ra x ⊆ y ∧ x = y$} [7grw5] (thm_Sbc_is_reflRel)
+          }
+          \step {$x ⊆ y ∧ x ≠ y \lra x ⊂ y$} [le22s] (dfn_Psbc)
+        }
+        \step {$x ⊆ y \lra \sqc{x ⊆ y ∧ x ≠ y \\ x ⊆ y ∧ x = y}$} [ktr2d]
+      }
+    \end{prf}
+  \end{thmlist}
+\end{thm}
+
+
+\begin{dfn}[dfn_cls]
+  $u ∈ \cls{v}{𝜙} \lra 𝜙 [u / v] ∧ \M{u}$
+\end{dfn}
+
+
+\begin{thm}
+  \begin{thmlist}
+    \item \mylabel{thm_cls_of_elem_of_x_eq_x}
+    $\cls{u}{u ∈ x} = x$
+    % 
+    \item \mylabel{thm_imp_wff_yield_sbc}
+    $(𝜙 \ra 𝜓) \ra \cls{u}{𝜙} ⊆ \cls{u}{𝜓}$
+    % 
+    \item \mylabel{thm_eqv_wff_yield_eq_cls}
+    $(𝜙 \ra 𝜓) \lra \cls{u}{𝜙} = \cls{u}{𝜓}$
+    % 
+    \item \mylabel{thm_wff_imp_M_then_omit_M}
+    $(𝜙 \ra \M{v}) \ra (u ∈ \cls{v}{𝜙} \lra 𝜙 [u / v])$
+    % 
+    \item \mylabel{thm_cls_wff_and_M_eq_cls_wff}
+    $\cls{u}{𝜙 ∧ \M{u}} = \cls{u}{𝜙}$
+    % 
+    \item \mylabel{thm_cls_of_elem_of_cls_land_eq_cls_land}
+    $\cls{u}{u ∈ \cls{v}{𝜙} ∧ 𝜓} = \cls{u}{𝜙 [u / v] ∧ 𝜓}$
+    % 
+    \item \mylabel{thm_cls_of_elem_of_cls_lor_eq_cls_lor}
+    $\cls{u}{u ∈ \cls{v}{𝜙} ∨ 𝜓} = \cls{u}{𝜙 [u / v] ∨ 𝜓}$
+  \end{thmlist}
+  % 
+  \tcblower
+  \begin{thmlist}
+    \item 
+    \begin{prf}
+      \Show {$\cls{u}{u ∈ x} = x$} (axm_ext) {
+        \Show {$u ∈ \cls{u}{u ∈ x} \lra u ∈ x$} [wg8mj] (62eyh, ngzg5) {
+          \step {$u ∈ x ∧ \M{u} \lra u ∈ x$} [ngzg5] (thm_elem_is_set)
+          \step {$u ∈ \cls{u}{u ∈ x} \lra u ∈ x ∧ \M{u}$} [62eyh] (dfn_cls)
+        }
+      }
+    \end{prf}
+    % 
+    \item 
+    \begin{prf}
+      \Show {$\cls{u}{𝜙} ⊆ \cls{u}{𝜓}$} (oljua, dfn_Sbc) {
+        \step {$u ∈ \cls{u}{𝜙} \ra u ∈ \cls{u}{𝜓}$} [oljua] (gyx9f, 3olbo, uy8bz)
+        \step {$𝜓 ∧ \M{u} \ra u ∈ \cls{u}{𝜓}$} [uy8bz] (dfn_cls)
+        \step {$𝜙 ∧ \M{u} \ra 𝜓 ∧ \M{u}$} [3olbo] (3entz)
+        \step {$u ∈ \cls{u}{𝜙} \ra 𝜙 ∧ \M{u}$} [gyx9f] (dfn_cls)
+      }
+      \Assume {$𝜙 \ra 𝜓$} [3entz]
+    \end{prf}
+    % 
+    \item 
+    \begin{prf}
+      \Show {$(𝜙 \ra 𝜓) \lra \cls{u}{𝜙} = \cls{u}{𝜓}$} (tesqy, ysj0h, thm_Sbc_is_antisymRel) {
+        \step {$(𝜙 \ra 𝜓) \ra \cls{u}{𝜙} ⊆ \cls{u}{𝜓}$} [ysj0h] (thm_imp_wff_yield_sbc)
+        \step {$(𝜓 \ra 𝜙) \ra \cls{u}{𝜓} ⊆ \cls{u}{𝜙}$} [tesqy] (thm_imp_wff_yield_sbc)
+      }
+    \end{prf}
+    % 
+    \item 
+    \begin{prf}
+      \Show {$u ∈ \cls{v}{𝜙} \lra 𝜙 [u / v]$} (whc4n, yvfw3) {
+        \step {$𝜙 [u / v] ∧ \M{u} \lra 𝜙 [u / v]$} [yvfw3] (la3n2)
+        \step {$u ∈ \cls{v}{𝜙} \lra 𝜙 [u / v] ∧ \M{u}$} [whc4n] (dfn_cls)
+      }
+      \Assume {$𝜙 \ra \M{v}$} [la3n2]
+    \end{prf}
+    % 
+    \item 
+    \begin{prf}
+      \Show {$\cls{u}{𝜙 ∧ \M{u}} = \cls{u}{𝜙}$} (wdhlr, axm_ext) {
+        \Show {$u ∈ \cls{u}{𝜙 ∧ \M{u}} \lra u ∈ \cls{u}{𝜙}$} [wdhlr] (v58z3, 4igwa, tss9b) {
+          \step {$𝜙 ∧ \M{u} \lra u ∈ \cls{u}{𝜙}$} [tss9b] (dfn_cls)
+          \step {$𝜙 ∧ \M{u} ∧ \M{u} \lra 𝜙 ∧ \M{u}$} [4igwa]
+          \step {$u ∈ \cls{u}{𝜙 ∧ \M{u}} \lra 𝜙 ∧ \M{u} ∧ \M{u}$} [v58z3] (dfn_cls)
+        }
+      }
+    \end{prf}
+  \end{thmlist}
+\end{thm}
+
+
+\begin{dfn}
+  \begin{thmlist}
+    \item \mylabel{dfn_emp}
+    $∅ ≔ \cls{u}{u ≠ u}$
+    \item \mylabel{dfn_univ}
+    $𝐔 ≔ \cls{u}{u = u}$
+    \item \mylabel{dfn_russ}
+    $𝐑𝐮 ≔ \cls{u}{u ∉ u}$
+  \end{thmlist}
+\end{dfn}
+
+
+\begin{thm}
+  \begin{thmlist}
+    \item \mylabel{thm_nothing_is_elem_of_emp}
+    $u ∉ ∅$
+    \item \mylabel{thm_set_is_elem_of_univ}
+    $\M{u} \ra u ∈ 𝐔$
+    \item \mylabel{thm_emp_is_sbc_of_everything}
+    $∅ ⊆ x$
+    \item \mylabel{thm_everything_is_sbc_of_univ}
+    $x ⊆ 𝐔$
+  \end{thmlist}
+\end{thm}
+
+
+\begin{thm}[thm_russ_is_pr]
+  $\Pr{𝐑𝐮}$
+\end{thm}
+
+
+\begin{dfn}
+  \begin{thmlist}
+    \item \mylabel{dfn_cup}
+    $x ∪ y ≔ \cls{u}{u ∈ x ∨ u ∈ y}$
+    \item \mylabel{dfn_cap}
+    $x ∩ y ≔ \cls{u}{u ∈ x ∧ u ∈ y}$
+    \item \mylabel{dfn_cdif}
+    $x ∖ y ≔ \cls{u}{u ∈ x ∧ u ∉ y}$
+    \item \mylabel{dfn_cmpl}
+    $x^∁ ≔ \cls{u}{u ∉ x}$
+  \end{thmlist}
+\end{dfn}

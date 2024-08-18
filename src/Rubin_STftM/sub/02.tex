@@ -1,0 +1,204 @@
+\chapter{Functions, Relations}
+
+
+\begin{dfn}[][Unordered pair/unit set]
+  \begin{thmlist}
+    \item
+    \mylabel{Dfn_pair}
+    $
+    \{x, y\} ≔ \cls{u}{u = x ∨ u = y}
+    $
+    \item
+    \mylabel{Dfn_unit}
+    $
+      \{x\} ≔ \cls{u}{u = x}
+    $
+  \end{thmlist}
+\end{dfn}
+
+
+\begin{prp}
+  $
+    \{x, x\} = \{x\}
+  $
+  \tcblower
+  \step{
+    by = {99dqb, tr778, 7x56l},
+    fml = {$\{x, x\} = \{x\}$},
+  }
+    \step{
+      by = {Dfn_unit},
+      fml = {$\cls{u}{u = x} = \{x\}$},
+      label = 7x56l,
+      tab = 1,
+    }
+    \step{
+      by = {Thm_eqv_wff_yield_eq_cls},
+      fml = {$\cls{u}{u = x ∨ u = x} = \cls{u}{u = x}$},
+      label = tr778,
+      tab = 1,
+    }
+    \step{
+      by = {Dfn_pair},
+      fml = {$\{x, x\} = \cls{u}{u = x ∨ u = x}$},
+      label = 99dqb,
+      tab = 1,
+    }
+\end{prp}
+
+
+\begin{prp}
+  \begin{thmlist}
+    \item
+    $
+      x ∈ \{x, y\}
+    $
+    \item
+    $
+      y ∈ \{x, y\}
+    $
+    \item
+    $
+      \{x, y\} = \{y, x\}
+    $
+  \end{thmlist}
+\end{prp}
+
+
+\begin{prp}
+  \begin{thmlist}
+    \item
+    $
+      \cuc{
+        \M{x_𝟏} ∧ \M{x_𝟐} ∧ \M{y_𝟏} ∧ \M{y_𝟐} \\
+        \{x_𝟏, x_𝟐\} = \{y_𝟏, y_𝟐\}
+      }
+      \ra
+      \sqc{
+        x_𝟏 = y_𝟏 ∧ x_𝟐 = y_𝟐 \\
+        x_𝟏 = y_𝟐 ∧ x_𝟐 = y_𝟏
+      }
+    $
+    \item
+    $
+      \cuc{
+        \M{x} ∧ \M{y} \\
+        \{x\} = \{y\}
+      }
+      \ra x = y
+    $
+  \end{thmlist}
+  % \tcblower
+  % \step{
+  %   show,
+  %   fml = {$
+  %     \sqc{
+  %       x_𝟏 = y_𝟏 ∧ x_𝟐 = y_𝟐 \\
+  %       x_𝟏 = y_𝟐 ∧ x_𝟐 = y_𝟏
+  %     }
+  %   $},
+  % }
+  %     \step{
+  %       assume,
+  %       fml = {$x_𝟏 = y_𝟐 ∧ x_𝟐 = y_𝟐$},
+  %     }
+  %     \step{
+  %       assume,
+  %       fml = {$x_𝟏 = y_𝟐 ∧ x_𝟐 = y_𝟏$},
+  %     }
+  %     \step{
+  %       assume,
+  %       fml = {$x_𝟏 = y_𝟏 ∧ x_𝟐 = y_𝟐$},
+  %     }
+  %     \step{
+  %       show,
+  %     }
+  %       \step{
+
+  %       }
+  %     \step{
+  %       assume,
+  %       fml = {$x_𝟏 = y_𝟏 ∧ x_𝟐 = y_𝟏$},
+  %     }
+  %   \step{
+  %     fml = {$
+  %       \sqc{
+  %         x_𝟏 = y_𝟏 ∧ x_𝟐 = y_𝟏 \\
+  %         x_𝟏 = y_𝟏 ∧ x_𝟐 = y_𝟐 \\
+  %         x_𝟏 = y_𝟐 ∧ x_𝟐 = y_𝟏 \\
+  %         x_𝟏 = y_𝟐 ∧ x_𝟐 = y_𝟐
+  %       }
+  %     $},
+  %   }
+  %   \step{
+  %     show,
+  %     fml = {$x_𝟐 = y_𝟏 ∨ x_𝟐 = y_𝟐$},
+  %   }
+  %     \step{
+  %       fml = {$x_𝟐 ∈ \{y_𝟏, y_𝟐\}$},
+  %     }
+  %     \step{
+  %       fml = {$x_𝟐 ∈ \{x_𝟏, x_𝟐\}$},
+  %     }
+  % \step{
+  %   show,
+  %     fml = {$x_𝟏 = y_𝟏 ∨ x_𝟏 = y_𝟐$},
+  %   }
+  %     \step{
+  %       fml = {$x_𝟏 ∈ \{y_𝟏, y_𝟐\}$},
+  %     }
+  %     \step{
+  %       fml = {$x_𝟏 ∈ \{x_𝟏, x_𝟐\}$},
+  %     }
+  % \step{
+  %   assume,
+  %   fml = {$\{x_𝟏, x_𝟐\} = \{y_𝟏, y_𝟐\}$},
+  % }
+  % \step{
+  %   assume,
+  %   fml = {$\M{x_𝟏} ∧ \M{x_𝟐} ∧ \M{y_𝟏} ∧ \M{y_𝟐}$},
+  % }
+\end{prp}
+
+
+\begin{axm}[][][Axiom of Pairing]
+  $
+    \M{x} ∧ \M{y} \ra \M{\{x, y\}}
+  $
+\end{axm}
+
+
+\begin{prp}
+  $
+    \M{x} \ra \M{\{x\}}
+  $
+\end{prp}
+
+
+\begin{dfn}[][Ordered pair]
+  $
+    ⟨ x, y ⟩ ≔ \{ \{x\}, \{x, y\} \}
+  $
+\end{dfn}
+
+
+\begin{thm}
+  $
+    \cuc{
+      \M{x_𝟏} ∧ \M{x_𝟐} ∧ \M{y_𝟏} ∧ \M{y_𝟐} \\
+      ⟨ x_𝟏, x_𝟐 ⟩ = ⟨ y_𝟏, y_𝟐 ⟩
+    }
+    \ra
+    \cuc{
+      x_𝟏 = y_𝟏 \\
+      x_𝟐 = y_𝟐
+    }
+  $
+\end{thm}
+
+
+\begin{prp}
+  $
+    \M{x} ∧ \M{y} \ra \M{⟨ x, y ⟩}
+  $
+\end{prp}
